@@ -2,11 +2,8 @@ import React, { useState } from 'react';
 import {View, Text, StyleSheet, Image, TextInput, Button, TouchableOpacity, ScrollView, Dimensions } from 'react-native';
 import styles from '../../constants/globalstyle';
 import rstyles from '../rstyles';
-//import Colors from '../../constants/color';
 
-// const window = Dimensions.get("window");
-// const screen = Dimensions.get("screen");
-// const { height } = Dimensions.get('window');
+import axios from 'axios';
 
 const RegisterStepOne = props => {
 
@@ -22,10 +19,19 @@ const RegisterStepOne = props => {
     };
 
   const addHandler = () => {
-    console.log(enterEmail);
-    console.log(enterPass);
+        axios.post('http://111.93.169.90:8484/V1/Signup', {
+        Email: enterEmail,
+        Password: enterPass
+    })
+    .then(function (response) {
+        console.log(response);
+        props.navigation.navigate({routeName: 'RegisterTwo'});
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
   };
-
+  
     return(
         <View style={styles.imageview}>
             <View style={rstyles.logo}>
