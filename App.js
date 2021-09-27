@@ -1,14 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-//import RegisterStepOne from './screens/register/RegisterStepOne';
-//import RegisterStepTwo from './screens/register/RegisterStepTwo';
-//import RegisterStepThree from './screens/register/RegisterStepThree';
-//import RegisterStepFour from './screens/register/RegisterStepFour';
-//import RegisterStepFive from './screens/register/RegisterStepFive';
-//import Upload from './screens/register/Upload';
-//import Identitypage from './screens/register/Identitypage';
-//import Home from './screens/home/Home';
 import GlobeNavigator from './navigation/GlobeNavigator';
 
 
