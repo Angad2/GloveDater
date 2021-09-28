@@ -3,34 +3,34 @@ import {View, Text, StyleSheet, Image, TextInput, Button, TouchableOpacity, Scro
 import styles from '../../constants/globalstyle';
 import rstyles from '../rstyles';
 
-import axios from 'axios';
+//import axios from 'axios';
 
 const RegisterStepOne = props => {
 
-    const [enterEmail, setEmail] = useState('');
-    const [enterPass, setPass] = useState('');
+    const [email, _email] = useState('');
+    const [password, _password] = useState('');
 
     const emailHandler = (enteredEmail) => {
-        setEmail(enteredEmail);
+        _email(enteredEmail);
     };
 
     const passHandler = (enteredPass) => {
-        setPass(enteredPass);
+        _password(enteredPass);
     };
 
-  const addHandler = () => {
-        axios.post('http://111.93.169.90:8484/V1/Signup', {
-        Email: enterEmail,
-        Password: enterPass
-    })
-    .then(function (response) {
-        console.log(response);
-        props.navigation.navigate({routeName: 'RegisterTwo'});
-    })
-    .catch(function (error) {
-        console.log(error);
-    });
-  };
+//   const addHandler = () => {
+//         axios.post('http://111.93.169.90:8484/V1/Signup', {
+//         Email: enterEmail,
+//         Password: enterPass
+//     })
+//     .then(function (response) {
+//         console.log(response);
+//         props.navigation.navigate({routeName: 'RegisterTwo'});
+//     })
+//     .catch(function (error) {
+//         console.log(error);
+//     });
+//   };
   
     return(
         <View style={styles.imageview}>
@@ -50,7 +50,7 @@ const RegisterStepOne = props => {
                     <TextInput placeholder='Enter Email...' 
                     style={rstyles.inputtext} 
                     onChangeText={emailHandler}
-                    value={enterEmail}
+                    value={email}
                     />
                     <Image source={require('../../assets/images/mail_icon.png')} 
                 style={{width: 50, height: 50, resizeMode: 'contain'}}
@@ -59,8 +59,8 @@ const RegisterStepOne = props => {
                 <View style={rstyles.inputarea}>
                     <TextInput placeholder='Enter Password' 
                     style={rstyles.inputtext} 
-                   onChangeText={passHandler}
-                    value={enterPass}
+                    onChangeText={passHandler}
+                    value={password}
                     />
                     <Image source={require('../../assets/images/pass-icon.png')} 
                 style={{width: 50, height: 50, resizeMode: 'contain'}}
@@ -72,10 +72,22 @@ const RegisterStepOne = props => {
                 }} style={rstyles.btncontainer}>
                 <Text style={rstyles.btntext}>Continue</Text>
             </TouchableOpacity> */}
-            <TouchableOpacity onPress={addHandler} 
-            style={rstyles.btncontainer}>
+            
+            <TouchableOpacity onPress={() =>
+                props.navigation.navigate('RegisterTwo', {
+                param: {
+                    "email": email, 
+                    "password": password}
+                })
+                
+            } style={rstyles.btncontainer}>
                 <Text style={rstyles.btntext}>Continue</Text>
             </TouchableOpacity>
+
+            {/* <TouchableOpacity onPress={addHandler} 
+            style={rstyles.btncontainer}>
+                <Text style={rstyles.btntext}>Continue</Text>
+            </TouchableOpacity> */}
             <Image source={require('../../assets/images/bg2.jpg')} 
             style={{resizeMode: 'cover'}}
             />

@@ -5,30 +5,35 @@ import rstyles from '../rstyles';
 //import Colors from '../../constants/color';
 
 const RegisterStepTwo = props => {
-    const [Gender, setGender] = useState('');
-    const [Looking, setLooking] = useState('');
 
-    const addHandler = () => {
-        axios.post('http://111.93.169.90:8484/V1/Signup', {
-        Gender: Gender,
-        Looking_to_date_a: Looking
-    })
-    .then(function (response) {
-        console.log(response);
-        props.navigation.navigate({routeName: 'RegisterThree'});
-    })
-    .catch(function (error) {
-        console.log(error);
-    });
-  };
+    const [email, _email] = useState('');
+    const [password, _password] = useState('')
+    const [gender, _gender] = useState('');
+    const [looking, _looking] = useState('');
 
   const selectMan = () => {
-    setGender ('Man')
+    _gender ('Man')
   };
 
   const selectWoman = () => {
-    setGender ('Woman')
-  };  
+    _gender ('Woman')
+  };
+
+  const lookingMan = () => {
+    _looking ('Man')
+  };
+
+  const lookingWoman = () => {
+    _looking ('Woman')
+  };    
+  
+  React.useEffect(()=>{
+    console.log(props.navigation.state.params.param.email, "+++++++props email"),
+    console.log(props.navigation.state.params.param.password, "+++++++props pass"),
+    _email(props.navigation.state.params.param.email),
+    _password(props.navigation.state.params.param.password)
+
+  },[])
 
     return(
         <View style={styles.imageview}>
@@ -56,12 +61,12 @@ const RegisterStepTwo = props => {
                 <View style={rstyles.checkarea}>
                     <Text style={rstyles.checktitle}>Looking to date a...</Text>
                     <View style={rstyles.checkboxarae}>
-                        <TouchableOpacity onPress={() => setLooking ('Man')} style={rstyles.checkbtn}>
+                        <TouchableOpacity onPress={lookingMan} style={rstyles.checkbtn}>
                             <Image source={require('../../assets/images/men-icon.png')} 
                             style={rstyles.chckimg}></Image>
                             <Text style={rstyles.chktxt}>Man</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={() => setLooking('Women')} style={rstyles.checkbtn}>
+                        <TouchableOpacity onPress={lookingWoman} style={rstyles.checkbtn}>
                             <Image source={require('../../assets/images/women-icon.png')} 
                             style={rstyles.chckimg}></Image>
                             <Text style={rstyles.chktxt}>Woman</Text>
@@ -69,7 +74,17 @@ const RegisterStepTwo = props => {
                     </View>
                 </View>
             </View>
-            <TouchableOpacity onPress={addHandler} style={rstyles.btncontainer}>
+            <TouchableOpacity 
+            onPress={() =>
+                props.navigation.navigate('RegisterThree', {
+                param: {
+                    "email": email, 
+                    "password": password, 
+                    "gender": gender, 
+                    "looking": looking 
+                }
+                })}
+            style={rstyles.btncontainer}>
                 <Text style={rstyles.btntext}>Continue</Text>
             </TouchableOpacity>
             <Image source={require('../../assets/images/bg3.jpg')} 
