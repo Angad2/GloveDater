@@ -17,7 +17,7 @@ const RegisterStepThree = props => {
     const [country, _country] = useState('');
     const [city, _city] = useState('');
     const [intent, _intent] = useState()
-
+    const [intentArr, _intentArr] = useState([])
     const intens = [
         {"name":"dating","value":"Dating"},
         {"name":"travel","value":"Travel"},
@@ -32,7 +32,6 @@ const RegisterStepThree = props => {
         {"name":"arrangement","value":"Arrangement"},
     ]
 
-    const [intentArr, _intentArr] = useState([])
 
   const countryHandler = (enteredCountry) => {
     _country(enteredCountry);
@@ -42,11 +41,12 @@ const cityHandler = (enteredCity) => {
     _city(enteredCity);
 };
 
-const selectIntent = (enterIntent) => {
-    console.log(enterIntent);
-    //_intent(enterIntent);
-    //_intentArr.push(_intentArr)
-    //console.log(intentArr);
+const selectIntent = (enterIntent) => {   
+    if(intentArr.indexOf(enterIntent) === -1)  {
+        _intentArr([...intentArr, enterIntent])
+    }
+    
+    console.log(intentArr, "+++++++++++++intent");
 
   };
 
