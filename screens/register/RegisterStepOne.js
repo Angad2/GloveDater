@@ -67,11 +67,6 @@ const RegisterStepOne = props => {
                 />
                 </View>
             </View>
-            {/* <TouchableOpacity onPress={() => {
-                 props.navigation.navigate({routeName: 'RegisterTwo'});
-                }} style={rstyles.btncontainer}>
-                <Text style={rstyles.btntext}>Continue</Text>
-            </TouchableOpacity> */}
             
             <TouchableOpacity onPress={() =>
                 props.navigation.navigate('RegisterTwo', {
@@ -83,11 +78,6 @@ const RegisterStepOne = props => {
             } style={rstyles.btncontainer}>
                 <Text style={rstyles.btntext}>Continue</Text>
             </TouchableOpacity>
-
-            {/* <TouchableOpacity onPress={addHandler} 
-            style={rstyles.btncontainer}>
-                <Text style={rstyles.btntext}>Continue</Text>
-            </TouchableOpacity> */}
             <Image source={require('../../assets/images/bg2.jpg')} 
             style={{resizeMode: 'cover'}}
             />

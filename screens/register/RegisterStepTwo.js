@@ -7,7 +7,7 @@ import rstyles from '../rstyles';
 const RegisterStepTwo = props => {
 
     const [email, _email] = useState('');
-    const [password, _password] = useState('')
+    const [password, _password] = useState('');
     const [gender, _gender] = useState('');
     const [looking, _looking] = useState('');
 
