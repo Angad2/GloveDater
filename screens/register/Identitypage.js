@@ -8,6 +8,9 @@ import IdentityLower from '../../components/IdentityLower';
 
 import Styles from '../../constants/globalstyle';
 import axios from 'axios';
+import {BASE_URL} from '../../config';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Identitypage = props => {
     const [email, _email] = useState('');
@@ -104,8 +107,11 @@ const Identitypage = props => {
             formData.append('Future_dream_experience', favDreamExpo);
             formData.append('Photo', photo);
             
-            axios.post("http://111.93.169.90:8484/V1/Signup",
-            {
+            // axios.post("http://111.93.169.90:8484/V1/Signup",
+            // {
+                console.log(BASE_URL, '=== ===== Base url')
+                fetch(`${BASE_URL}/Signup`, {
+                method: 'POST',
                 "Email": email,
                 "Password": password,
                 "Gender": gender,
@@ -125,10 +131,17 @@ const Identitypage = props => {
                 "Favorite_restaurnt": favBarResto,
                 "Future_dream_experience": favDreamExpo,
                 "Photo": photo
-            }
-            ).then(result=>{
-                console.log(result)
-            })
+            },{headers: {
+                'Content-Type': 'multipart/form-data',
+                'Accept': 'application/json'
+                }
+            }).then(result=>{
+                console.log('Hello'),
+                AsyncStorage.setItem("userDetails", JSON.stringify(result));
+                console.log("signup result", result)
+            }).catch(function (error) {
+                console.log("signup error", error)
+              });
         }}
              />
                 </View>
