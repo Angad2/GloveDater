@@ -9,8 +9,41 @@ import Header from '../../components/Header';
 
 import { Ionicons } from '@expo/vector-icons';
 import aboutstyle from "./aboutstyle";
+import axios from "axios";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const HomeAbout = props => {
+
+    const [datas, _datas] = React.useState([]);
+
+    const getUserDtails = () => {
+        // AsyncStorage.getItem('UserDetails').then(res => {
+        //     if (res) {
+        //         let userDetails = JSON.parse(res);
+        //         console.log(userDetails, "+++++++props ID")
+        //     }
+        // }).catch = (err) => {
+        //     console.log(err)
+        // }
+        try {
+            console.log(AsyncStorage.getItem("userDetails"), '====== user details')
+            axios.get("http://111.93.169.90:8484/V1/users/6156cf8507746c18b5c68baf")
+            .then(res => 
+            {console.log(res.data.Email)
+            _datas(res.data)
+            console.log(datas.Email)
+        }
+            ).catch(err=>console.log(err))
+         } catch (err) {
+           console.log(err);
+         }
+    }
+
+    React.useEffect(()=>{
+        getUserDtails()
+    
+      },[])
+
     return (
         <View style={Styles.mainbody}>
             <Header onSelect={() => { props.navigation.navigate({ routeName: 'Home' }); }} title="About Me" />
@@ -38,11 +71,11 @@ const HomeAbout = props => {
                     <View style={aboutstyle.infobox}>
                         <View style={aboutstyle.info}>
                             <Text style={aboutstyle.infotitle}>Age:</Text>
-                            <Text style={aboutstyle.infovalue}>25</Text>
+                            <Text style={aboutstyle.infovalue}>{datas.Age}</Text>
                         </View>
                         <View style={aboutstyle.info}>
                             <Text style={aboutstyle.infotitle}>Body:</Text>
-                            <Text style={aboutstyle.infovalue}>Tall</Text>
+                            <Text style={aboutstyle.infovalue}>{datas.Body}</Text>
                         </View>
                         <View style={aboutstyle.info}>
                             <Text style={aboutstyle.infotitle}>Height:</Text>
