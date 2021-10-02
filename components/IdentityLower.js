@@ -34,6 +34,7 @@ const IdentityLower = props => {
     if (hasPermission === false) {
         return <Text>No access to camera</Text>;
     }
+   
     return (
         <View style={styles.container}>
             <TouchableOpacity style={styles.imagearae}  onPress={() => {
@@ -48,7 +49,7 @@ const IdentityLower = props => {
             <TouchableOpacity onPress={props.onSelect} 
             style={styles.uploadbtn}
             >
-                <Text style={styles.btntxt}>Upload</Text>
+                <Text style={styles.btntxt}>Upload</Text>              
             
             </TouchableOpacity>
 

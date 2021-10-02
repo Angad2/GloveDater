@@ -25,9 +25,10 @@ const HomeAbout = props => {
         // }).catch = (err) => {
         //     console.log(err)
         // }
+        const userId = AsyncStorage.getItem('userId');
+        console.log(userId, "__________________-userId")
         try {
-            console.log(AsyncStorage.getItem("userDetails"), '====== user details')
-            axios.get("http://111.93.169.90:8484/V1/users/6156cf8507746c18b5c68baf")
+            axios.get(`http://111.93.169.90:8484/V1/users/${userId}`)
             .then(res => 
             {console.log(res.data.Email)
             _datas(res.data)

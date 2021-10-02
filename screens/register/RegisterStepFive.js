@@ -144,7 +144,7 @@ const RegisterStepFive = props => {
                         }
                     })}
                     style={rstyles.btncontainer2}>
-                    <Text style={rstyles.btntext}>Continue</Text>
+                    <Text style={rstyles.btntext}>Continue..</Text>
                 </TouchableOpacity>
             </View>
         </View>

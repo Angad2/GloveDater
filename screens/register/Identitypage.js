@@ -9,6 +9,9 @@ import IdentityLower from '../../components/IdentityLower';
 import Styles from '../../constants/globalstyle';
 import axios from 'axios';
 import {BASE_URL} from '../../config';
+import { signUpUser } from '../../service';
+import { showMessage } from 'react-native-flash-message';
+
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -34,6 +37,7 @@ const Identitypage = props => {
     const [photo, _photo] = useState();
 
     React.useEffect(() => {
+     
         console.log(props.navigation.state.params.param.email, "+++++++props email"),
             console.log(props.navigation.state.params.param.password, "+++++++props pass"),
             console.log(props.navigation.state.params.param.gender, "+++++++props gender"),
@@ -72,10 +76,45 @@ const Identitypage = props => {
             _favtravelSpot(props.navigation.state.params.param.favtravelSpot),
             _favBarResto(props.navigation.state.params.param.favBarResto),
             _favDreamExpo(props.navigation.state.params.param.favDreamExpo),
-            _photo(props.navigation.state.params.param.photo)
+            _photo("")
 
 
     }, [])
+
+    
+
+    const onChangeHandleSignUp = async () => {
+        //Keyboard.dismiss();
+        try {
+          //setIsLoading(true);    
+         
+          const user = await signUpUser(email, password, gender, looking, country, city, intentArr.join(","), ageValue, bodyValue, heightValue, hairValue, ethnicityValue, intentValue, about, lookingFor, favtravelSpot, favBarResto, favDreamExpo, photo);
+          //setIsLoading(false);
+          console.log(user.data, "++++++++++++++++user")
+          console.log(user.data._id, "++++++++++++++++user")
+          if (!user) {
+            showMessage({
+              message: "Error",
+              backgroundColor: 'rgba(0, 0, 0, 0.8)'
+            });
+            return
+          }
+          else{
+            showMessage({
+              message: "Signup sucessfull",
+              backgroundColor: 'rgba(0, 0, 0, 0.8)'
+            });            
+            AsyncStorage.setItem("userId", user.data._id);
+            props.navigation.navigate({routeName: 'Home'});
+          }
+        } catch (error) {
+          //setIsLoading(false);
+          showMessage({
+            message: 'Something went wrong please try again later!',
+            backgroundColor: 'rgba(0, 0, 0, 0.8)'
+          });
+        }
+      }
 
     return (
         <View style={Styles.mainbody}>
@@ -83,66 +122,8 @@ const Identitypage = props => {
             <ScrollView style={{marginBottom: 70,}}>
                 <View>
                 <IdentityUper />
-            <IdentityLower
-            onSelect = {() =>{ props.navigation.navigate({routeName: 'Home'});
-
-            let formData = new FormData();
-            formData.append('Email', email);
-            formData.append('Password', password);
-            formData.append('Gender', gender);
-            formData.append('Looking_to_date_a', looking);
-            formData.append('Country', country);
-            formData.append('City', city);
-            formData.append('Intent_option', intentArr);
-            formData.append('Age', ageValue);
-            formData.append('Body', bodyValue);
-            formData.append('Height', heightValue);
-            formData.append('Hair', hairValue);
-            formData.append('Ethnicity', ethnicityValue);
-            formData.append('Intent', intentValue);
-            formData.append('About_me', about);
-            formData.append('Looking_for', lookingFor);
-            formData.append('Favorite_travel_spot', favtravelSpot);
-            formData.append('Favorite_restaurnt', favBarResto);
-            formData.append('Future_dream_experience', favDreamExpo);
-            formData.append('Photo', photo);
-            
-            // axios.post("http://111.93.169.90:8484/V1/Signup",
-            // {
-                console.log(BASE_URL, '=== ===== Base url')
-                fetch(`${BASE_URL}/Signup`, {
-                method: 'POST',
-                "Email": email,
-                "Password": password,
-                "Gender": gender,
-                "Looking_to_date_a": looking,
-                "Country": country,
-                "City": city,
-                "Intent_option": intentArr,
-                "Age": ageValue,
-                "Body": bodyValue,
-                "Height": heightValue,
-                "Hair": hairValue,
-                "Ethnicity": ethnicityValue,
-                "Intent": intentValue,
-                "About_me": about,
-                "Looking_for": lookingFor,
-                "Favorite_travel_spot": favtravelSpot,
-                "Favorite_restaurnt": favBarResto,
-                "Future_dream_experience": favDreamExpo,
-                "Photo": photo
-            },{headers: {
-                'Content-Type': 'multipart/form-data',
-                'Accept': 'application/json'
-                }
-            }).then(result=>{
-                console.log('Hello'),
-                AsyncStorage.setItem("userDetails", JSON.stringify(result));
-                console.log("signup result", result)
-            }).catch(function (error) {
-                console.log("signup error", error)
-              });
-        }}
+            <IdentityLower 
+              onSelect={onChangeHandleSignUp}            
              />
                 </View>
             </ScrollView>
