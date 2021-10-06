@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
-import {View, Text, StyleSheet, Image, TextInput, Button, TouchableOpacity, ScrollView, Dimensions } from 'react-native';
+import {View, Text, StyleSheet, Image, TextInput, Button, TouchableOpacity, ScrollView, Dimensions, Alert } from 'react-native';
 import styles from '../../constants/globalstyle';
 import rstyles from '../rstyles';
 
-//import axios from 'axios';
+// import axios from 'axios';
+// import {BASE_URL} from '../../config';
+// import { signUpUser } from '../../service';
+// import { showMessage } from 'react-native-flash-message';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const RegisterStepOne = props => {
 
@@ -31,7 +35,43 @@ const RegisterStepOne = props => {
 //         console.log(error);
 //     });
 //   };
-  
+
+// React.useEffect(() => {
+    
+// }, [])
+
+// const emailCheckHandler = async () => {
+//     try {   
+     
+//       const user = await signUpUser(email, password, gender, looking, country, city, intentArr.join(","), ageValue, bodyValue, heightValue, hairValue, ethnicityValue, intentValue, about, lookingFor, favtravelSpot, favBarResto, favDreamExpo, photo);
+//       console.log(user.data, "++++++++++++++++user")
+//       console.log(user.data._id, "++++++++++++++++user")
+//       if (!user) {
+//           Alert.alert("Email is already exist")
+//         // showMessage({
+//         //   message: "Error",
+//         //   backgroundColor: 'rgba(0, 0, 0, 0.8)'
+//         // });
+//         return
+//       }
+//       else{
+//         // showMessage({
+//         //   message: "Signup sucessfull",
+//         //   backgroundColor: 'rgba(0, 0, 0, 0.8)'
+//         // });
+//         Alert.alert("Success")            
+//         AsyncStorage.setItem("userId", user.data._id);
+//         props.navigation.navigate({routeName: 'RegisterTwo'});
+//       }
+//     } catch (error) {
+//       //setIsLoading(false);
+//       //Alert.alert("somthin went wrong")
+//       showMessage({
+//         message: 'Something went wrong please try again later!',
+//         backgroundColor: 'rgba(0, 0, 0, 0.8)',
+//       });
+//     }
+//   }
     return(
         <View style={styles.imageview}>
             <View style={rstyles.logo}>
@@ -67,6 +107,9 @@ const RegisterStepOne = props => {
                 />
                 </View>
             </View>
+            {/* <TouchableOpacity onPress={emailCheckHandler} style={rstyles.btncontainer}>
+                <Text style={rstyles.btntext}>Continue</Text>
+            </TouchableOpacity> */}
             
             <TouchableOpacity onPress={() =>
                 props.navigation.navigate('RegisterTwo', {

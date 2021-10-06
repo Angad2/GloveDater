@@ -82,14 +82,8 @@ export default StyleSheet.create({
 
   bodytext: {
     fontFamily: 'quicksand-medium',
-    fontSize: 16,
+    fontSize: 15,
     lineHeight: 24
-  },
-
-  title: {
-    fontFamily: 'quicksand-bold',
-    fontSize: 18,
-    textAlign: 'left',
   },
 
   imageview: {
@@ -126,7 +120,7 @@ export default StyleSheet.create({
 
   title: {
     textAlign: 'center',
-    fontSize: 24,
+    fontSize: 18,
     color: 'black',
     fontFamily: 'quicksand-bold',
   },
@@ -176,6 +170,18 @@ export default StyleSheet.create({
     zIndex: 1000,
     top: 200,
     flexDirection: 'row'
-  }
+  },
+  dropdown: {
+    height: 50,
+    padding: 12,
+    paddingLeft: 0,
+    paddingRight: 0,
+    borderRadius: 100,
+    borderColor: '#800080',
+    borderWidth: 1,
+    alignContent: 'center',
+    color: 'black',
+    marginTop: 15,
+    }
 });
   

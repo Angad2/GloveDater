@@ -10,7 +10,33 @@ import Header from '../../components/Header';
 import { Ionicons } from '@expo/vector-icons';
 import aboutstyle from "./aboutstyle";
 
+import axios from "axios";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const HomeExperiance = props => {
+    const [datas, _datas] = React.useState([]);
+
+    const getUserDtails = async() => {
+        const userId = await AsyncStorage.getItem('userId');
+        console.log(userId, "__________________-userId")
+        try {
+           await axios.get(`http://111.93.169.90:8484/V1/users/${userId}`)
+            .then(res => 
+            {//console.log(res.data.Email)
+            _datas(res.data)
+            //console.log(datas.Email)
+        }
+            ).catch(err=>console.log(err))
+         } catch (err) {
+           console.log(err);
+         }
+    }
+
+    React.useEffect(()=>{
+        getUserDtails()
+    
+      },[])
+
     return (
         <View style={Styles.mainbody}>
             <Header onSelect={() => { props.navigation.navigate({ routeName: 'Home' }); }} title="Experience" />
@@ -38,19 +64,19 @@ const HomeExperiance = props => {
                     <View style={aboutstyle.infoarea}>
                         <Text style={Styles.title}>Favorite travel spot</Text>
                     <Text style={Styles.mt10,Styles.bodytext}>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has.
+                            {datas.Favorite_travel_spot}
                         </Text>
                     </View>
                     <View style={aboutstyle.infoarea}>
                         <Text style={Styles.title}>Favorite bar/restaurant</Text>
                         <Text style={Styles.mt10, Styles.bodytext}>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has.
+                            {datas.Favorite_restaurnt}
                         </Text>
                     </View>
                     <View style={aboutstyle.infoarea}>
                         <Text style={Styles.title}>Future dream experience</Text>
                         <Text style={Styles.mt10, Styles.bodytext}>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has.
+                            {datas.Future_dream_experience}
                         </Text>
                     </View>
                     <View style={Styles.spacediv}></View>

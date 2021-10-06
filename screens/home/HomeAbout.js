@@ -16,23 +16,15 @@ const HomeAbout = props => {
 
     const [datas, _datas] = React.useState([]);
 
-    const getUserDtails = () => {
-        // AsyncStorage.getItem('UserDetails').then(res => {
-        //     if (res) {
-        //         let userDetails = JSON.parse(res);
-        //         console.log(userDetails, "+++++++props ID")
-        //     }
-        // }).catch = (err) => {
-        //     console.log(err)
-        // }
-        const userId = AsyncStorage.getItem('userId');
+    const getUserDtails = async() => {
+        const userId = await AsyncStorage.getItem('userId');
         console.log(userId, "__________________-userId")
         try {
-            axios.get(`http://111.93.169.90:8484/V1/users/${userId}`)
+           await axios.get(`http://111.93.169.90:8484/V1/users/${userId}`)
             .then(res => 
-            {console.log(res.data.Email)
+            {//console.log(res.data.Email)
             _datas(res.data)
-            console.log(datas.Email)
+            //console.log(datas.Email)
         }
             ).catch(err=>console.log(err))
          } catch (err) {
@@ -69,6 +61,7 @@ const HomeAbout = props => {
                     </TouchableOpacity>
                 </View>
                 <ScrollView style={Styles.pb50, Styles.mv20}>
+                {/* <Text style={Styles.title}>About Me</Text> */}
                     <View style={aboutstyle.infobox}>
                         <View style={aboutstyle.info}>
                             <Text style={aboutstyle.infotitle}>Age:</Text>
@@ -80,27 +73,31 @@ const HomeAbout = props => {
                         </View>
                         <View style={aboutstyle.info}>
                             <Text style={aboutstyle.infotitle}>Height:</Text>
-                            <Text style={aboutstyle.infovalue}>165 cm</Text>
+                            <Text style={aboutstyle.infovalue}>{datas.Height}</Text>
+                        </View>
+                        <View style={aboutstyle.info}>
+                            <Text style={aboutstyle.infotitle}>Hair:</Text>
+                            <Text style={aboutstyle.infovalue}>{datas.Hair}</Text>
                         </View>
                         <View style={aboutstyle.info}>
                             <Text style={aboutstyle.infotitle}>Ethnicity:</Text>
-                            <Text style={aboutstyle.infovalue}>Cool</Text>
+                            <Text style={aboutstyle.infovalue}>{datas.Ethnicity}</Text>
                         </View>
                         <View style={aboutstyle.info}>
-                            <Text style={aboutstyle.infotitle}>Intent</Text>
-                            <Text style={aboutstyle.infovalue}>Open</Text>
+                            <Text style={aboutstyle.infotitle}>Intent:</Text>
+                            <Text style={aboutstyle.infovalue}>{datas.Intent}</Text>
                         </View>
                     </View>
                     <View style={aboutstyle.infoarea}>
                         <Text style={Styles.title}>About Me</Text>
                     <Text style={Styles.mt10,Styles.bodytext}>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has.
+                            {datas.About_me}
                         </Text>
                     </View>
                     <View style={aboutstyle.infoarea}>
                         <Text style={Styles.title}>Looking For</Text>
                         <Text style={Styles.mt10, Styles.bodytext}>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has.
+                            {datas.Looking_for}
                         </Text>
                     </View>
                     <View style={Styles.spacediv}></View>

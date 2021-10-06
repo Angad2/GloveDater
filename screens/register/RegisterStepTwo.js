@@ -1,3 +1,4 @@
+
 import React, { useState, Component } from 'react';
 import {View, Text, StyleSheet, Image, TextInput, Button, TouchableOpacity, Platform } from 'react-native';
 import styles from '../../constants/globalstyle';
@@ -25,7 +26,16 @@ const RegisterStepTwo = props => {
 
   const lookingWoman = () => {
     _looking ('Woman')
-  };    
+  };
+  
+  
+  const selectGen = () => {
+        if(selectGen == selectMan){
+            selectMan()
+        } else if(selectGen == selectWoman){
+            selectWoman()
+        }
+  };
   
   React.useEffect(()=>{
     console.log(props.navigation.state.params.param.email, "+++++++props email"),
@@ -46,12 +56,12 @@ const RegisterStepTwo = props => {
                 <View style={rstyles.checkarea}>
                     <Text style={rstyles.checktitle}>I am a...</Text>
                     <View style={rstyles.checkboxarae}>
-                        <TouchableOpacity onPress={selectMan} style={rstyles.checkbtn}>
+                        <TouchableOpacity onPress={selectGen} style={rstyles.checkbtn}>
                             <Image source={require('../../assets/images/men-icon.png')} 
                             style={rstyles.chckimg}></Image>
                             <Text style={rstyles.chktxt}>Man</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={selectWoman} style={rstyles.checkbtn}>
+                        <TouchableOpacity onPress={selectGen} style={rstyles.checkbtn}>
                             <Image source={require('../../assets/images/women-icon.png')} 
                             style={rstyles.chckimg}></Image>
                             <Text style={rstyles.chktxt}>Woman</Text>
@@ -95,4 +105,3 @@ const RegisterStepTwo = props => {
 };
 
 export default RegisterStepTwo;
-

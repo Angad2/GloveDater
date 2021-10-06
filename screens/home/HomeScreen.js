@@ -11,17 +11,43 @@ import hometabstyles from './hometabstyles';
 
 import { Octicons } from '@expo/vector-icons';
 import Photo from './Photo';
+import Slider from './Slider';
+
+import axios from "axios";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const HomeScreen = props => {
+    const [datas, _datas] = React.useState([]);
+
+    const getUserDtails = async() => {
+        const userId = await AsyncStorage.getItem('userId');
+        console.log(userId, "__________________-userId")
+        try {
+           await axios.get(`http://111.93.169.90:8484/V1/users/${userId}`)
+            .then(res => 
+            {console.log(res.data.Email)
+            _datas(res.data)
+            console.log(datas.Email)
+        }
+            ).catch(err=>console.log(err))
+         } catch (err) {
+           console.log(err);
+         }
+    }
+
+    React.useEffect(()=>{
+        getUserDtails()
+    
+      },[])
     return (
         <View style={Styles.mainbody}>
             <Header onSelect = {() =>{ props.navigation.navigate({routeName: 'Idpage'});}} title="Home" />
             <ScrollView>
-            <HomeSlider />
+            <Slider />
             <View style={Homestyle.profilenameview}>
                 <View style={Homestyle.profiletxt}>
                     <Text style={Homestyle.nametxt}>Hasel Jackson</Text>
-                    <Text style={Homestyle.locationtxt}>Age : 25 , Californiya , USA</Text>
+                    <Text style={Homestyle.locationtxt}>{datas.Email}</Text>
                 </View>
                 <TouchableOpacity style={Homestyle.profileEdit}>
                     <Octicons name="pencil" size={20} color="#f44555" />

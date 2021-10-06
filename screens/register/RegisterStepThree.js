@@ -89,7 +89,7 @@ const selectIntent = (enterIntent) => {
                 <View style={rstyles.intentview}>
                     {intens &&
                         intens.map(inten =>
-                            <TouchableOpacity onPress={() => selectIntent(inten.name)} style={rstyles.intentchk}>
+                            <TouchableOpacity key={inten.name} onPress={() => selectIntent(inten.name)} style={rstyles.intentchk}>
                                 <Text style={rstyles.chktxt}>{inten.value}</Text>
                             </TouchableOpacity>
                         )

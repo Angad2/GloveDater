@@ -38,7 +38,7 @@ const Identitypage = props => {
 
     React.useEffect(() => {
      
-        console.log(props.navigation.state.params.param.email, "+++++++props email"),
+            console.log(props.navigation.state.params.param.email, "+++++++props email"),
             console.log(props.navigation.state.params.param.password, "+++++++props pass"),
             console.log(props.navigation.state.params.param.gender, "+++++++props gender"),
             console.log(props.navigation.state.params.param.looking, "+++++++props looking for"),
