@@ -18,6 +18,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const Identitypage = props => {
     const [email, _email] = useState('');
     const [password, _password] = useState('');
+    const [username, _username] = useState('');
     const [gender, _gender] = useState('');
     const [looking, _looking] = useState('');
     const [country, _country] = useState('');
@@ -40,6 +41,7 @@ const Identitypage = props => {
      
             console.log(props.navigation.state.params.param.email, "+++++++props email"),
             console.log(props.navigation.state.params.param.password, "+++++++props pass"),
+            console.log(props.navigation.state.params.param.username, "+++++++props username"),
             console.log(props.navigation.state.params.param.gender, "+++++++props gender"),
             console.log(props.navigation.state.params.param.looking, "+++++++props looking for"),
             console.log(props.navigation.state.params.param.country, "+++++++props Country"),
@@ -60,6 +62,7 @@ const Identitypage = props => {
 
             _email(props.navigation.state.params.param.email),
             _password(props.navigation.state.params.param.password),
+            _username(props.navigation.state.params.param.username),
             _gender(props.navigation.state.params.param.gender),
             _looking(props.navigation.state.params.param.looking),
             _country(props.navigation.state.params.param.country),
@@ -88,7 +91,7 @@ const Identitypage = props => {
         try {
           //setIsLoading(true);    
          
-          const user = await signUpUser(email, password, gender, looking, country, city, intentArr.join(","), ageValue, bodyValue, heightValue, hairValue, ethnicityValue, intentValue, about, lookingFor, favtravelSpot, favBarResto, favDreamExpo, photo);
+          const user = await signUpUser(email, password, username, gender, looking, country, city, intentArr.join(","), ageValue, bodyValue, heightValue, hairValue, ethnicityValue, intentValue, about, lookingFor, favtravelSpot, favBarResto, favDreamExpo, photo);
           //setIsLoading(false);
           console.log(user.data, "++++++++++++++++user")
           console.log(user.data._id, "++++++++++++++++user")

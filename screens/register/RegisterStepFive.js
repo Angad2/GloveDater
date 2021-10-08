@@ -10,6 +10,7 @@ const RegisterStepFive = props => {
 
     const [email, _email] = useState('');
     const [password, _password] = useState('');
+    const [username, _username] = useState('');
     const [gender, _gender] = useState('');
     const [looking, _looking] = useState('');
     const [country, _country] = useState('');
@@ -41,8 +42,9 @@ const RegisterStepFive = props => {
     
 
     React.useEffect(() => {
-        console.log(props.navigation.state.params.param.email, "+++++++props email"),
+            console.log(props.navigation.state.params.param.email, "+++++++props email"),
             console.log(props.navigation.state.params.param.password, "+++++++props pass"),
+            console.log(props.navigation.state.params.param.username, "+++++++props username"),
             console.log(props.navigation.state.params.param.gender, "+++++++props gender"),
             console.log(props.navigation.state.params.param.looking, "+++++++props looking for"),
             console.log(props.navigation.state.params.param.country, "+++++++props Country"),
@@ -59,6 +61,7 @@ const RegisterStepFive = props => {
 
             _email(props.navigation.state.params.param.email),
             _password(props.navigation.state.params.param.password),
+            _username(props.navigation.state.params.param.username),
             _gender(props.navigation.state.params.param.gender),
             _looking(props.navigation.state.params.param.looking),
             _country(props.navigation.state.params.param.country),
@@ -125,6 +128,7 @@ const RegisterStepFive = props => {
                         param: {
                             "email": email,
                             "password": password,
+                            "username": username,
                             "gender": gender,
                             "looking": looking,
                             "country": country,

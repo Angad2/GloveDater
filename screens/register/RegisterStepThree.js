@@ -10,7 +10,8 @@ import Header from '../../components/Header';
 const RegisterStepThree = props => {
 
     const [email, _email] = useState('');
-    const [password, _password] = useState('')
+    const [password, _password] = useState('');
+    const [username, _username] = useState('');
     const [gender, _gender] = useState('');
     const [looking, _looking] = useState('');
     const [country, _country] = useState('');
@@ -51,10 +52,12 @@ const selectIntent = (enterIntent) => {
   React.useEffect(()=>{
     console.log(props.navigation.state.params.param.email, "+++++++props email"),
     console.log(props.navigation.state.params.param.password, "+++++++props pass"),
+    console.log(props.navigation.state.params.param.username, "+++++++props username"),
     console.log(props.navigation.state.params.param.gender, "+++++++props gender"),
     console.log(props.navigation.state.params.param.looking, "+++++++props looking for"),
     _email(props.navigation.state.params.param.email),
     _password(props.navigation.state.params.param.password),
+    _username(props.navigation.state.params.param.username),
     _gender(props.navigation.state.params.param.gender),
     _looking(props.navigation.state.params.param.looking)
 
@@ -102,6 +105,7 @@ const selectIntent = (enterIntent) => {
                         param: {
                             "email": email,
                             "password": password,
+                            "username": username,
                             "gender": gender,
                             "looking": looking,
                             "country": country,
@@ -109,31 +113,6 @@ const selectIntent = (enterIntent) => {
                             "intentArr": intentArr
                         }
                     })
-                    // axios.post("http://111.93.169.90:8484/V1/Signup",
-                    // {
-                    //     "Email":"email",
-                    //     "Gender":"Male",
-                    //     "Looking_to_date_a":"Women",
-                    //     "Country":"India",
-                    //     "City":"Kolkata",
-                    //     "Age":"35",
-                    //     "Body":"Tall",
-                    //     "Height":"175cm",
-                    //     "Hair":"Black",
-                    //     "Ethnicity":"saSKASA DKWLK",
-                    //     "Intent_option":"abc",
-                    //     "About_me":"bfshdfh jsdjkashdj jasdjajdajd",
-                    //     "Looking_for":"Women",
-                    //     "Favorite_travel_spot":"Kashmir",
-                    //     "Favorite_restaurnt":"Mehake E Punjab",
-                    //     "Future_dream_experience":"djsd jdjawd kjjwjejw kjweje",
-                    //     "Password":"1234567",
-                    //     "Intent":"Dating",
-                    //     "Photo":""
-                    // }
-                    // ).then(result=>{
-                    //     console.log(result)
-                    // })
                 }
                     style={rstyles.btncontainer2}>
                     <Text style={rstyles.btntext}>Continue</Text>

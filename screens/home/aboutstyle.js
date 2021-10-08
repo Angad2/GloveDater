@@ -47,4 +47,8 @@ export default StyleSheet.create({
         borderRadius: 10,
         padding: 15,
     },
+    intentchkarr: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+    }
 });

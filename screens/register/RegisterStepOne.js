@@ -13,6 +13,7 @@ const RegisterStepOne = props => {
 
     const [email, _email] = useState('');
     const [password, _password] = useState('');
+    const [username, _username] = useState('');
 
     const emailHandler = (enteredEmail) => {
         _email(enteredEmail);
@@ -20,6 +21,9 @@ const RegisterStepOne = props => {
 
     const passHandler = (enteredPass) => {
         _password(enteredPass);
+    };
+    const userHandler = (enteredUsername) => {
+        _username(enteredUsername);
     };
 
 //   const addHandler = () => {
@@ -86,6 +90,16 @@ const RegisterStepOne = props => {
             
             </ScrollView> */}
             <View style={rstyles.formview}>
+            <View style={rstyles.inputarea}>
+                    <TextInput placeholder='Enter Usernamel...' 
+                    style={rstyles.inputtext} 
+                    onChangeText={userHandler}
+                    value={username}
+                    />
+                    <Image source={require('../../assets/images/mail_icon.png')} 
+                style={{width: 50, height: 50, resizeMode: 'contain'}}
+                />
+                </View>
                 <View style={rstyles.inputarea}>
                     <TextInput placeholder='Enter Email...' 
                     style={rstyles.inputtext} 
@@ -115,7 +129,9 @@ const RegisterStepOne = props => {
                 props.navigation.navigate('RegisterTwo', {
                 param: {
                     "email": email, 
-                    "password": password}
+                    "password": password,
+                    "username": username
+                }
                 })
                 
             } style={rstyles.btncontainer}>

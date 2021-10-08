@@ -9,34 +9,36 @@ export default StyleSheet.create({
     backgroundColor: 'transparent',
     left: 0,
     right: 0,
-    top: Dimensions.get ('window').height > 700 ? 100 : 40,
+    top: Dimensions.get ('window').height > 700 ? 50 : 20,
     //top: Dimensions.get ('window').height / 14,
     alignItems: 'center',
     justifyContent: 'center',
   },
+
   logosize: {
-    //width: 256,
     width: Dimensions.get ('window').width / 2,
     height: 238, 
     resizeMode: 'contain'
   },
+
   textview: {
     position: 'absolute',
-    top: Dimensions.get ('window').height > 700 ? 330 : 260,
+    top: Dimensions.get ('window').height > 700 ? 280 : 200,
     zIndex: 100,
-    
   },
+
   logotext: {
     //fontFamily: 'quicksand-bold',
     fontSize: 20,
     color: '#800080'
   },
+
   formview: {
     margin: 50,
     position: 'absolute',
     zIndex: 4,
     alignContent: 'center',
-    top: Dimensions.get ('window').height > 700 ? 380 : 300,
+    top: Dimensions.get ('window').height > 700 ? 300 : 220,
     alignItems: 'center',
     justifyContent: 'center',
     zIndex: 3,
@@ -44,6 +46,7 @@ export default StyleSheet.create({
     flex: 1,
    paddingBottom: 50,
   },
+
   formview2: {
     margin: 20,
     position: 'absolute',
@@ -54,6 +57,7 @@ export default StyleSheet.create({
     zIndex: 3,
     width: '80%',
   },
+
   inputarea: {
     width: '100%',
     height: 65,
@@ -66,18 +70,21 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     marginBottom: 36,
   },
+
   inputtext: {
     width: '80%',
     height: 50,
     fontSize: 14,
     color: '#000000',
   },
+
   btnview: {
     flex: 1,
     padding: 30,
     alignItems: 'center',
     alignContent: 'center',
   },
+
   btncontainer2: {
     width: '100%',
     height: 65,
@@ -125,6 +132,7 @@ export default StyleSheet.create({
   checktitle: {
     fontSize: 20,
   },
+
   checkboxarae: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -135,6 +143,7 @@ export default StyleSheet.create({
     marginRight: 'auto',
     marginTop: 20,
   },
+
   checkbtn: {
     width: '48%',
     height: 50,
@@ -149,24 +158,47 @@ export default StyleSheet.create({
     alignItems: 'center',
     padding: 10,
   },
+
   chckimg: {
     width:30,
     height:30,
     marginEnd: 20,
   },
+
   chktxt: {
     color: Colors.accenttextcolor,
     fontSize: 16,
   },
+
+  chktxtarr: {
+    height: 30,
+    padding: 20,
+    backgroundColor: Colors.perpule,
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginEnd: 5,
+    marginBottom: 10,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+
+  txcolor: {
+    color: 'white',
+    fontSize: 16,
+  },
+
   formview3: {
     padding: 30,
     marginBottom: 50,
   },
+
   formviewtxt: {
     fontSize: 20,
     color: Colors.fromtxtcolor,
     marginBottom: 20,
   },
+
   intentview: {
     flexDirection: 'row',
     width: '100%',
@@ -174,6 +206,7 @@ export default StyleSheet.create({
     height: 'auto',
     flexWrap: 'wrap',
   },
+
   intentchk: {
     height: 30,
     padding: 20,
@@ -184,6 +217,20 @@ export default StyleSheet.create({
     marginEnd: 5,
     marginBottom: 10,
   },
+
+  intentchkarr: {
+    height: 30,
+    padding: 20,
+    backgroundColor: Colors.perpule,
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginEnd: 5,
+    marginBottom: 10,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+
   dropdownarea: {
     width: '100%',
     marginBottom: 20,
@@ -239,5 +286,10 @@ export default StyleSheet.create({
     justifyContent: 'center',
     marginBottom: 10,
   },
+
+  intentchkarr: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+}
   
 });

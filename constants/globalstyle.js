@@ -125,6 +125,13 @@ export default StyleSheet.create({
     fontFamily: 'quicksand-bold',
   },
 
+  titleabout: {
+    textAlign: 'left',
+    fontSize: 18,
+    color: 'black',
+    fontFamily: 'quicksand-bold',
+  },
+
   profilepic: {
     width: 30,
     height: 30,

@@ -46,7 +46,7 @@ const HomeScreen = props => {
             <Slider />
             <View style={Homestyle.profilenameview}>
                 <View style={Homestyle.profiletxt}>
-                    <Text style={Homestyle.nametxt}>Hasel Jackson</Text>
+                    <Text style={Homestyle.nametxt}>{datas.user_name}</Text>
                     <Text style={Homestyle.locationtxt}>{datas.Email}</Text>
                 </View>
                 <TouchableOpacity style={Homestyle.profileEdit}>

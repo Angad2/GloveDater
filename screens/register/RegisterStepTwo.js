@@ -9,6 +9,7 @@ const RegisterStepTwo = props => {
 
     const [email, _email] = useState('');
     const [password, _password] = useState('');
+    const [username, _username] = useState('');
     const [gender, _gender] = useState('');
     const [looking, _looking] = useState('');
 
@@ -29,19 +30,21 @@ const RegisterStepTwo = props => {
   };
   
   
-  const selectGen = () => {
-        if(selectGen == selectMan){
-            selectMan()
-        } else if(selectGen == selectWoman){
-            selectWoman()
-        }
-  };
+//   const selectGen = () => {
+//         if(selectGen == selectMan){
+//             selectMan()
+//         } else if(selectGen == selectWoman){
+//             selectWoman()
+//         }
+//   };
   
   React.useEffect(()=>{
     console.log(props.navigation.state.params.param.email, "+++++++props email"),
     console.log(props.navigation.state.params.param.password, "+++++++props pass"),
+    console.log(props.navigation.state.params.param.username, "+++++++props username"),
     _email(props.navigation.state.params.param.email),
-    _password(props.navigation.state.params.param.password)
+    _password(props.navigation.state.params.param.password),
+    _username(props.navigation.state.params.param.username)
 
   },[])
 
@@ -56,12 +59,12 @@ const RegisterStepTwo = props => {
                 <View style={rstyles.checkarea}>
                     <Text style={rstyles.checktitle}>I am a...</Text>
                     <View style={rstyles.checkboxarae}>
-                        <TouchableOpacity onPress={selectGen} style={rstyles.checkbtn}>
+                        <TouchableOpacity onPress={selectMan} style={rstyles.checkbtn}>
                             <Image source={require('../../assets/images/men-icon.png')} 
                             style={rstyles.chckimg}></Image>
                             <Text style={rstyles.chktxt}>Man</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={selectGen} style={rstyles.checkbtn}>
+                        <TouchableOpacity onPress={selectWoman} style={rstyles.checkbtn}>
                             <Image source={require('../../assets/images/women-icon.png')} 
                             style={rstyles.chckimg}></Image>
                             <Text style={rstyles.chktxt}>Woman</Text>
@@ -89,7 +92,8 @@ const RegisterStepTwo = props => {
                 props.navigation.navigate('RegisterThree', {
                 param: {
                     "email": email, 
-                    "password": password, 
+                    "password": password,
+                    "username": username,  
                     "gender": gender, 
                     "looking": looking 
                 }
