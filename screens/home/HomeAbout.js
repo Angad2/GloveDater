@@ -30,13 +30,6 @@ const HomeAbout = props => {
             //_intentArr(res.data)
             //console.log(datas.Email)
             //;console.log(res.data.Intent_option, "------------ intent option array")
-
-            if(res.data.Intent_option){
-
-                const splitArry = res.data.Intent_option.split(',');
-                console.log(splitArry, "--------- inteness splitArray");
-                
-                }
         }
             ).catch(err=>console.log(err))
          } catch (err) {
@@ -44,7 +37,17 @@ const HomeAbout = props => {
          }
     }
     
-    
+    const printArr = (intenss) => {
+        if(intenss){
+            const splitArry = intenss.split(',');
+            return (
+                <View key={itetent.value} style={rstyles.intentchk}>
+                <Text style={rstyles.chktxt}>{itetent.value}</Text>
+            </View>
+            )
+            console.log(splitArry)
+        }
+    }
     // const intenss = [
     //     {"name":"dating","value":"Dating"},
     //     {"name":"travel","value":"Travel"},
@@ -113,14 +116,8 @@ const HomeAbout = props => {
                     </View>
                     <Text style={Styles.titleabout}>Intent</Text>
                         <View style={aboutstyle.info}>
-                        {/* {intenss &&
-                        intenss.map(itetent =>
-                            <View key={itetent.value} style={rstyles.intentchk}>
-                                <Text style={rstyles.chktxt}>{itetent.value}</Text>
-                            </View>
-                        )
-                        } */}
-                    </View>
+                            { printArr(datas.Intent_option) }
+                        </View>
                     <Text style={Styles.titleabout}>Basic</Text>
                     <View style={aboutstyle.infobox}>
                         <View style={aboutstyle.info}>
