@@ -25,6 +25,12 @@ export default StyleSheet.create({
         paddingVertical: 7,
     },
 
+    infoboxarr: {
+        flex: 1,
+    },
+
+    
+
     infotitle: {
         fontFamily: 'quicksand-medium',
         fontSize: 16,
@@ -47,8 +53,4 @@ export default StyleSheet.create({
         borderRadius: 10,
         padding: 15,
     },
-    intentchkarr: {
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-    }
 });

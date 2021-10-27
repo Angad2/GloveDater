@@ -1,6 +1,6 @@
 
 import React, { useState, Component } from 'react';
-import {View, Text, StyleSheet, Image, TextInput, Button, TouchableOpacity, Platform } from 'react-native';
+import { View, Text, StyleSheet, Image, TextInput, Button, TouchableOpacity, ScrollView, Dimensions, Alert, ImageBackground, SafeAreaView } from 'react-native';
 import styles from '../../constants/globalstyle';
 import rstyles from '../rstyles';
 //import Colors from '../../constants/color';
@@ -50,6 +50,9 @@ const RegisterStepTwo = props => {
 
     return(
         <View style={styles.imageview}>
+            <ImageBackground source={require('../../assets/images/bg3.jpg')}
+                style={{ resizeMode: 'cover', flex: 1, width: '100%', height: '100%', zIndex: 0 }} >
+                <ScrollView>
             <View style={rstyles.logo}>
                 <Image source={require('../../assets/images/logo.png')} 
                 style={rstyles.logosize}
@@ -87,23 +90,24 @@ const RegisterStepTwo = props => {
                     </View>
                 </View>
             </View>
-            <TouchableOpacity 
-            onPress={() =>
-                props.navigation.navigate('RegisterThree', {
-                param: {
-                    "email": email, 
-                    "password": password,
-                    "username": username,  
-                    "gender": gender, 
-                    "looking": looking 
-                }
-                })}
-            style={rstyles.btncontainer}>
-                <Text style={rstyles.btntext}>Continue</Text>
-            </TouchableOpacity>
-            <Image source={require('../../assets/images/bg3.jpg')} 
-            style={{resizeMode: 'cover'}}
-            />
+            </ScrollView>
+            <View style={rstyles.btnview}>
+            <TouchableOpacity
+                        onPress={() =>
+                            props.navigation.navigate('RegisterThree', {
+                                param: {
+                                    "email": email,
+                                    "password": password,
+                                    "username": username,
+                                    "gender": gender,
+                                    "looking": looking
+                                }
+                            })}
+                        style={rstyles.btncontainer2}>
+                        <Text style={rstyles.btntext}>Continue</Text>
+                    </TouchableOpacity>
+            </View>
+            </ImageBackground>
         </View>
     );
 };

@@ -91,9 +91,6 @@ export default StyleSheet.create({
       justifyContent: 'center',
       alignContent: 'center',
       alignItems: 'center',
-      position: 'absolute',
-      zIndex: 0,
-      justifyContent: 'center',
       top: 0,
       width: '100%',
       height: 'auto'
@@ -130,6 +127,7 @@ export default StyleSheet.create({
     fontSize: 18,
     color: 'black',
     fontFamily: 'quicksand-bold',
+    marginBottom: 10,
   },
 
   profilepic: {

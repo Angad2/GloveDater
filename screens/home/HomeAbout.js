@@ -1,5 +1,5 @@
 import React, { useState, } from "react";
-import { View, Text, Dimensions, TouchableOpacity, Image, ScrollView } from 'react-native';
+import { View, Text, Dimensions, TouchableOpacity, Image, ScrollView, Alert } from 'react-native';
 
 import Styles from '../../constants/globalstyle';
 import hometabstyles from "./hometabstyles";
@@ -12,6 +12,7 @@ import aboutstyle from "./aboutstyle";
 import axios from "axios";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import rstyles from "../../screens/rstyles";
+import { Value } from "react-native-reanimated";
 
 const HomeAbout = props => {
 
@@ -36,32 +37,31 @@ const HomeAbout = props => {
            console.log(err);
          }
     }
-    
     const printArr = (intenss) => {
         if(intenss){
             const splitArry = intenss.split(',');
-            return (
-                <View key={itetent.value} style={rstyles.intentchk}>
-                <Text style={rstyles.chktxt}>{itetent.value}</Text>
-            </View>
-            )
             console.log(splitArry)
+            return (
+                
+                    splitArry &&
+                    splitArry.map(inten => {
+                        <TouchableOpacity key={inten.name} style={rstyles.intentchk}>
+                            <Text style={rstyles.chktxt}>{inten.splitArry}</Text>
+                        </TouchableOpacity>}
+                    )
+            )
+                // splitArry && splitArry.map(val => {
+                     
+                //      <View style={rstyles.intentchk}>
+                //                 <Text>{datas.Intent_option}</Text>
+                //      </View>
+                     
+                // })
+                
+            //)
+               
         }
     }
-    // const intenss = [
-    //     {"name":"dating","value":"Dating"},
-    //     {"name":"travel","value":"Travel"},
-    //     {"name":"experiences","value":"Experiences"},
-    //     {"name":"romance","value":"Romance"},
-    //     {"name":"emotional","value":"Emotional"},
-    //     {"name":"open","value":"Open"},
-    //     {"name":"nsa","value":"NSA"},
-    //     {"name":"fwb","value":"FWB"},
-    //     {"name":"shortterm","value":"Short term"},
-    //     {"name":"longterm","value":"Longterm"},
-    //     {"name":"arrangement","value":"Arrangement"},
-    // ]
-
 
     React.useEffect(()=>{
         getUserDtails()
@@ -103,7 +103,7 @@ const HomeAbout = props => {
                             <Text style={aboutstyle.infovalue}>{datas.City}</Text>
                         </View>
                     </View>
-                    <Text style={Styles.titleabout}>Search About</Text>
+                    <Text style={Styles.titleabout}>About</Text>
                     <View style={aboutstyle.infobox}>
                         <View style={aboutstyle.info}>
                             <Text style={aboutstyle.infotitle}>I am a...:</Text>
@@ -116,7 +116,18 @@ const HomeAbout = props => {
                     </View>
                     <Text style={Styles.titleabout}>Intent</Text>
                         <View style={aboutstyle.info}>
-                            { printArr(datas.Intent_option) }
+                        <Text>{datas.Intent_option}</Text>
+                            {/* { printArr() } */}
+                        {/* { printArr }
+                            {
+                                splitArry &&
+                                splitArry.map(Intent_option => 
+                                <View style={rstyles.intentchk}>
+                                <Text>{datas.Intent_option}</Text>
+                            </View>
+                                )
+                            } */}
+                            
                         </View>
                     <Text style={Styles.titleabout}>Basic</Text>
                     <View style={aboutstyle.infobox}>

@@ -4,15 +4,12 @@ import { StyleSheet, Dimensions } from 'react-native';
 
 export default StyleSheet.create({
   logo: {
-    position: 'absolute',
-    zIndex: 1,
     backgroundColor: 'transparent',
     left: 0,
     right: 0,
-    top: Dimensions.get ('window').height > 700 ? 50 : 20,
-    //top: Dimensions.get ('window').height / 14,
     alignItems: 'center',
     justifyContent: 'center',
+    marginTop: 100,
   },
 
   logosize: {
@@ -22,40 +19,33 @@ export default StyleSheet.create({
   },
 
   textview: {
-    position: 'absolute',
-    top: Dimensions.get ('window').height > 700 ? 280 : 200,
-    zIndex: 100,
+    alignItems: 'center',
   },
 
   logotext: {
-    //fontFamily: 'quicksand-bold',
+    fontFamily: 'quicksand-bold',
     fontSize: 20,
     color: '#800080'
   },
 
   formview: {
-    margin: 50,
-    position: 'absolute',
-    zIndex: 4,
-    alignContent: 'center',
-    top: Dimensions.get ('window').height > 700 ? 300 : 220,
     alignItems: 'center',
     justifyContent: 'center',
-    zIndex: 3,
-    width: '80%',
-    flex: 1,
-   paddingBottom: 50,
+    alignContent: 'center',
+    width: '85%',
+    marginTop: 40,
+    left: 0,
+    right: 0,
+    alignSelf: 'center',
   },
 
   formview2: {
-    margin: 20,
-    position: 'absolute',
-    zIndex: 4,
     alignContent: 'center',
-    top: Dimensions.get ('window').height > 700 ? 350 : 280,
     justifyContent: 'center',
     zIndex: 3,
     width: '80%',
+    alignSelf: 'center',
+    marginTop:30,
   },
 
   inputarea: {
@@ -87,7 +77,7 @@ export default StyleSheet.create({
 
   btncontainer2: {
     width: '100%',
-    height: 65,
+    height: 55,
     borderRadius: 100,
     backgroundColor: Colors.primary,
     alignItems: 'center',
@@ -99,15 +89,13 @@ export default StyleSheet.create({
 
   btncontainer: {
     flex: 1,
-    width: '80%',
+    width: '85%',
     height: 65,
     borderRadius: 100,
     backgroundColor: Colors.primary,
-    position: 'absolute',
-    zIndex: 100,
-    top:Dimensions.get ('window').height > 700 ? 670 : 570,
     alignItems: 'center',
     justifyContent: 'center',
+    alignSelf: 'center'
   },
 
   btn: {
@@ -290,6 +278,21 @@ export default StyleSheet.create({
   intentchkarr: {
     flexDirection: 'row',
     flexWrap: 'wrap',
+},
+
+errorMsg: {
+  color: 'red',
+  backgroundColor: 'white',
+  borderRadius: 40,
+  alignContent: 'center',
+  alignSelf: 'center',
+  alignItems: 'center',
+  justifyContent: 'center',
+  fontFamily: 'quicksand-bold',
+  fontSize: 16,
+  paddingHorizontal: 25,
+  paddingVertical: 10,
+  marginBottom: 10,
 }
   
 });
