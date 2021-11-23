@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
 
+import { NavigationContainer } from 'react-navigation';
+
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import HomeSlider from './HomeSlider';
@@ -23,7 +25,7 @@ const HomeScreen = props => {
         const userId = await AsyncStorage.getItem('userId');
         console.log(userId, "__________________-userId")
         try {
-           await axios.get(`http://111.93.169.90:8484/V1/users/${userId}`)
+           await axios.get(`http://14.97.177.30:8484/V1/users/${userId}`)
             .then(res => 
             {console.log(res.data.Email)
             _datas(res.data)
@@ -49,7 +51,7 @@ const HomeScreen = props => {
                     <Text style={Homestyle.nametxt}>{datas.user_name}</Text>
                     <Text style={Homestyle.locationtxt}>{datas.Email}</Text>
                 </View>
-                <TouchableOpacity style={Homestyle.profileEdit}>
+                <TouchableOpacity style={Homestyle.profileEdit} onPress= {() => {props.navigation.navigate({routeName: 'editProfile'})}}>
                     <Octicons name="pencil" size={20} color="#f44555" />
                 </TouchableOpacity>
             </View>
@@ -79,6 +81,9 @@ const HomeScreen = props => {
             <View style={Styles.spacediv}></View>
             </ScrollView>
             <Footer />
+            {/* <NavigationContainer>
+                <Footer />
+            </NavigationContainer> */}
         </View>
     );
 };

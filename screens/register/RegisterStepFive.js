@@ -16,17 +16,17 @@ const RegisterStepFive = props => {
     const [country, _country] = useState('');
     const [city, _city] = useState('');
     const [intentArr, _intentArr] = useState([]);
-    const [ageValue, _ageValue] = useState();
-    const [bodyValue, _bodyValue] = useState();
-    const [heightValue, _heightValue] = useState();
-    const [hairValue, _hairValue] = useState();
-    const [ethnicityValue, _ethnicityValue] = useState();
-    const [intentValue, _intentValue] = useState();
-    const [about, _about] = useState();
-    const [lookingFor, _lookingFor] = useState();
-    const [favtravelSpot, _favtravelSpot] = useState();
-    const [favBarResto, _favBarResto] = useState();
-    const [favDreamExpo, _favDreamExpo] = useState();
+    const [ageValue, _ageValue] = useState('');
+    const [bodyValue, _bodyValue] = useState('');
+    const [heightValue, _heightValue] = useState('');
+    const [hairValue, _hairValue] = useState('');
+    const [ethnicityValue, _ethnicityValue] = useState('');
+    const [intentValue, _intentValue] = useState('');
+    const [about, _about] = useState('');
+    const [lookingFor, _lookingFor] = useState('');
+    const [favtravelSpot, _favtravelSpot] = useState('');
+    const [favBarResto, _favBarResto] = useState('');
+    const [favDreamExpo, _favDreamExpo] = useState('');
 
     const travelHandler = (enteredTravelSpot) => {
         _favtravelSpot(enteredTravelSpot);
@@ -80,7 +80,7 @@ const RegisterStepFive = props => {
 
     return (
         <View style={styles.mainbody}>
-            <Header onSelect={() => { props.navigation.navigate({ routeName: 'RegisterFour' }); }} title="Propile" />
+            <Header onSelect={() => { props.navigation.navigate({ routeName: 'RegisterFour' }); }} title="Profile" />
             <ScrollView style={rstyles.formview3}>
                 <Text style={rstyles.formviewtxt}>Favorite travel spot</Text>
                 <View style={rstyles.txtareabox}>

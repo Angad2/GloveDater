@@ -24,7 +24,7 @@ const HomeAbout = props => {
         const userId = await AsyncStorage.getItem('userId');
         console.log(userId, "__________________-userId")
         try {
-           await axios.get(`http://111.93.169.90:8484/V1/users/${userId}`)
+           await axios.get(`http://14.97.177.30:8484/V1/users/${userId}`)
             .then(res => 
             {console.log(res.data.Email)
             _datas(res.data)

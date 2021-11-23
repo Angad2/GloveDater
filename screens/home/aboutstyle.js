@@ -8,7 +8,7 @@ export default StyleSheet.create({
     backgroundColor: 'white',
     elevation: 8,
     shadowColor: '#000000',
-    shadowOffset: {width: 4, height: 4},
+    shadowOffset: {width: 4, height: 4}, 
     shadowOpacity: 0.1,
     shadowRadius: 10,
     padding: 10,

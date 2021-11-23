@@ -24,18 +24,18 @@ const Identitypage = props => {
     const [country, _country] = useState('');
     const [city, _city] = useState('');
     const [intentArr, _intentArr] = useState([]);
-    const [ageValue, _ageValue] = useState();
-    const [bodyValue, _bodyValue] = useState();
-    const [heightValue, _heightValue] = useState();
-    const [hairValue, _hairValue] = useState();
-    const [ethnicityValue, _ethnicityValue] = useState();
-    const [intentValue, _intentValue] = useState();
-    const [about, _about] = useState();
-    const [lookingFor, _lookingFor] = useState();
-    const [favtravelSpot, _favtravelSpot] = useState();
-    const [favBarResto, _favBarResto] = useState();
-    const [favDreamExpo, _favDreamExpo] = useState();
-    const [photo, _photo] = useState();
+    const [ageValue, _ageValue] = useState('');
+    const [bodyValue, _bodyValue] = useState('');
+    const [heightValue, _heightValue] = useState('');
+    const [hairValue, _hairValue] = useState('');
+    const [ethnicityValue, _ethnicityValue] = useState('');
+    const [intentValue, _intentValue] = useState('');
+    const [about, _about] = useState('');
+    const [lookingFor, _lookingFor] = useState('');
+    const [favtravelSpot, _favtravelSpot] = useState('');
+    const [favBarResto, _favBarResto] = useState('');
+    const [favDreamExpo, _favDreamExpo] = useState('');
+    const [photo, _photo] = useState('');
 
     React.useEffect(() => {
      

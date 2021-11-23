@@ -13,6 +13,10 @@ const RegisterStepOne = props => {
 
     const [isEmailValidationError, _isEmailValidationError] = useState(false);
     const [isEmailError, _isEmailError] = useState(false);
+    const [isPassValidationError, _isPassValidationError] = useState(false);
+    const [isPassError, _isPassError] = useState(false);
+    const [isUserValidationError, _isUserValidationError] = useState(false);
+    const [isUserError, _isUserError] = useState(false);
 
     const emailHandler = (enteredEmail) => {
         _email(enteredEmail);
@@ -30,6 +34,21 @@ const RegisterStepOne = props => {
 
     const validationSubmit = () => {
 
+        if(username.trim() != '') {
+            if (!username.trim().match(Regex.VALID_NAME)) {
+                _isUserValidationError(true);
+                //email.focus();
+                return;
+            } else {
+                _isUserValidationError(false);
+                _isUserError(false);
+            }
+            }
+            if(!username.trim()) {
+                Alert.alert('Please Enter User Name');
+                return;
+            }
+
         if(email.trim() != '') {
             if (!email.trim().match(Regex.VALID_EMAIL)) {
                 _isEmailValidationError(true);
@@ -40,6 +59,25 @@ const RegisterStepOne = props => {
                 _isEmailError(false);
             }
             }
+            if(!email.trim()) {
+                Alert.alert('Please Enter Email');
+                return;
+            }
+
+            if(password.trim() != '') {
+                if (!password.trim().match(Regex.VALID_PASSWORD)) {
+                    _isPassValidationError(true);
+                    //email.focus();
+                    return;
+                } else {
+                    _isPassValidationError(false);
+                    _isPassError(false);
+                }
+                }
+                if(!password.trim()) {
+                    Alert.alert('Please Enter Password');
+                    return;
+                }
 
             props.navigation.navigate('RegisterTwo', {
                 param: {
@@ -118,6 +156,24 @@ const RegisterStepOne = props => {
                         {isEmailError
                             ? ''
                             : 'Email address is not valid'}
+                    </Text>
+                           
+                )}
+                {(isPassError || isPassValidationError) && (
+                    
+                    <Text style={rstyles.errorMsg}>
+                        {isPassError
+                            ? ''
+                            : 'Password is not valid'}
+                    </Text>
+                           
+                )}
+                 {(isUserError || isUserValidationError) && (
+                    
+                    <Text style={rstyles.errorMsg}>
+                        {isUserError
+                            ? ''
+                            : 'user name is not valid'}
                     </Text>
                            
                 )}

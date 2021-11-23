@@ -1,14 +1,17 @@
 import React from 'react';
 import {View, Text, Image, StyleSheet, TouchableOpacity, } from 'react-native';
 
+import { createStackNavigator } from 'react-navigation-stack';
+
 import styles from '../constants/globalstyle';
 import { Ionicons } from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/Feather';
 
+
 const Footer = props => {
     return (
         <View style={styles.footermain}>
-            <TouchableOpacity style={styles.footertab}>
+            <TouchableOpacity onPress={props.onSelect} style={styles.footertab}>
                 <Ionicons name="md-home" size={32} color="white" />
                 <Text style={styles.footertxt}>Home</Text>
             </TouchableOpacity>

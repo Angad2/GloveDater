@@ -4,7 +4,8 @@ import { View, Text, StyleSheet, Image, TextInput, Button, TouchableOpacity, Scr
 import styles from '../../constants/globalstyle';
 import rstyles from '../rstyles';
 
-import { Picker } from '@react-native-picker/picker';
+//import { Picker } from '@react-native-picker/picker';
+import {Picker} from '@react-native-community/picker';
 
 import Header from '../../components/Header';
 
@@ -18,14 +19,14 @@ const RegisterStepFour = props => {
     const [country, _country] = useState('');
     const [city, _city] = useState('');
     const [intentArr, _intentArr] = useState([]);
-    const [ageValue, _ageValue] = useState();
-    const [bodyValue, _bodyValue] = useState();
-    const [heightValue, _heightValue] = useState();
-    const [hairValue, _hairValue] = useState();
-    const [ethnicityValue, _ethnicityValue] = useState();
-    const [intentValue, _intentValue] = useState();
-    const [about, _about] = useState();
-    const [lookingFor, _lookingFor] = useState ();
+    const [ageValue, _ageValue] = useState('');
+    const [bodyValue, _bodyValue] = useState('');
+    const [heightValue, _heightValue] = useState('');
+    const [hairValue, _hairValue] = useState('');
+    const [ethnicityValue, _ethnicityValue] = useState('');
+    const [intentValue, _intentValue] = useState('');
+    const [about, _about] = useState('');
+    const [lookingFor, _lookingFor] = useState ('');
 
     const intens = [
         {"name":"dating","value":"Dating"},
@@ -116,7 +117,7 @@ const RegisterStepFour = props => {
     }, [])
     return (
         <View style={styles.mainbody}>
-            <Header onSelect={() => { props.navigation.navigate({ routeName: 'RegisterThree' }); }} title="Propile" />
+            <Header onSelect={() => { props.navigation.navigate({ routeName: 'RegisterThree' }); }} title="Profile" />
             <ScrollView style={rstyles.formview3}>
                 <Text style={rstyles.formviewtxt}>Basics</Text>
                 <View style={rstyles.dropdownarea}>

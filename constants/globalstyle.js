@@ -99,7 +99,7 @@ export default StyleSheet.create({
   hedermain: {
     flexDirection: 'row',
     width: '100%',
-    height: 50,
+    //height: 50,
     marginTop: 10,
     padding: 20,
     justifyContent: 'space-between',
@@ -128,6 +128,7 @@ export default StyleSheet.create({
     color: 'black',
     fontFamily: 'quicksand-bold',
     marginBottom: 10,
+    height: 50,
   },
 
   profilepic: {
@@ -177,8 +178,8 @@ export default StyleSheet.create({
     flexDirection: 'row'
   },
   dropdown: {
-    height: 50,
-    padding: 12,
+    height: 'auto',
+    paddingVertical: 0,
     paddingLeft: 0,
     paddingRight: 0,
     borderRadius: 100,

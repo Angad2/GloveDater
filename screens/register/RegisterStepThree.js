@@ -64,7 +64,7 @@ const selectIntent = (enterIntent) => {
   },[])
     return (
         <View style={styles.mainbody}>
-            <Header onSelect={() => { props.navigation.navigate({ routeName: 'RegisterTwo' }); }} title="Propile" />
+            <Header onSelect={() => { props.navigation.navigate({ routeName: 'RegisterTwo' }); }} title="Profile" />
             <ScrollView style={rstyles.formview3}>
                 <Text style={rstyles.formviewtxt}>Country</Text>
                 <View style={rstyles.inputarea}>

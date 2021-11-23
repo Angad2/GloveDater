@@ -154,7 +154,7 @@ export default StyleSheet.create({
   },
 
   chktxt: {
-    color: Colors.accenttextcolor,
+    color: 'black',
     fontSize: 16,
   },
 
@@ -196,14 +196,18 @@ export default StyleSheet.create({
   },
 
   intentchk: {
-    height: 30,
-    padding: 20,
+    flexDirection: 'column',
+    height: 'auto',
     backgroundColor: Colors.intentchkcolor,
-    borderRadius: 20,
+    borderRadius: 25,
     justifyContent: 'center',
     alignItems: 'center',
+    alignContent: 'center',
     marginEnd: 5,
     marginBottom: 10,
+    overflow: 'hidden',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
   },
 
   intentchkarr: {

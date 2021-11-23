@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, useState, TouchableOpacity } from 'react-native';
+import { View, Image, useState, TouchableOpacity, Alert, Text } from 'react-native';
 import styles from '../constants/globalstyle';
 
 const Header = props => {

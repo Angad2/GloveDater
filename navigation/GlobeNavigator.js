@@ -13,6 +13,7 @@ import Homephoto from '../screens/home/Photo';
 import Photo from '../screens/home/Photo';
 import HomeAbout from '../screens/home/HomeAbout';
 import HomeExperiance from '../screens/home/HomeExperiance';
+import EditProfile from '../screens/home/EditProfile';
 
 
 const GlobeNavigator = createStackNavigator (
@@ -87,6 +88,12 @@ const GlobeNavigator = createStackNavigator (
         },
         Homeexp: {
             screen: HomeExperiance,
+            navigationOptions: {
+            headerShown: null,
+            },
+        },
+        editProfile: {
+            screen: EditProfile,
             navigationOptions: {
             headerShown: null,
             },
