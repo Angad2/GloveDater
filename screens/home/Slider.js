@@ -58,7 +58,7 @@ change = ({nativeEvent}) => {
 
 const style = StyleSheet.create ({
   container: { 
-      marginTop: 20,
+      marginTop: 0,
      width, height 
     },
 

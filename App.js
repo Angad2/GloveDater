@@ -32,7 +32,7 @@ export default function App() {
   }
 
   return (
-      <GlobeNavigator />
+      <GlobeNavigator/>
   );
 }
 

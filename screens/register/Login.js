@@ -3,10 +3,14 @@ import { View, Text, StyleSheet, Image, TextInput, Button, TouchableOpacity, Scr
 import styles from '../../constants/globalstyle';
 import rstyles from '../rstyles';
 
+import axios from 'axios';
+import {BASE_URL} from '../../config';
+import { loginUser } from '../../service';
+import { showMessage } from 'react-native-flash-message';
+
 import Regex from '../../screens/register/RegexMatch';
 
 const Login = props => {
-
     const [email, _email] = useState('');
     const [password, _password] = useState('');
 
@@ -23,49 +27,82 @@ const Login = props => {
         _password(enteredPass);
     };
 
-    const validationSubmit = () => {
-
-        if(email.trim() != '') {
-            if (!email.trim().match(Regex.VALID_EMAIL)) {
-                _isEmailValidationError(true);
-                //email.focus();
-                return;
-            } else {
-                _isEmailValidationError(false);
-                _isEmailError(false);
-            }
-            }
-            if(!email.trim()) {
-                Alert.alert('Please Enter Email');
-                return;
-            }
-
-            if(password.trim() != '') {
-                if (!password.trim().match(Regex.VALID_PASSWORD)) {
-                    _isPassValidationError(true);
+    const validationSubmit = async () => {
+        try {
+            if(email.trim() != '') {
+                if (!email.trim().match(Regex.VALID_EMAIL)) {
+                    _isEmailValidationError(true);
                     //email.focus();
                     return;
                 } else {
-                    _isPassValidationError(false);
-                    _isPassError(false);
+                    _isEmailValidationError(false);
+                    _isEmailError(false);
                 }
                 }
-                if(!password.trim()) {
-                    Alert.alert('Please Enter Password');
+                if(!email.trim()) {
+                    Alert.alert('Please Enter Email');
                     return;
                 }
+    
+                if(password.trim() != '') {
+                    if (!password.trim().match(Regex.VALID_PASSWORD)) {
+                        _isPassValidationError(true);
+                        //email.focus();
+                        return;
+                    } else {
+                        _isPassValidationError(false);
+                        _isPassError(false);
+                    }
+                    }
+                    if(!password.trim()) {
+                        Alert.alert('Please Enter Password');
+                        return;
+                    }
+    
+                    const user = await signUpUser(email, password, User_name, gender, looking, country, city, intentArr.join(","), ageValue, bodyValue, heightValue, hairValue, ethnicityValue, intentValue, about, lookingFor, favtravelSpot, favBarResto, favDreamExpo, photo);
+              //setIsLoading(false);
+              console.log(user, "++++++++++++++++user")
+             console.log(user.data._id, "++++++++++++++++user")
+             console.log(user.data.Email)
+              if (!user) {
+                showMessage({
+                  message: "Error",
+                  backgroundColor: 'rgba(0, 0, 0, 0.8)'
+                });
+                return
+              }
+              else{
+                showMessage({
+                  message: "Signup sucessfull",
+                  backgroundColor: 'rgba(0, 0, 0, 0.8)'
+                });            
+               AsyncStorage.setItem("userId", user.data._id);
+               AsyncStorage.setItem("token", user.data.Token);
+               
+                props.navigation.navigate('Home');
+              }
+            } catch (error) {
+              //setIsLoading(false);
+              showMessage({
+                message: 'Something went wrong please try again later!',
+                backgroundColor: 'rgba(0, 0, 0, 0.8)'
+              });
 
-            props.navigation.navigate('Home', {
-                param: {
-                    "email": email,
-                    "password": password
-                }
-            })
+        }
+
+        
+
+            // props.navigation.navigate('Home', {
+            //     param: {
+            //         "email": email,
+            //         "password": password
+            //     }
+            // })
     };
 
    
     return (
-        <View style={styles.imageview}>
+        <View navigation={props.navigation} style={styles.imageview}>
             <ImageBackground source={require('../../assets/images/bg2.jpg')}
                 style={{ resizeMode: 'cover', flex: 1, width: '100%', height: '100%', }} >
                 <ScrollView>
@@ -98,6 +135,11 @@ const Login = props => {
                                 style={{ width: 50, height: 50, resizeMode: 'contain' }}
                             />
                         </View>
+                        <View>
+                            <TouchableOpacity>
+                                <Text>Not a member sign up here</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 </ScrollView>
                 <TouchableOpacity onPress={validationSubmit} >
@@ -123,7 +165,7 @@ const Login = props => {
                  <View style={rstyles.btnview}>
                     <TouchableOpacity onPress={validationSubmit} 
                     style={rstyles.btncontainer2}>
-                        <Text style={rstyles.btntext}>Continue</Text>
+                        <Text style={rstyles.btntext}>Log In</Text>
                     </TouchableOpacity>
                 </View>
             </ImageBackground>

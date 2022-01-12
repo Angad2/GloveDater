@@ -9,7 +9,7 @@ const RegisterStepOne = props => {
 
     const [email, _email] = useState('');
     const [password, _password] = useState('');
-    const [username, _username] = useState('');
+    const [User_name, _User_name] = useState('');
 
     const [isEmailValidationError, _isEmailValidationError] = useState(false);
     const [isEmailError, _isEmailError] = useState(false);
@@ -26,7 +26,7 @@ const RegisterStepOne = props => {
         _password(enteredPass);
     };
     const userHandler = (enteredUsername) => {
-        _username(enteredUsername);
+        _User_name(enteredUsername);
     };
 
    
@@ -34,8 +34,8 @@ const RegisterStepOne = props => {
 
     const validationSubmit = () => {
 
-        if(username.trim() != '') {
-            if (!username.trim().match(Regex.VALID_NAME)) {
+        if(User_name.trim() != '') {
+            if (!User_name.trim().match(Regex.VALID_NAME)) {
                 _isUserValidationError(true);
                 //email.focus();
                 return;
@@ -44,7 +44,7 @@ const RegisterStepOne = props => {
                 _isUserError(false);
             }
             }
-            if(!username.trim()) {
+            if(!User_name.trim()) {
                 Alert.alert('Please Enter User Name');
                 return;
             }
@@ -83,7 +83,7 @@ const RegisterStepOne = props => {
                 param: {
                     "email": email,
                     "password": password,
-                    "username": username
+                    "User_name": User_name
                 }
             })
     };
@@ -107,7 +107,7 @@ const RegisterStepOne = props => {
                             <TextInput placeholder='Enter Usernamel...'
                                 style={rstyles.inputtext}
                                 onChangeText={userHandler}
-                                value={username}
+                                value={User_name}
                             />
                             <Image source={require('../../assets/images/man-icon.png')}
                                 style={{ width: 50, height: 50, resizeMode: 'contain' }}
@@ -128,6 +128,8 @@ const RegisterStepOne = props => {
                                 style={rstyles.inputtext}
                                 onChangeText={passHandler}
                                 value={password}
+                                password={true}
+                                secureTextEntry={true}
                             />
                             <Image source={require('../../assets/images/pass-icon.png')}
                                 style={{ width: 50, height: 50, resizeMode: 'contain' }}

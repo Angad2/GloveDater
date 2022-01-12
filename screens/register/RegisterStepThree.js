@@ -11,7 +11,7 @@ const RegisterStepThree = props => {
 
     const [email, _email] = useState('');
     const [password, _password] = useState('');
-    const [username, _username] = useState('');
+    const [User_name, _User_name] = useState('');
     const [gender, _gender] = useState('');
     const [looking, _looking] = useState('');
     const [country, _country] = useState('');
@@ -43,6 +43,15 @@ const cityHandler = (enteredCity) => {
 const selectIntent = (enterIntent) => {   
     if(intentArr.indexOf(enterIntent) === -1)  {
         _intentArr([...intentArr, enterIntent])
+        
+    } else{
+        console.log(enterIntent, "====enterIntent")
+        var index = intentArr.indexOf(enterIntent)
+        console.log(index)
+        if (index !== -1) {
+            intentArr.splice(index, 1);
+           // _intentArr(intentArr)
+        }
     }
     
     console.log(intentArr, "+++++++++++++intent");
@@ -52,16 +61,18 @@ const selectIntent = (enterIntent) => {
   React.useEffect(()=>{
     console.log(props.navigation.state.params.param.email, "+++++++props email"),
     console.log(props.navigation.state.params.param.password, "+++++++props pass"),
-    console.log(props.navigation.state.params.param.username, "+++++++props username"),
+    console.log(props.navigation.state.params.param.User_name, "+++++++props username"),
     console.log(props.navigation.state.params.param.gender, "+++++++props gender"),
     console.log(props.navigation.state.params.param.looking, "+++++++props looking for"),
     _email(props.navigation.state.params.param.email),
     _password(props.navigation.state.params.param.password),
-    _username(props.navigation.state.params.param.username),
+    _User_name(props.navigation.state.params.param.User_name),
     _gender(props.navigation.state.params.param.gender),
     _looking(props.navigation.state.params.param.looking)
 
   },[])
+
+ 
     return (
         <View style={styles.mainbody}>
             <Header onSelect={() => { props.navigation.navigate({ routeName: 'RegisterTwo' }); }} title="Profile" />
@@ -92,8 +103,8 @@ const selectIntent = (enterIntent) => {
                 <View style={rstyles.intentview}>
                     {intens &&
                         intens.map(inten =>
-                            <TouchableOpacity key={inten.name} onPress={() => selectIntent(inten.name)} style={rstyles.intentchk}>
-                                <Text style={rstyles.chktxt}>{inten.value}</Text>
+                            <TouchableOpacity key={inten.name} onPress={() => selectIntent(inten.name)} style={intentArr.find(el => el === inten.name) ? rstyles.intentChecked : rstyles.intentchk}>
+                                <Text style={intentArr.find(el => el === inten.name) ? rstyles.chktxted : rstyles.chktxt}>{inten.value}</Text>
                             </TouchableOpacity>
                         )
                     }
@@ -105,7 +116,7 @@ const selectIntent = (enterIntent) => {
                         param: {
                             "email": email,
                             "password": password,
-                            "username": username,
+                            "User_name": User_name,
                             "gender": gender,
                             "looking": looking,
                             "country": country,

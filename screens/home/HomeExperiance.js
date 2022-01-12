@@ -18,17 +18,25 @@ const HomeExperiance = props => {
 
     const getUserDtails = async() => {
         const userId = await AsyncStorage.getItem('userId');
+        const token = await AsyncStorage.getItem('token');
+        console.log(datas.User_name, 'User Name')
         console.log(userId, "__________________-userId")
+        console.log(token, '----------- user token')
         try {
-           await axios.get(`http://14.97.177.30:8484/V1/users/${userId}`)
+            //console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+            //console.log(`http://14.97.177.30:8484/V1/users/${userId}`)
+           axios.get(`http://14.97.177.30:8484/V1/users/${userId}`, {headers: {"Authorization": `Bearer ${token}`}})
             .then(res => 
-            {//console.log(res.data.Email)
+            {console.log("hhghfghf",res)
             _datas(res.data)
-            //console.log(datas.Email)
+           // _userToken(res.data)
+            console.log(datas.Email)
+            //console.log(datas.User_name)
+            
         }
             ).catch(err=>console.log(err))
          } catch (err) {
-           console.log(err);
+           console.log("hhhhh",err);
          }
     }
 
@@ -82,7 +90,7 @@ const HomeExperiance = props => {
                     <View style={Styles.spacediv}></View>
                 </ScrollView>
             </View>
-            <Footer />
+            <Footer navigation={props.navigation} />
         </View>
 
     );

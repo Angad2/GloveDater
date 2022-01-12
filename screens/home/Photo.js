@@ -9,7 +9,9 @@ import { Ionicons } from '@expo/vector-icons';
 const Photo = props => {
     return (
         <View style={hometabstyles.mainarea}>
+            <View style={Styles.mt30}></View>
             <View style={hometabstyles.mainview}>
+                
                 <TouchableOpacity Styles={hometabstyles.thumnail}>
                     <View style={hometabstyles.viewcount}>
                         <View>

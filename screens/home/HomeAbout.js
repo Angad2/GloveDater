@@ -12,29 +12,34 @@ import aboutstyle from "./aboutstyle";
 import axios from "axios";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import rstyles from "../../screens/rstyles";
-import { Value } from "react-native-reanimated";
 
 const HomeAbout = props => {
 
     const [datas, _datas] = React.useState([]);
-    const [intentArr, _intentArr] = useState([])
+   const [intentArr, _intentArr] = useState([])
     
 
     const getUserDtails = async() => {
         const userId = await AsyncStorage.getItem('userId');
+        const token = await AsyncStorage.getItem('token');
+        console.log(datas.User_name, 'User Name')
         console.log(userId, "__________________-userId")
+        console.log(token, '----------- user token')
         try {
-           await axios.get(`http://14.97.177.30:8484/V1/users/${userId}`)
+            //console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+            //console.log(`http://14.97.177.30:8484/V1/users/${userId}`)
+           axios.get(`http://14.97.177.30:8484/V1/users/${userId}`, {headers: {"Authorization": `Bearer ${token}`}})
             .then(res => 
-            {console.log(res.data.Email)
+            {console.log("hhghfghf",res)
             _datas(res.data)
-            //_intentArr(res.data)
-            //console.log(datas.Email)
-            //;console.log(res.data.Intent_option, "------------ intent option array")
+           // _userToken(res.data)
+            console.log(datas.Email)
+            //console.log(datas.User_name)
+            
         }
             ).catch(err=>console.log(err))
          } catch (err) {
-           console.log(err);
+           console.log("hhhhh",err);
          }
     }
     const printArr = (intenss) => {
@@ -153,25 +158,25 @@ const HomeAbout = props => {
                         </View>
                         <View style={aboutstyle.info}>
                             <Text style={aboutstyle.infotitle}>Intent:</Text>
-                            <Text style={aboutstyle.infovalue}>{datas.Intent}</Text>
+                            <Text style={aboutstyle.infovalue}>{datas.inttentd}</Text>
                         </View>
                     </View>
                     <View style={aboutstyle.infoarea}>
                         <Text style={Styles.titleabout}>About Me</Text>
-                    <Text style={Styles.mt10,Styles.bodytext}>
+                    <Text style={Styles.bodytext}>
                             {datas.About_me}
                         </Text>
                     </View>
                     <View style={aboutstyle.infoarea}>
                         <Text style={Styles.titleabout}>Looking For</Text>
-                        <Text style={Styles.mt10, Styles.bodytext}>
+                        <Text style={Styles.bodytext}>
                             {datas.Looking_for}
                         </Text>
                     </View>
                     <View style={Styles.spacediv}></View>
                 </ScrollView>
             </View>
-            <Footer />
+            <Footer navigation={props.navigation} />
         </View>
 
     );

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
 
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
@@ -18,7 +18,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const Identitypage = props => {
     const [email, _email] = useState('');
     const [password, _password] = useState('');
-    const [username, _username] = useState('');
+    const [User_name, _User_name] = useState('');
     const [gender, _gender] = useState('');
     const [looking, _looking] = useState('');
     const [country, _country] = useState('');
@@ -41,7 +41,7 @@ const Identitypage = props => {
      
             console.log(props.navigation.state.params.param.email, "+++++++props email"),
             console.log(props.navigation.state.params.param.password, "+++++++props pass"),
-            console.log(props.navigation.state.params.param.username, "+++++++props username"),
+            console.log(props.navigation.state.params.param.User_name, "+++++++props username"),
             console.log(props.navigation.state.params.param.gender, "+++++++props gender"),
             console.log(props.navigation.state.params.param.looking, "+++++++props looking for"),
             console.log(props.navigation.state.params.param.country, "+++++++props Country"),
@@ -62,7 +62,7 @@ const Identitypage = props => {
 
             _email(props.navigation.state.params.param.email),
             _password(props.navigation.state.params.param.password),
-            _username(props.navigation.state.params.param.username),
+            _User_name(props.navigation.state.params.param.User_name),
             _gender(props.navigation.state.params.param.gender),
             _looking(props.navigation.state.params.param.looking),
             _country(props.navigation.state.params.param.country),
@@ -91,10 +91,10 @@ const Identitypage = props => {
         try {
           //setIsLoading(true);    
          
-          const user = await signUpUser(email, password, username, gender, looking, country, city, intentArr.join(","), ageValue, bodyValue, heightValue, hairValue, ethnicityValue, intentValue, about, lookingFor, favtravelSpot, favBarResto, favDreamExpo, photo);
+          const user = await signUpUser(email, password, User_name, gender, looking, country, city, intentArr.join(","), ageValue, bodyValue, heightValue, hairValue, ethnicityValue, intentValue, about, lookingFor, favtravelSpot, favBarResto, favDreamExpo, photo);
           //setIsLoading(false);
-          console.log(user.data, "++++++++++++++++user")
-          console.log(user.data._id, "++++++++++++++++user")
+          console.log(user, "++++++++++++++++user id")
+          console.log(user.data._id, "++++++++++++++++user.data token")
           if (!user) {
             showMessage({
               message: "Error",
@@ -108,7 +108,8 @@ const Identitypage = props => {
               backgroundColor: 'rgba(0, 0, 0, 0.8)'
             });            
             AsyncStorage.setItem("userId", user.data._id);
-            props.navigation.navigate({routeName: 'Home'});
+            AsyncStorage.setItem("token", user.data.Token);
+            props.navigation.navigate('Home');
           }
         } catch (error) {
           //setIsLoading(false);
@@ -120,18 +121,25 @@ const Identitypage = props => {
       }
 
     return (
-        <View style={Styles.mainbody}>
-            <Header onSelect = {() =>{ props.navigation.navigate({routeName: 'UploadPage'});}} title="Identity verification" />
-            <ScrollView style={{marginBottom: 70,}}>
-                <View>
-                <IdentityUper />
-            <IdentityLower 
-              onSelect={onChangeHandleSignUp}            
-             />
-                </View>
-            </ScrollView>
-            <Footer />
-        </View>
+      <View style={Styles.mainbody}>
+        <Header onSelect={() => { props.navigation.navigate({ routeName: 'UploadPage' }); }} title="Identity verification" />
+        <ScrollView style={{ marginBottom: 70, }}>
+          <View>
+            <IdentityUper />
+            <IdentityLower navigation={props.navigation}
+            />
+            <View style={{ alignItems: 'center', marginBottom: 30, }}>
+              <TouchableOpacity onPress={onChangeHandleSignUp}
+                style={Styles.uploadbtn}
+              >
+                <Text style={Styles.btntxt}>Upload</Text>
+
+              </TouchableOpacity>
+            </View>
+          </View>
+        </ScrollView>
+        <Footer navigation={props.navigation} />
+      </View>
     );
 };
 

@@ -137,7 +137,6 @@ export default StyleSheet.create({
     height: 50,
     elevation: 8,
     borderRadius: 10,
-    backgroundColor: 'white',
     shadowColor: 'black',
     shadowOpacity: 0.26,
     shadowRadius: 6,
@@ -145,16 +144,45 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     padding: 10,
+    backgroundColor: 'white',
+  },
+
+  selectCheck: {
+    width: '48%',
+    height: 50,
+    elevation: 8,
+    borderRadius: 10,
+    shadowColor: 'black',
+    shadowOpacity: 0.26,
+    shadowRadius: 6,
+    shadowOffset: {width: 0, height:10},
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 10,
+    backgroundColor: '#f44555',
   },
 
   chckimg: {
     width:30,
     height:30,
     marginEnd: 20,
+    tintColor: '#f44555'
+  },
+
+  chckimgstyle: {
+    width:30,
+    height:30,
+    marginEnd: 20,
+    tintColor: 'white'
   },
 
   chktxt: {
     color: 'black',
+    fontSize: 16,
+  },
+
+  chktxted: {
+    color: 'white',
     fontSize: 16,
   },
 
@@ -209,7 +237,20 @@ export default StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 10,
   },
-
+intentChecked: {
+  flexDirection: 'column',
+    height: 'auto',
+    backgroundColor: 'red',
+    borderRadius: 25,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignContent: 'center',
+    marginEnd: 5,
+    marginBottom: 10,
+    overflow: 'hidden',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+},
   intentchkarr: {
     height: 30,
     padding: 20,
@@ -259,7 +300,7 @@ export default StyleSheet.create({
   
   formview4: {
     flexDirection: 'row',
-    padding: 30,
+    padding: 25,
     justifyContent: 'space-between',
     flexWrap: 'wrap',
     // borderWidth: 1,

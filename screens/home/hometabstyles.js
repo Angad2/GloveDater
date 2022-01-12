@@ -6,8 +6,8 @@ export default StyleSheet.create({
 
     mainarea: {
         flex: 1,
-        paddingHorizontal: 30,
-        marginTop: 15,
+        paddingHorizontal: 15,
+        marginTop: 0,
     },
 
     tabarea : {
@@ -19,6 +19,7 @@ export default StyleSheet.create({
         borderBottomColor: Colors.faintborder,
         borderBottomWidth: 1,
         //marginHorizontal: 30,
+        //marginBottom: 30,
     },
     
     tabs: {
@@ -57,6 +58,7 @@ export default StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         flexWrap: 'wrap',
+        justifyContent: 'center'
     },
 
     thumnail: {
@@ -99,6 +101,6 @@ export default StyleSheet.create({
         height: Dimensions.get('window').height / 8,
         borderRadius: 10,
         marginHorizontal: 3,
-        marginBottom: 6,
+        marginBottom: 10,
     }
 });

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, TextInput, Button, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, Image, TextInput, Button, TouchableOpacity, ScrollView, Picker } from 'react-native';
 
 import styles from '../../constants/globalstyle';
 import rstyles from '../rstyles';
 
 //import { Picker } from '@react-native-picker/picker';
-import {Picker} from '@react-native-community/picker';
+//import {Picker} from '@react-native-community/picker';
 
 import Header from '../../components/Header';
 
@@ -13,7 +13,7 @@ const RegisterStepFour = props => {
 
     const [email, _email] = useState('');
     const [password, _password] = useState('');
-    const [username, _username] = useState('');
+    const [User_name, _User_name] = useState('');
     const [gender, _gender] = useState('');
     const [looking, _looking] = useState('');
     const [country, _country] = useState('');
@@ -50,18 +50,21 @@ const RegisterStepFour = props => {
     
       };
     const age = [
+        { name: 'Select' },
         { name: '18' },
         { name: '19' },
         { name: '20' }
     ];
 
     const body = [
+        { name: 'Select' },
         { name: 'Tall' },
         { name: 'Average' },
         { name: 'Short' }
     ];
 
     const heights = [
+        { name: 'Select' },
         { name: '160' },
         { name: '165' },
         { name: '170' },
@@ -69,6 +72,7 @@ const RegisterStepFour = props => {
     ];
 
     const hair = [
+        { name: 'Select' },
         { name: 'Black' },
         { name: 'Brown' },
         { name: 'Golden' },
@@ -76,6 +80,7 @@ const RegisterStepFour = props => {
     ];
 
     const ethnicity = [
+        { name: 'Select' },
         { name: 'Rocking' },
         { name: 'Cool' },
         { name: 'Very Cool' },
@@ -83,6 +88,7 @@ const RegisterStepFour = props => {
     ];
 
     const inttentd = [
+        { name: 'Select' },
         { name: 'Open' },
         { name: 'Cool' },
         { name: 'Very Cool' },
@@ -99,7 +105,7 @@ const RegisterStepFour = props => {
     React.useEffect(() => {
             console.log(props.navigation.state.params.param.email, "+++++++props email"),
             console.log(props.navigation.state.params.param.password, "+++++++props pass"),
-            console.log(props.navigation.state.params.param.username, "+++++++props username"),
+            console.log(props.navigation.state.params.param.User_name, "+++++++props username"),
             console.log(props.navigation.state.params.param.gender, "+++++++props gender"),
             console.log(props.navigation.state.params.param.looking, "+++++++props looking for"),
             console.log(props.navigation.state.params.param.country, "+++++++props Country"),
@@ -107,7 +113,7 @@ const RegisterStepFour = props => {
             console.log(props.navigation.state.params.param.intentArr, "+++++++props Intent_option"),
             _email(props.navigation.state.params.param.email),
             _password(props.navigation.state.params.param.password),
-            _username(props.navigation.state.params.param.username),
+            _User_name(props.navigation.state.params.param.User_name),
             _gender(props.navigation.state.params.param.gender),
             _looking(props.navigation.state.params.param.looking),
             _country(props.navigation.state.params.param.country),
@@ -127,6 +133,7 @@ const RegisterStepFour = props => {
                             <Picker
                                 ageValue={ageValue}
                                 onValueChange={(itemValue, itemIndex) => _ageValue(itemValue)}
+                                //mode="dropdown"
                             >
                                 {age.map((age, key) => (
                                     <Picker.Item
@@ -259,7 +266,7 @@ const RegisterStepFour = props => {
                         param: {
                             "email": email,
                             "password": password,
-                            "username": username,
+                            "User_name": User_name,
                             "gender": gender,
                             "looking": looking,
                             "country": country,

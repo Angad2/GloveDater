@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
 import styles from '../../constants/globalstyle';
 import rstyles from '../rstyles';
+import hometabstyles from '../home/hometabstyles';
 
 import Header from '../../components/Header';
+import * as ImagePicker from 'expo-image-picker';
+
 
 const Upload = props => {
-
     const [email, _email] = useState('');
     const [password, _password] = useState('');
-    const [username, _username] = useState('');
+    const [User_name, _User_name] = useState('');
     const [gender, _gender] = useState('');
     const [looking, _looking] = useState('');
     const [country, _country] = useState('');
@@ -27,16 +29,58 @@ const Upload = props => {
     const [favtravelSpot, _favtravelSpot] = useState();
     const [favBarResto, _favBarResto] = useState();
     const [favDreamExpo, _favDreamExpo] = useState();
-    const [photo, _photo] = useState();
+    const [photo, _photo] = useState([]);
+    const [image, setImage] = useState([]);
+
+    useEffect(() => {
+        (async () => {
+            if (Platform.OS !== 'web') {
+                const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+                if (status !== 'granted') {
+                    alert('Sorry, we need camera roll permissions to make this work!');
+                }
+            }
+        })();
+    }, []);
+
+    const pickImage = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            allowsEditing: true,
+            aspect: [4, 4],
+            quality: 1,
+        });
+
+        console.log(result);
+
+        if (!result.cancelled) {
+            const images = [...image, result.uri]
+            setImage(images);
+        }
+    };
+
+    const deletPhoto = (img) => {
+        console.log(image);
+        console.log(img);
+        //image.pop(image);
+        let images = image;
+        delete images[img];
+        // console.log(images, images.filter(( element ) => {
+        //     return element !== undefined;
+        //  }));
+        setImage(images.filter(( element ) => {
+            return element !== undefined;
+         }))
+    };
 
     const uploadPhoto = () => {
-        _photo('photo')
+        _photo.push('photo')
     };
 
     React.useEffect(() => {
-            console.log(props.navigation.state.params.param.email, "+++++++props email"),
+        console.log(props.navigation.state.params.param.email, "+++++++props email"),
             console.log(props.navigation.state.params.param.password, "+++++++props pass"),
-            console.log(props.navigation.state.params.param.username, "+++++++props username"),
+            console.log(props.navigation.state.params.param.User_name, "+++++++props username"),
             console.log(props.navigation.state.params.param.gender, "+++++++props gender"),
             console.log(props.navigation.state.params.param.looking, "+++++++props looking for"),
             console.log(props.navigation.state.params.param.country, "+++++++props Country"),
@@ -56,7 +100,7 @@ const Upload = props => {
 
             _email(props.navigation.state.params.param.email),
             _password(props.navigation.state.params.param.password),
-            _username(props.navigation.state.params.param.username),
+            _User_name(props.navigation.state.params.param.User_name),
             _gender(props.navigation.state.params.param.gender),
             _looking(props.navigation.state.params.param.looking),
             _country(props.navigation.state.params.param.country),
@@ -70,7 +114,7 @@ const Upload = props => {
             _intentValue(props.navigation.state.params.param.intentValue),
             _about(props.navigation.state.params.param.about),
             _lookingFor(props.navigation.state.params.param.lookingFor)
-            _favtravelSpot(props.navigation.state.params.param.favtravelSpot),
+        _favtravelSpot(props.navigation.state.params.param.favtravelSpot),
             _favBarResto(props.navigation.state.params.param.favBarResto),
             _favDreamExpo(props.navigation.state.params.param.favDreamExpo)
 
@@ -80,25 +124,25 @@ const Upload = props => {
     return (
         <View style={styles.mainbody}>
             <Header onSelect={() => { props.navigation.navigate({ routeName: 'RegisterFive' }); }} title="Upload" />
-            <View style={rstyles.formview4}>
-                <TouchableOpacity onPress={uploadPhoto} style={rstyles.uploadbox}>
+                    <View style={rstyles.formview4}>
+                        {image && image.map((img, index) => (
+                        <View key={img}>
+                            <TouchableOpacity onPress={() => {deletPhoto(index)}} style={styles.deleteBtn}>
+                                <View>
+                                <Image source={require('../../assets/images/delete-icon.png')}
+                                    style={{ width: 27, height: 30, resizeMode: 'contain', }}
+                                />
+                                </View>
+                               
+                            </TouchableOpacity>
+                            {image && <Image source={{ uri: img }} style={hometabstyles.thumnailimage} />}
+                        </View>
+                        )
+                    )}
+
+                <TouchableOpacity onPress={pickImage} style={rstyles.uploadbox}>
                     <Image source={require('../../assets/images/plus.png')} />
                 </TouchableOpacity>
-                {/* <TouchableOpacity  onPress={() => alert('Hello, world!')} style={rstyles.uploadbox}>
-                    <Image source={require('../../assets/images/plus.png')} />
-                </TouchableOpacity>
-                <TouchableOpacity  onPress={() => alert('Hello, world!')} style={rstyles.uploadbox}>
-                    <Image source={require('../../assets/images/plus.png')} />
-                </TouchableOpacity>
-                <TouchableOpacity  onPress={() => alert('Hello, world!')} style={rstyles.uploadbox}>
-                    <Image source={require('../../assets/images/plus.png')} />
-                </TouchableOpacity>
-                <TouchableOpacity  onPress={() => alert('Hello, world!')} style={rstyles.uploadbox}>
-                    <Image source={require('../../assets/images/plus.png')} />
-                </TouchableOpacity>
-                <TouchableOpacity  onPress={() => alert('Hello, world!')} style={rstyles.uploadbox}>
-                    <Image source={require('../../assets/images/plus.png')} />
-                </TouchableOpacity> */}
             </View>
             <View style={rstyles.btnview}>
                 <TouchableOpacity
@@ -107,7 +151,7 @@ const Upload = props => {
                             param: {
                                 "email": email,
                                 "password": password,
-                                "username": username,
+                                "User_name": User_name,
                                 "gender": gender,
                                 "looking": looking,
                                 "country": country,

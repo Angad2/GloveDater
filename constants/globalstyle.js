@@ -106,7 +106,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     alignContent: 'center',
     marginLeft: 'auto',
-    paddingTop: 50,
+    paddingTop: 30,
   },
 
   arrow: {
@@ -127,8 +127,8 @@ export default StyleSheet.create({
     fontSize: 18,
     color: 'black',
     fontFamily: 'quicksand-bold',
-    marginBottom: 10,
-    height: 50,
+    marginBottom: 15,
+    //height: 50,
   },
 
   profilepic: {
@@ -144,7 +144,7 @@ export default StyleSheet.create({
   footermain: {
     flexDirection: 'row',
     width: '100%',
-    height: 70,
+    height: 60,
     padding: 10,
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -188,6 +188,32 @@ export default StyleSheet.create({
     alignContent: 'center',
     color: 'black',
     marginTop: 15,
-    }
+    },
+
+    uploadbtn: {
+      width: "50%",
+      height: 56,
+      padding: 15,
+      borderRadius: 30,
+      backgroundColor: '#7046E6',
+      marginTop: 16,
+      alignContent: 'center',
+      alignItems: 'center',
+      justifyContent: 'center',
+  },
+
+  btntxt:{
+      fontSize: 18,
+      color: 'white',
+  },
+
+  deleteBtn: {
+    position: 'absolute', 
+    right: -5, 
+    top: -10, 
+    zIndex: 10, 
+    width: 27, 
+    height: 30,
+  },
 });
   
