@@ -13,3 +13,7 @@ export function signUpUser(Email: string, Password: string, User_name: string, G
 export function getUser(userId: string) {
     return apiClient.post(ApiConfig.GETUSER, { userId });
 }
+
+export function GalleryPhoto(User_id: string, UserPhotos: string, Image_name: string) {
+    return apiClient.post(ApiConfig.GETPHOTO, { User_id, UserPhotos, Image_name })
+};

@@ -3,6 +3,7 @@ const ApiConfig = {
     LOGIN: 'login',
     SIGNUP: 'Signup',
     GETUSER: 'Users',
+    GETPHOTO: 'GalleryPhoto',
     
   };
   export default ApiConfig;

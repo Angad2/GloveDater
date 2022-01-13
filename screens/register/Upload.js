@@ -29,8 +29,9 @@ const Upload = props => {
     const [favtravelSpot, _favtravelSpot] = useState();
     const [favBarResto, _favBarResto] = useState();
     const [favDreamExpo, _favDreamExpo] = useState();
-    const [photo, _photo] = useState([]);
+    const [photo, _photo] = useState();
     const [image, setImage] = useState([]);
+    //const [gallery_photos, _gallery_photos] = useState('');
 
     useEffect(() => {
         (async () => {
@@ -168,7 +169,8 @@ const Upload = props => {
                                 "favtravelSpot": favtravelSpot,
                                 "favBarResto": favBarResto,
                                 "favDreamExpo": favDreamExpo,
-                                "photo": photo
+                                "photo": photo,
+                                "gallery_photos": image
                             }
                         })}
                     style={rstyles.btncontainer2}>
