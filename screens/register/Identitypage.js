@@ -9,7 +9,7 @@ import IdentityLower from '../../components/IdentityLower';
 import Styles from '../../constants/globalstyle';
 import axios from 'axios';
 import {BASE_URL} from '../../config';
-import { GalleryPhoto, signUpUser } from '../../service';
+import { signUpUser } from '../../service';
 import { showMessage } from 'react-native-flash-message';
 
 
@@ -37,11 +37,12 @@ const Identitypage = props => {
     const [favDreamExpo, _favDreamExpo] = useState('');
     const [photo, _photo] = useState('');
     const [gallery_photos, _gallery_photos] = useState('');
+    
     React.useEffect(() => {
      
-            // console.log(props.navigation.state.params.param.email, "+++++++props email"),
-            // console.log(props.navigation.state.params.param.password, "+++++++props pass"),
-            // console.log(props.navigation.state.params.param.User_name, "+++++++props username"),
+            console.log(props.navigation.state.params.param.email, "+++++++props email"),
+            console.log(props.navigation.state.params.param.password, "+++++++props pass"),
+            console.log(props.navigation.state.params.param.User_name, "+++++++props username"),
             // console.log(props.navigation.state.params.param.gender, "+++++++props gender"),
             // console.log(props.navigation.state.params.param.looking, "+++++++props looking for"),
             // console.log(props.navigation.state.params.param.country, "+++++++props Country"),
@@ -58,7 +59,7 @@ const Identitypage = props => {
             // console.log(props.navigation.state.params.param.favtravelSpot, "+++++++props My Favourite Spot"),
             // console.log(props.navigation.state.params.param.favBarResto, "+++++++props My Favourite Bar"),
             // console.log(props.navigation.state.params.param.favDreamExpo, "+++++++props My Favourite Dream"),
-            // console.log(props.navigation.state.params.param.photo, "+++++++props Photo"),
+            console.log(props.navigation.state.params.param.photo, "+++++++props Photo"),
             console.log(props.navigation.state.params.param.gallery_photos, "+++++++props gallery photos"),
 
             _email(props.navigation.state.params.param.email),
@@ -80,52 +81,99 @@ const Identitypage = props => {
             _favtravelSpot(props.navigation.state.params.param.favtravelSpot),
             _favBarResto(props.navigation.state.params.param.favBarResto),
             _favDreamExpo(props.navigation.state.params.param.favDreamExpo),
-            _photo(""),
+            _photo(props.navigation.state.params.param.photo),
             _gallery_photos (props.navigation.state.params.param.gallery_photos)
 
 
     }, [])
 
-    
+    // const onChangeHandleSignUp = async () => {
+    //     try {       
+    //       const user = await signUpUser(email, password, User_name, gender, looking, country, city, intentArr.join(","), ageValue, bodyValue, heightValue, hairValue, ethnicityValue, intentValue, about, lookingFor, favtravelSpot, favBarResto, favDreamExpo, photo);
+    //       console.log(user, "++++++++++++++++user id")
+    //       if (!user) {
+    //         showMessage({
+    //           message: "Error",
+    //           backgroundColor: 'rgba(0, 0, 0, 0.8)'
+    //         });
+    //         return
+    //       }
+    //       else{
+    //         for(var i=0; i<gallery_photos.length; i++){
+    //           await axios.post(BASE_URL+`/GalleryPhoto/`,
+    //           //await axios.post('http://14.97.177.30:8484/V1/GalleryPhoto/',
+    //           console.log(BASE_URL, '===================== this is url'),
+    //           {
+    //             User_id: user.data._id,
+    //             UserPhotos: '',
+    //             Image_name: gallery_photos[i]
+    //           },
+    //           {headers: {"Authorization": `Bearer ${token}`}})
+    //         }
+           
+    //         console.log(el, "---------------Element")
+    //         showMessage({
+    //           message: "Signup sucessfull",
+    //           backgroundColor: 'rgba(0, 0, 0, 0.8)'
+    //         });            
+    //         AsyncStorage.setItem("userId", user.data._id);
+    //         AsyncStorage.setItem("token", user.data.Token);
+    //         props.navigation.navigate('Home');
+    //       }
+    //     } catch (error) {
+    //       showMessage({
+    //         message: 'Something went wrong please try again later!',
+    //         backgroundColor: 'rgba(0, 0, 0, 0.8)'
+    //       });
+    //     }
+    //   }
 
     const onChangeHandleSignUp = async () => {
-        //Keyboard.dismiss();
-        try {
-          //setIsLoading(true);    
-         
-          const user = await signUpUser(email, password, User_name, gender, looking, country, city, intentArr.join(","), ageValue, bodyValue, heightValue, hairValue, ethnicityValue, intentValue, about, lookingFor, favtravelSpot, favBarResto, favDreamExpo, photo);
-          //setIsLoading(false);
-          console.log(user, "++++++++++++++++user id")
-          if (!user) {
-            showMessage({
-              message: "Error",
-              backgroundColor: 'rgba(0, 0, 0, 0.8)'
-            });
-            return
-          }
-          else{
-            console.log(gallery_photos, '---------- Photo Gallery')
-            for(const i=0; i<gallery_photos.length; i++){
-              await GalleryPhoto(user.data._id, '', gallery_photos[i]);
-            }
-           
-            console.log(el, "---------------Element")
-            showMessage({
-              message: "Signup sucessfull",
-              backgroundColor: 'rgba(0, 0, 0, 0.8)'
-            });            
-            AsyncStorage.setItem("userId", user.data._id);
-            AsyncStorage.setItem("token", user.data.Token);
-            props.navigation.navigate('Home');
-          }
-        } catch (error) {
-          //setIsLoading(false);
+      //Keyboard.dismiss();
+      try {
+        //setIsLoading(true);    
+       
+        const user = await signUpUser(email, password, User_name, gender, looking, country, city, intentArr.join(","), ageValue, bodyValue, heightValue, hairValue, ethnicityValue, intentValue, about, lookingFor, favtravelSpot, favBarResto, favDreamExpo, photo);
+        //setIsLoading(false);
+        //console.log(user, "++++++++++++++++user id")
+        //console.log(user.data._id, "++++++++++++++++user.data")
+        if (!user) {
           showMessage({
-            message: 'Something went wrong please try again later!',
+            message: "Error",
             backgroundColor: 'rgba(0, 0, 0, 0.8)'
           });
+          return
         }
+        else{
+          console.log(BASE_URL, '============== Base Url')
+          console.log(user.data.UserPhotos, '------- User Photos')
+          for(var i=0; i<gallery_photos.length; i++){
+            console.log(user.data._id, '-------------User Id')
+            console.log(gallery_photos.length, '-------------Photo Length')
+                      await axios.post(BASE_URL+`/GalleryPhoto/`,
+                      {
+                        User_id: user.data._id,
+                        UserPhotos: '',
+                        Image_name: gallery_photos[i]
+                      },
+                      {headers: {"Authorization": `Bearer ${token}`}})
+                    }
+          showMessage({
+            message: "Signup sucessfull",
+            backgroundColor: 'rgba(0, 0, 0, 0.8)'
+          });            
+          AsyncStorage.setItem("userId", user.data._id);
+          AsyncStorage.setItem("token", user.data.Token);
+          props.navigation.navigate('Home');
+        }
+      } catch (error) {
+        //setIsLoading(false);
+        showMessage({
+          message: 'Something went wrong please try again later!',
+          backgroundColor: 'rgba(0, 0, 0, 0.8)'
+        });
       }
+    }
 
     return (
       <View style={Styles.mainbody}>

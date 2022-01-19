@@ -15,5 +15,8 @@ export function getUser(userId: string) {
 }
 
 export function GalleryPhoto(User_id: string, UserPhotos: string, Image_name: string) {
+    console.log(User_id, '+++++++ User Id')
+    console.log(UserPhotos, '++++++++++ Userphoto')
+    console.log(Image_name, '+++++++++ Image Name')
     return apiClient.post(ApiConfig.GETPHOTO, { User_id, UserPhotos, Image_name })
-};
+}

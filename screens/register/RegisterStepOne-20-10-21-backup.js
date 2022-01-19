@@ -3,12 +3,6 @@ import { View, Text, StyleSheet, Image, TextInput, Button, TouchableOpacity, Scr
 import styles from '../../constants/globalstyle';
 import rstyles from '../rstyles';
 
-// import axios from 'axios';
-// import {BASE_URL} from '../../config';
-// import { signUpUser } from '../../service';
-// import { showMessage } from 'react-native-flash-message';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
-
 const RegisterStepOne = props => {
 
     const [email, _email] = useState('');
@@ -26,56 +20,7 @@ const RegisterStepOne = props => {
         _username(enteredUsername);
     };
 
-    //   const addHandler = () => {
-    //         axios.post('http://111.93.169.90:8484/V1/Signup', {
-    //         Email: enterEmail,
-    //         Password: enterPass
-    //     })
-    //     .then(function (response) {
-    //         console.log(response);
-    //         props.navigation.navigate({routeName: 'RegisterTwo'});
-    //     })
-    //     .catch(function (error) {
-    //         console.log(error);
-    //     });
-    //   };
-
-    // React.useEffect(() => {
-
-    // }, [])
-
-    // const emailCheckHandler = async () => {
-    //     try {   
-
-    //       const user = await signUpUser(email, password, gender, looking, country, city, intentArr.join(","), ageValue, bodyValue, heightValue, hairValue, ethnicityValue, intentValue, about, lookingFor, favtravelSpot, favBarResto, favDreamExpo, photo);
-    //       console.log(user.data, "++++++++++++++++user")
-    //       console.log(user.data._id, "++++++++++++++++user")
-    //       if (!user) {
-    //           Alert.alert("Email is already exist")
-    //         // showMessage({
-    //         //   message: "Error",
-    //         //   backgroundColor: 'rgba(0, 0, 0, 0.8)'
-    //         // });
-    //         return
-    //       }
-    //       else{
-    //         // showMessage({
-    //         //   message: "Signup sucessfull",
-    //         //   backgroundColor: 'rgba(0, 0, 0, 0.8)'
-    //         // });
-    //         Alert.alert("Success")            
-    //         AsyncStorage.setItem("userId", user.data._id);
-    //         props.navigation.navigate({routeName: 'RegisterTwo'});
-    //       }
-    //     } catch (error) {
-    //       //setIsLoading(false);
-    //       //Alert.alert("somthin went wrong")
-    //       showMessage({
-    //         message: 'Something went wrong please try again later!',
-    //         backgroundColor: 'rgba(0, 0, 0, 0.8)',
-    //       });
-    //     }
-    //   }
+    
     return (
         <View style={styles.imageview}>
             <ImageBackground source={require('../../assets/images/bg2.jpg')}

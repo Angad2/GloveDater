@@ -31,7 +31,7 @@ const Upload = props => {
     const [favDreamExpo, _favDreamExpo] = useState();
     const [photo, _photo] = useState();
     const [image, setImage] = useState([]);
-    //const [gallery_photos, _gallery_photos] = useState('');
+    const [gallery_photos, _gallery_photos] = useState('');
 
     useEffect(() => {
         (async () => {
@@ -74,9 +74,6 @@ const Upload = props => {
          }))
     };
 
-    const uploadPhoto = () => {
-        _photo.push('photo')
-    };
 
     React.useEffect(() => {
         console.log(props.navigation.state.params.param.email, "+++++++props email"),
@@ -99,6 +96,7 @@ const Upload = props => {
             console.log(props.navigation.state.params.param.favBarResto, "+++++++props My Favourite Bar"),
             console.log(props.navigation.state.params.param.favDreamExpo, "+++++++props My Favourite Dream"),
 
+
             _email(props.navigation.state.params.param.email),
             _password(props.navigation.state.params.param.password),
             _User_name(props.navigation.state.params.param.User_name),
@@ -115,9 +113,11 @@ const Upload = props => {
             _intentValue(props.navigation.state.params.param.intentValue),
             _about(props.navigation.state.params.param.about),
             _lookingFor(props.navigation.state.params.param.lookingFor)
-        _favtravelSpot(props.navigation.state.params.param.favtravelSpot),
+            _favtravelSpot(props.navigation.state.params.param.favtravelSpot),
             _favBarResto(props.navigation.state.params.param.favBarResto),
-            _favDreamExpo(props.navigation.state.params.param.favDreamExpo)
+            _favDreamExpo(props.navigation.state.params.param.favDreamExpo),
+            _photo(props.navigation.state.params.param.photo),
+            _gallery_photos (props.navigation.state.params.param.gallery_photos)
 
 
     }, [])

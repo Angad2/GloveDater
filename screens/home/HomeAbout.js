@@ -15,27 +15,18 @@ import rstyles from "../../screens/rstyles";
 
 const HomeAbout = props => {
 
-    const [datas, _datas] = React.useState([]);
+   const [datas, _datas] = React.useState([]);
    const [intentArr, _intentArr] = useState([])
     
 
     const getUserDtails = async() => {
         const userId = await AsyncStorage.getItem('userId');
         const token = await AsyncStorage.getItem('token');
-        console.log(datas.User_name, 'User Name')
-        console.log(userId, "__________________-userId")
-        console.log(token, '----------- user token')
         try {
-            //console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-            //console.log(`http://14.97.177.30:8484/V1/users/${userId}`)
            axios.get(`http://14.97.177.30:8484/V1/users/${userId}`, {headers: {"Authorization": `Bearer ${token}`}})
             .then(res => 
-            {console.log("hhghfghf",res)
+            {
             _datas(res.data)
-           // _userToken(res.data)
-            console.log(datas.Email)
-            //console.log(datas.User_name)
-            
         }
             ).catch(err=>console.log(err))
          } catch (err) {
@@ -45,7 +36,6 @@ const HomeAbout = props => {
     const printArr = (intenss) => {
         if(intenss){
             const splitArry = intenss.split(',');
-            console.log(splitArry)
             return (
                 
                     splitArry &&
@@ -55,15 +45,6 @@ const HomeAbout = props => {
                         </TouchableOpacity>}
                     )
             )
-                // splitArry && splitArry.map(val => {
-                     
-                //      <View style={rstyles.intentchk}>
-                //                 <Text>{datas.Intent_option}</Text>
-                //      </View>
-                     
-                // })
-                
-            //)
                
         }
     }
@@ -122,17 +103,6 @@ const HomeAbout = props => {
                     <Text style={Styles.titleabout}>Intent</Text>
                         <View style={aboutstyle.info}>
                         <Text>{datas.Intent_option}</Text>
-                            {/* { printArr() } */}
-                        {/* { printArr }
-                            {
-                                splitArry &&
-                                splitArry.map(Intent_option => 
-                                <View style={rstyles.intentchk}>
-                                <Text>{datas.Intent_option}</Text>
-                            </View>
-                                )
-                            } */}
-                            
                         </View>
                     <Text style={Styles.titleabout}>Basic</Text>
                     <View style={aboutstyle.infobox}>
