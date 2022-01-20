@@ -144,12 +144,13 @@ const Identitypage = props => {
           });
           return
         }
-        else{
+      else{
+          AsyncStorage.setItem("userId", user.data._id);
+          AsyncStorage.setItem("token", user.data.Token);
           console.log(BASE_URL, '============== Base Url')
-          console.log(user.data.UserPhotos, '------- User Photos')
           for(var i=0; i<gallery_photos.length; i++){
             console.log(user.data._id, '-------------User Id')
-            console.log(gallery_photos.length, '-------------Photo Length')
+            console.log(token, '-------------User token')
                       await axios.post(BASE_URL+`/GalleryPhoto/`,
                       {
                         User_id: user.data._id,
@@ -162,8 +163,6 @@ const Identitypage = props => {
             message: "Signup sucessfull",
             backgroundColor: 'rgba(0, 0, 0, 0.8)'
           });            
-          AsyncStorage.setItem("userId", user.data._id);
-          AsyncStorage.setItem("token", user.data.Token);
           props.navigation.navigate('Home');
         }
       } catch (error) {
