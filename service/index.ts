@@ -2,8 +2,8 @@ import axios from 'axios';
 import { apiClient } from './client';
 import ApiConfig from '../config/api-config';
 
-export function loginUser(Email: string, password: string) {
-    return apiClient.post(ApiConfig.LOGIN, { Email, password });
+export function loginUser(Email: string, Password: string) {
+    return apiClient.post(ApiConfig.LOGIN, { Email, Password });
 }
 
 export function signUpUser(Email: string, Password: string, User_name: string, Gender: string, Looking_to_date_a: string, Country: string, City: string, Intent_option: string, Age: string, Body: string, Height: string, Hair: string, Ethnicity: string, Intent: string, About_me: string, Looking_for: string, Favorite_travel_spot: string, Favorite_restaurnt: string, Future_dream_experience: string, Photo: string) {
@@ -15,8 +15,5 @@ export function getUser(userId: string) {
 }
 
 export function GalleryPhoto(User_id: string, UserPhotos: string, Image_name: string) {
-    console.log(User_id, '+++++++ User Id')
-    console.log(UserPhotos, '++++++++++ Userphoto')
-    console.log(Image_name, '+++++++++ Image Name')
     return apiClient.post(ApiConfig.GETPHOTO, { User_id, UserPhotos, Image_name })
 }

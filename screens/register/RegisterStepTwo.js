@@ -29,15 +29,6 @@ const RegisterStepTwo = props => {
     _looking ('Woman')
   };
   
-  
-//   const selectGen = () => {
-//         if(selectGen == selectMan){
-//             selectMan()
-//         } else if(selectGen == selectWoman){
-//             selectWoman()
-//         }
-//   };
-  
   React.useEffect(()=>{
     console.log(props.navigation.state.params.param.email, "+++++++props email"),
     console.log(props.navigation.state.params.param.password, "+++++++props pass"),

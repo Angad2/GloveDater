@@ -29,7 +29,7 @@ const Upload = props => {
     const [favtravelSpot, _favtravelSpot] = useState();
     const [favBarResto, _favBarResto] = useState();
     const [favDreamExpo, _favDreamExpo] = useState();
-    const [photo, _photo] = useState();
+    //const [photo, _photo] = useState();
     const [image, setImage] = useState([]);
     const [gallery_photos, _gallery_photos] = useState('');
 
@@ -76,22 +76,22 @@ const Upload = props => {
 
 
     React.useEffect(() => {
-        console.log(props.navigation.state.params.param.email, "+++++++props email"),
-            console.log(props.navigation.state.params.param.password, "+++++++props pass"),
-            console.log(props.navigation.state.params.param.User_name, "+++++++props username"),
-            console.log(props.navigation.state.params.param.gender, "+++++++props gender"),
-            console.log(props.navigation.state.params.param.looking, "+++++++props looking for"),
-            console.log(props.navigation.state.params.param.country, "+++++++props Country"),
-            console.log(props.navigation.state.params.param.city, "+++++++props city"),
-            console.log(props.navigation.state.params.param.intentArr, "+++++++props Intent_option"),
-            console.log(props.navigation.state.params.param.ageValue, "+++++++props Age"),
-            console.log(props.navigation.state.params.param.bodyValue, "+++++++props Body type"),
-            console.log(props.navigation.state.params.param.heightValue, "+++++++props Height"),
-            console.log(props.navigation.state.params.param.hairValue, "+++++++props Hair type"),
-            console.log(props.navigation.state.params.param.ethnicityValue, "+++++++props EthnicityValue"),
-            console.log(props.navigation.state.params.param.intentValue, "+++++++props intentValue"),
-            console.log(props.navigation.state.params.param.about, "+++++++props About Me"),
-            console.log(props.navigation.state.params.param.lookingFor, "+++++++props Looking For"),
+            // console.log(props.navigation.state.params.param.email, "+++++++props email"),
+            // console.log(props.navigation.state.params.param.password, "+++++++props pass"),
+            // console.log(props.navigation.state.params.param.User_name, "+++++++props username"),
+            // console.log(props.navigation.state.params.param.gender, "+++++++props gender"),
+            // console.log(props.navigation.state.params.param.looking, "+++++++props looking for"),
+            // console.log(props.navigation.state.params.param.country, "+++++++props Country"),
+            // console.log(props.navigation.state.params.param.city, "+++++++props city"),
+            // console.log(props.navigation.state.params.param.intentArr, "+++++++props Intent_option"),
+            // console.log(props.navigation.state.params.param.ageValue, "+++++++props Age"),
+            // console.log(props.navigation.state.params.param.bodyValue, "+++++++props Body type"),
+            // console.log(props.navigation.state.params.param.heightValue, "+++++++props Height"),
+            // console.log(props.navigation.state.params.param.hairValue, "+++++++props Hair type"),
+            // console.log(props.navigation.state.params.param.ethnicityValue, "+++++++props EthnicityValue"),
+            // console.log(props.navigation.state.params.param.intentValue, "+++++++props intentValue"),
+            // console.log(props.navigation.state.params.param.about, "+++++++props About Me"),
+            // console.log(props.navigation.state.params.param.lookingFor, "+++++++props Looking For"),
             console.log(props.navigation.state.params.param.favtravelSpot, "+++++++props My Favourite Spot"),
             console.log(props.navigation.state.params.param.favBarResto, "+++++++props My Favourite Bar"),
             console.log(props.navigation.state.params.param.favDreamExpo, "+++++++props My Favourite Dream"),
@@ -116,7 +116,6 @@ const Upload = props => {
             _favtravelSpot(props.navigation.state.params.param.favtravelSpot),
             _favBarResto(props.navigation.state.params.param.favBarResto),
             _favDreamExpo(props.navigation.state.params.param.favDreamExpo),
-            _photo(props.navigation.state.params.param.photo),
             _gallery_photos (props.navigation.state.params.param.gallery_photos)
 
 
@@ -169,7 +168,7 @@ const Upload = props => {
                                 "favtravelSpot": favtravelSpot,
                                 "favBarResto": favBarResto,
                                 "favDreamExpo": favDreamExpo,
-                                "photo": photo,
+                                //"photo": photo,
                                 "gallery_photos": image
                             }
                         })}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Component } from "react";
+import React, { useState, useEffect, Component, alert } from "react";
 import {
   Modal,
   Text,
@@ -20,6 +20,11 @@ import { FontAwesome, Ionicons, MaterGlobeNavigatorialCommunityIcons } from '@ex
 
 const IdentityLower = props => {
   const [pickedImagePath, setPickedImagePath] = useState('');
+  const [profilePhoto, _profilePhoto] = useState('');
+  
+  React.useEffect(() => {
+
+}, [])
 
   // This function is triggered when the "Select an image" button pressed
   const showImagePicker = async () => {
@@ -34,7 +39,8 @@ const IdentityLower = props => {
     const result = await ImagePicker.launchImageLibraryAsync();
 
     // Explore the result
-    console.log(result);
+    _profilePhoto(result.uri);
+    console.log(result, "++++++++++++++++++photo Profile");
 
     if (!result.cancelled) {
       setPickedImagePath(result.uri);
@@ -53,9 +59,9 @@ const IdentityLower = props => {
     }
 
     const result = await ImagePicker.launchCameraAsync();
-
+    _profilePhoto(result.uri);
     // Explore the result
-    console.log(result);
+    console.log(result, "++++++++++++++++++photo Profile");
 
     if (!result.cancelled) {
       setPickedImagePath(result.uri);

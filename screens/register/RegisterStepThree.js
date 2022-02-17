@@ -5,7 +5,6 @@ import styles from '../../constants/globalstyle';
 import rstyles from '../rstyles';
 
 import Header from '../../components/Header';
-//import axios from 'axios';
 
 const RegisterStepThree = props => {
 
@@ -59,9 +58,6 @@ const selectIntent = (enterIntent) => {
   };
 
   React.useEffect(()=>{
-    console.log(props.navigation.state.params.param.email, "+++++++props email"),
-    console.log(props.navigation.state.params.param.password, "+++++++props pass"),
-    console.log(props.navigation.state.params.param.User_name, "+++++++props username"),
     console.log(props.navigation.state.params.param.gender, "+++++++props gender"),
     console.log(props.navigation.state.params.param.looking, "+++++++props looking for"),
     _email(props.navigation.state.params.param.email),

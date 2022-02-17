@@ -137,20 +137,6 @@ const RegisterStepOne = props => {
                         </View>
                     </View>
                 </ScrollView>
-                {/* <View style={rstyles.btnview}>
-                    <TouchableOpacity onPress={() =>
-                        props.navigation.navigate('RegisterTwo', {
-                            param: {
-                                "email": email,
-                                "password": password,
-                                "username": username
-                            }
-                        })
-
-                    } style={rstyles.btncontainer2}>
-                        <Text style={rstyles.btntext}>Continue</Text>
-                    </TouchableOpacity>
-                </View> */}
                 <TouchableOpacity onPress={validationSubmit} >
                 {(isEmailError || isEmailValidationError) && (
                     

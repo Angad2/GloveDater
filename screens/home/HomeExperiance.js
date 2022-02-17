@@ -19,19 +19,11 @@ const HomeExperiance = props => {
     const getUserDtails = async() => {
         const userId = await AsyncStorage.getItem('userId');
         const token = await AsyncStorage.getItem('token');
-        //console.log(datas.User_name, 'User Name')
-        //console.log(userId, "__________________-userId")
-        //console.log(token, '----------- user token')
         try {
-            //console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-            //console.log(`http://14.97.177.30:8484/V1/users/${userId}`)
            axios.get(`http://14.97.177.30:8484/V1/users/${userId}`, {headers: {"Authorization": `Bearer ${token}`}})
             .then(res => 
             {//console.log("hhghfghf====================Anirban Singha",res)
             _datas(res.data)
-           _userToken(res.data)
-            console.log(datas.Email)
-            console.log(datas.User_name)
             
         }
             ).catch(err=>console.log(err))

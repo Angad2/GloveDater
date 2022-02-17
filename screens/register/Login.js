@@ -10,6 +10,8 @@ import { showMessage } from 'react-native-flash-message';
 
 import Regex from '../../screens/register/RegexMatch';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const Login = props => {
     const [email, _email] = useState('');
     const [password, _password] = useState('');
@@ -59,7 +61,7 @@ const Login = props => {
                         return;
                     }
     
-                    const user = await signUpUser(email, password, User_name, gender, looking, country, city, intentArr.join(","), ageValue, bodyValue, heightValue, hairValue, ethnicityValue, intentValue, about, lookingFor, favtravelSpot, favBarResto, favDreamExpo, photo);
+                    const user = await loginUser (email, password);
               //setIsLoading(false);
               console.log(user, "++++++++++++++++user")
              console.log(user.data._id, "++++++++++++++++user")

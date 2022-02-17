@@ -1,22 +1,49 @@
-import React, { Component } from 'react';
-import { View, Text, Image, ImageStore, ScrollView, Dimensions, StyleSheet, TouchableOpacity } from 'react-native';
+import React, {Component} from 'react';
+import { View, Text, Image, ScrollView, Dimensions, StyleSheet } from 'react-native';
+
+import axios from "axios";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const {width} = Dimensions.get('window');
 const height = width * 0.8 //60%
 
-const images = [
-  'https://images.pexels.com/photos/9657249/pexels-photo-9657249.jpeg?cs=srgb&dl=pexels-ron-lach-9657249.jpg&fm=jpg',
-  'https://images.pexels.com/photos/1449668/pexels-photo-1449668.jpeg?cs=srgb&dl=pexels-leah-kelley-1449668.jpg&fm=jpg',
-  'https://images.pexels.com/photos/1231230/pexels-photo-1231230.jpeg?cs=srgb&dl=pexels-sharefaith-1231230.jpg&fm=jpg',
-  'https://images.pexels.com/photos/853405/pexels-photo-853405.jpeg?cs=srgb&dl=pexels-josh-willink-853405.jpg&fm=jpg',
-  'https://images.pexels.com/photos/6530652/pexels-photo-6530652.jpeg?cs=srgb&dl=pexels-mikhail-nilov-6530652.jpg&fm=jpg',
-  'https://images.pexels.com/photos/5086616/pexels-photo-5086616.jpeg?cs=srgb&dl=pexels-jep-gambardella-5086616.jpg&fm=jpg'
-]
+var images = [];
+export default class Slider extends Component {
+    state = {
+      active: 0,   
+      images: []
+    };
+    
 
-export default class Slider extends React.Component {
-  state = {
-    active: 0
+  componentDidMount() {
+    this.getImages();
   }
+
+  componentDidUpdate(){
+    this.getImages();
+  }
+
+getImages = async() =>{
+  const userId = await AsyncStorage.getItem('userId');
+  const token = await AsyncStorage.getItem('token');
+  try {
+    var images = [];
+           axios.get(`http://14.97.177.30:8484/V1/GalleryPhoto/${userId}`, {headers: {"Authorization": `Bearer ${token}`}})
+            .then(res => 
+            {
+              res.data.map((img) => {
+                images.push(img.Image_name)
+              }
+
+              ) 
+              this.setState({images: images});
+            
+        }
+            ).catch(err=>console.log(err))
+         } catch (err) {
+           console.log("hhhhh",err);
+         }
+} 
 
 change = ({nativeEvent}) => {
     const slide = Math.ceil(nativeEvent.contentOffset.x / nativeEvent.layoutMeasurement.width);
@@ -26,6 +53,7 @@ change = ({nativeEvent}) => {
   }
 
   render() {
+   
     return (
       <View style={style.container}>
         <ScrollView 
@@ -34,7 +62,7 @@ change = ({nativeEvent}) => {
         onScroll={this.change} 
         style={style.scroll}>
         {
-          images.map((image, index) => (
+          this.state.images.map((image, index) => (
             <Image
               key={index}
               source={{ uri: image }}
@@ -46,7 +74,7 @@ change = ({nativeEvent}) => {
         </ScrollView>
         <View style={style.pagination}>
          {
-            images.map((i,k) => (
+            this.state.images.map((i,k) => (
                 <Text key={k} style={k==this.state.active? style.paginActiveText : style.paginText}>⬤</Text>
             ))
          }

@@ -7,6 +7,7 @@ import rstyles from '../rstyles';
 //import { Picker } from '@react-native-picker/picker';
 //import {Picker} from '@react-native-community/picker';
 
+
 import Header from '../../components/Header';
 
 const RegisterStepFour = props => {
@@ -103,11 +104,6 @@ const RegisterStepFour = props => {
         _lookingFor(enteredLookingf);
     };
     React.useEffect(() => {
-            console.log(props.navigation.state.params.param.email, "+++++++props email"),
-            console.log(props.navigation.state.params.param.password, "+++++++props pass"),
-            console.log(props.navigation.state.params.param.User_name, "+++++++props username"),
-            console.log(props.navigation.state.params.param.gender, "+++++++props gender"),
-            console.log(props.navigation.state.params.param.looking, "+++++++props looking for"),
             console.log(props.navigation.state.params.param.country, "+++++++props Country"),
             console.log(props.navigation.state.params.param.city, "+++++++props city"),
             console.log(props.navigation.state.params.param.intentArr, "+++++++props Intent_option"),

@@ -22,48 +22,34 @@ import Icon from 'react-native-vector-icons/Feather';
 const EditProfile = props => {
 
     const [datas, _datas] = React.useState([]);
-    const [intentArr, _intentArr] = useState([])
-    
-
+    const [profileData, _profileData] = React.useState([]);
     const getUserDtails = async() => {
         const userId = await AsyncStorage.getItem('userId');
         const token = await AsyncStorage.getItem('token');
-        console.log(datas.User_name, 'User Name')
-        console.log(userId, "__________________-userId")
-        console.log(token, '----------- user token')
+    
         try {
-            //console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-            //console.log(`http://14.97.177.30:8484/V1/users/${userId}`)
-           axios.get(`http://14.97.177.30:8484/V1/users/${userId}`, {headers: {"Authorization": `Bearer ${token}`}})
+ 
+            await axios.get(`http://14.97.177.30:8484/V1/users/${userId}`, {headers: {"Authorization": `Bearer ${token}`}})
             .then(res => 
-            {console.log("hhghfghf",res)
+            {
+                axios.get(`http://14.97.177.30:8484/V1/Profile/${userId}`, {headers: {"Authorization": `Bearer ${token}`}})
+                .then(resdata =>
+                    {
+                        _profileData(resdata.data)
+                        console.log(resdata, "resdata------------")
+                        
+                    }
+                ).catch(err=>console.log(err))
+                //console.log("hhghfghf",res)
             _datas(res.data)
-           // _userToken(res.data)
-            console.log(datas.Email)
-            //console.log(datas.User_name)
-            
+            _profileData(resdata.data)
         }
             ).catch(err=>console.log(err))
          } catch (err) {
            console.log("hhhhh",err);
          }
     }
-    const printArr = (intenss) => {
-        if(intenss){
-            const splitArry = intenss.split(',');
-            console.log(splitArry)
-            return (
-                
-                    splitArry &&
-                    splitArry.map(inten => {
-                        <TouchableOpacity key={inten.name} style={rstyles.intentchk}>
-                            <Text style={rstyles.chktxt}>{inten.splitArry}</Text>
-                        </TouchableOpacity>}
-                    )
-            )
-               
-        }
-    }
+
 
     React.useEffect(()=>{
         getUserDtails()
@@ -76,7 +62,8 @@ const EditProfile = props => {
             <View style={hometabstyles.mainarea}>
                 <ScrollView>
                     <View style={homestyle.profileBox}>
-                        <Image source={require('../../assets/images/profile-pic.jpg')}
+                        {/* <Image source={require('../../assets/images/profile-pic.jpg')} */}
+                        <Image source={{uri:profileData.profile}}
                             style={homestyle.profilepic}
                         />
                         <View>
