@@ -5,6 +5,9 @@ import rstyles from '../rstyles';
 
 import Regex from '../../screens/register/RegexMatch';
 
+import axios from "axios";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const RegisterStepOne = props => {
 
     const [email, _email] = useState('');
@@ -29,11 +32,25 @@ const RegisterStepOne = props => {
         _User_name(enteredUsername);
     };
 
-   
+    const [datas, _datas] = useState([]);
 
+    const userId = AsyncStorage.getItem('userId');
+    const token = AsyncStorage.getItem('token');
+    try {
+
+       axios.get(`http://14.97.177.30:8484/V1/users/${userId}`, {headers: {"Authorization": `Bearer ${token}`}})
+        .then(res => 
+        {
+        _datas(res.data)
+        
+    }
+        ).catch(err=>console.log(err))
+     } catch (err) {
+       console.log("hhhhh",err);
+     }
 
     const validationSubmit = () => {
-
+       
         if(User_name.trim() != '') {
             if (!User_name.trim().match(Regex.VALID_NAME)) {
                 _isUserValidationError(true);
@@ -54,7 +71,9 @@ const RegisterStepOne = props => {
                 _isEmailValidationError(true);
                 //email.focus();
                 return;
-            } else {
+            }
+           
+            else {
                 _isEmailValidationError(false);
                 _isEmailError(false);
             }
@@ -62,6 +81,16 @@ const RegisterStepOne = props => {
             if(!email.trim()) {
                 Alert.alert('Please Enter Email');
                 return;
+            }
+
+            if(email == datas.Email) {
+                Alert.alert('Email already have');
+                //props.navigation.navigate('RegisterOne');
+                return;
+            }
+            else {
+                Alert.alert('You can Go');
+                props.navigation.navigate('RegisterTwo')
             }
 
             if(password.trim() != '') {

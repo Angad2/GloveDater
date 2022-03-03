@@ -5,7 +5,7 @@ import Styles from '../../constants/globalstyle';
 import hometabstyles from "./hometabstyles";
 
 import Footer from '../../components/Footer';
-import Header from '../../components/Header';
+import HeaderLogd from "../../components/HeaderLogd";
 
 import { Ionicons } from '@expo/vector-icons';
 import aboutstyle from "./aboutstyle";
@@ -22,7 +22,7 @@ const HomeExperiance = props => {
         try {
            axios.get(`http://14.97.177.30:8484/V1/users/${userId}`, {headers: {"Authorization": `Bearer ${token}`}})
             .then(res => 
-            {//console.log("hhghfghf====================Anirban Singha",res)
+            {
             _datas(res.data)
             
         }
@@ -39,7 +39,7 @@ const HomeExperiance = props => {
 
     return (
         <View style={Styles.mainbody}>
-            <Header onSelect={() => { props.navigation.navigate({ routeName: 'Home' }); }} title="Experience" />
+            <HeaderLogd onSelect={() => { props.navigation.navigate({ routeName: 'Home' }); }} title="Experience" />
             <View style={hometabstyles.mainarea}>
                 <View style={hometabstyles.tabarea}>
                     <TouchableOpacity

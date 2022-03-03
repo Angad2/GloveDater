@@ -41,32 +41,8 @@ const Identitypage = props => {
     const [favDreamExpo, _favDreamExpo] = useState('');
     const [photo, _photo] = useState('');
     const [gallery_photos, _gallery_photos] = useState('');
-    //const [pickedImagePath, setPickedImagePath] = useState('');
-    //const [profilePhoto, _profilePhoto] = useState('');
     
     React.useEffect(() => {
-            //   console.log(props, "++++++++++++++++++++++++++++++++++++props")
-            // console.log(props.navigation.state.params.param.email, "+++++++props email"),
-            // console.log(props.navigation.state.params.param.password, "+++++++props pass"),
-            // console.log(props.navigation.state.params.param.User_name, "+++++++props username"),
-            // console.log(props.navigation.state.params.param.gender, "+++++++props gender"),
-            // console.log(props.navigation.state.params.param.looking, "+++++++props looking for"),
-            // console.log(props.navigation.state.params.param.country, "+++++++props Country"),
-            // console.log(props.navigation.state.params.param.city, "+++++++props city"),
-            // console.log(props.navigation.state.params.param.intentArr, "+++++++props Intent_option"),
-            // console.log(props.navigation.state.params.param.ageValue, "+++++++props Age"),
-            // console.log(props.navigation.state.params.param.bodyValue, "+++++++props Body type"),
-            // console.log(props.navigation.state.params.param.heightValue, "+++++++props Height"),
-            // console.log(props.navigation.state.params.param.hairValue, "+++++++props Hair type"),
-            // console.log(props.navigation.state.params.param.ethnicityValue, "+++++++props EthnicityValue"),
-            // console.log(props.navigation.state.params.param.intentValue, "+++++++props intentValue"),
-            // console.log(props.navigation.state.params.param.about, "+++++++props About Me"),
-            // console.log(props.navigation.state.params.param.lookingFor, "+++++++props Looking For"),
-            // console.log(props.navigation.state.params.param.favtravelSpot, "+++++++props My Favourite Spot"),
-            // console.log(props.navigation.state.params.param.favBarResto, "+++++++props My Favourite Bar"),
-            // console.log(props.navigation.state.params.param.favDreamExpo, "+++++++props My Favourite Dream"),
-            //console.log(props.navigation.state.params.param.gallery_photos, "+++++++props gallery photos"),
-
             _email(props.navigation.state.params.param.email),
             _password(props.navigation.state.params.param.password),
             _User_name(props.navigation.state.params.param.User_name),
@@ -88,8 +64,6 @@ const Identitypage = props => {
             _favDreamExpo(props.navigation.state.params.param.favDreamExpo),
             _gallery_photos (props.navigation.state.params.param.gallery_photos),
             _photo (props.navigation.state.params.param.photo)
-            //setPickedImagePath (props.navigation.state.params.param.pickedImagePath)
-
 
     }, [])
     
@@ -111,11 +85,9 @@ const showImagePicker = async () => {
 
   // Explore the result
   _photo(result.uri);
-  console.log(result, "++++++++++++++++++Profile Photo");
 
   if (!result.cancelled) {
     _photo(result.uri);
-    console.log(result.uri, "+++++++++++++++++++++++++ Profile Photo 1");
   }
 }
 
@@ -165,13 +137,9 @@ const openCamera = async () => {
         data.append('Future_dream_experience', favDreamExpo);
         data.append('Photo', photo);
 
-        //console.log(photo, "------------ Hi Photo")
-
         axios({
           method: "post",
           url: "http://14.97.177.30:8484/V1/Signup",
-          //method: "PATCH",
-          //url: "http://14.97.177.30:8484/V1/profileupdate",
           data: data,
           headers: { "Content-Type": "multipart/form-data" },
         })
@@ -201,23 +169,17 @@ const openCamera = async () => {
               headers: { "Content-Type": "multipart/form-data", "Authorization": `Bearer ${user.data.Token}` },
             })
               .then(function (response) {
-                //handle success
-                //console.log(response, "++++++++++++++++++++++++++photo response");
               })
               .catch(function (response) {
-                //handle error
-                //console.log(response, "-------------------- Hi Response");
               });
               
 
               for(var i=0; i<gallery_photos.length; i++){
                 var data = new FormData();
-                //console.log(user.data._id, '-------------User Id')
               
                 data.append('User_id', user.data._id);
                 data.append('UserPhotos', '');
                 data.append('Image_name', gallery_photos[i]);
-               // console.log(gallery_photos, "-----------Hi Gallery Photo")
                
                   axios({
                     method: "post",
@@ -226,13 +188,8 @@ const openCamera = async () => {
                     headers: { "Content-Type": "multipart/form-data", "Authorization": `Bearer ${user.data.Token}` },
                   })
                     .then(function (response) {
-                      //handle success
-                     // console.log(response);
                     })
                     .catch(function (response) {
-                      //handle error
-                     
-                     // console.log(response);
                     });
     
                         }
@@ -244,7 +201,6 @@ const openCamera = async () => {
             }
           })
           .catch(function (error) {
-            //handle error
             console.log(error);
           });
        
@@ -264,8 +220,6 @@ const openCamera = async () => {
         <ScrollView style={{ marginBottom: 70, }}>
           <View>
             <IdentityUper />
-            {/* <IdentityLower navigation={props.navigation}
-            /> */}
             <View style={styles.container}>
       <View style={styles.imagearae}>
         <View style={styles.buttonContainer}>

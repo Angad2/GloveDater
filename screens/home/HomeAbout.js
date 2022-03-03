@@ -5,7 +5,7 @@ import Styles from '../../constants/globalstyle';
 import hometabstyles from "./hometabstyles";
 
 import Footer from '../../components/Footer';
-import Header from '../../components/Header';
+import HeaderLogd from "../../components/HeaderLogd";
 
 import { Ionicons } from '@expo/vector-icons';
 import aboutstyle from "./aboutstyle";
@@ -56,7 +56,7 @@ const HomeAbout = props => {
 
     return (
         <View style={Styles.mainbody}>
-            <Header onSelect={() => { props.navigation.navigate({ routeName: 'Home' }); }} title="About Me" />
+            <HeaderLogd onSelect={() => { props.navigation.navigate({ routeName: 'Home' }); }} title="About Me" />
             <View style={hometabstyles.mainarea}>
                 <View style={hometabstyles.tabarea}>
                     <TouchableOpacity

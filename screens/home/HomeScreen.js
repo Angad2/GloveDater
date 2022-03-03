@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
 
 import Footer from '../../components/Footer';
-import Header from '../../components/Header';
+import HeaderLogd from '../../components/HeaderLogd';
 
 import Styles from '../../constants/globalstyle';
 import Homestyle from './homestyle';
@@ -22,12 +22,13 @@ const HomeScreen = props => {
     const getUserDtails = async() => {
         const userId = await AsyncStorage.getItem('userId');
         const token = await AsyncStorage.getItem('token');
-    
+    //console.log(userId, '--------- User Id Home');
+   // console.log(token, '--------- User token Home')
         try {
  
            axios.get(`http://14.97.177.30:8484/V1/users/${userId}`, {headers: {"Authorization": `Bearer ${token}`}})
             .then(res => 
-            {//console.log("hhghfghf",res)
+            {
             _datas(res.data)
             
         }
@@ -43,7 +44,7 @@ const HomeScreen = props => {
       },[])
     return (
         <View style={Styles.mainbody}>
-            <Header onSelect = {() =>{ props.navigation.navigate({routeName: 'Idpage'});}} title="Home" />
+            <HeaderLogd onSelect = {() =>{ props.navigation.navigate({routeName: 'Idpage'});}} title="Home" />
             <ScrollView>
             <Slider />
             <View style={Homestyle.profilenameview}>

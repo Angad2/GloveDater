@@ -62,10 +62,7 @@ const Login = props => {
                     }
     
                     const user = await loginUser (email, password);
-              //setIsLoading(false);
-              console.log(user, "++++++++++++++++user")
-             console.log(user.data._id, "++++++++++++++++user")
-             console.log(user.data.Email)
+             console.log(user.data, "++++++++++++++++user data id")
               if (!user) {
                 showMessage({
                   message: "Error",
@@ -78,8 +75,9 @@ const Login = props => {
                   message: "Signup sucessfull",
                   backgroundColor: 'rgba(0, 0, 0, 0.8)'
                 });            
-               AsyncStorage.setItem("userId", user.data._id);
-               AsyncStorage.setItem("token", user.data.Token);
+               AsyncStorage.setItem("userId", user.data.data.Id);
+               console.log(user.data.token, '-----------Token');
+               AsyncStorage.setItem("token", user.data.token);
                
                 props.navigation.navigate('Home');
               }
@@ -91,15 +89,6 @@ const Login = props => {
               });
 
         }
-
-        
-
-            // props.navigation.navigate('Home', {
-            //     param: {
-            //         "email": email,
-            //         "password": password
-            //     }
-            // })
     };
 
    

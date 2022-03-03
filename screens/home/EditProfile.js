@@ -6,7 +6,7 @@ import hometabstyles from "./hometabstyles";
 import homestyle from "./homestyle";
 
 import Footer from '../../components/Footer';
-import Header from '../../components/Header';
+import HeaderLogd from "../../components/HeaderLogd";
 
 import { Ionicons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
@@ -18,11 +18,13 @@ import axios from "axios";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import rstyles from "../../screens/rstyles";
 import Icon from 'react-native-vector-icons/Feather';
+import { showMessage } from 'react-native-flash-message';
 
 const EditProfile = props => {
 
     const [datas, _datas] = React.useState([]);
     const [profileData, _profileData] = React.useState([]);
+
     const getUserDtails = async() => {
         const userId = await AsyncStorage.getItem('userId');
         const token = await AsyncStorage.getItem('token');
@@ -36,11 +38,9 @@ const EditProfile = props => {
                 .then(resdata =>
                     {
                         _profileData(resdata.data)
-                        console.log(resdata, "resdata------------")
                         
                     }
                 ).catch(err=>console.log(err))
-                //console.log("hhghfghf",res)
             _datas(res.data)
             _profileData(resdata.data)
         }
@@ -56,13 +56,19 @@ const EditProfile = props => {
     
       },[])
 
+
+const logout = async () => {
+    await AsyncStorage.clear();
+    props.navigation.navigate('Login');
+}
+
+
     return (
         <View style={Styles.mainbody}>
-            <Header onSelect={() => { props.navigation.navigate({ routeName: 'Home' }); }} title="Edit Profile" />
+            <HeaderLogd onSelect={() => { props.navigation.navigate({ routeName: 'Home' }); }} title="Edit Profile" />
             <View style={hometabstyles.mainarea}>
                 <ScrollView>
                     <View style={homestyle.profileBox}>
-                        {/* <Image source={require('../../assets/images/profile-pic.jpg')} */}
                         <Image source={{uri:profileData.profile}}
                             style={homestyle.profilepic}
                         />
@@ -107,7 +113,8 @@ const EditProfile = props => {
                        </View>
                        <Text><Entypo name="chevron-small-right" size={30} color="#888888" /></Text>
                    </TouchableOpacity>
-                   <TouchableOpacity onPress= {() => {props.navigation.navigate({routeName: 'Login'})}} style={homestyle.profiletab}>
+                   {/* <TouchableOpacity onPress= {() => {props.navigation.navigate({routeName: 'Login'})}} style={homestyle.profiletab}> */}
+                   <TouchableOpacity onPress= {logout} style={homestyle.profiletab}>
                        <View style={homestyle.tabproleft}>
                            <View style={homestyle.iconbox}>
                            <MaterialCommunityIcons name="logout" size={24} color="#7046e6" />
