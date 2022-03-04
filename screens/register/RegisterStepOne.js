@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, TextInput, Button, TouchableOpacity, ScrollView, Dimensions, Alert, ImageBackground, SafeAreaView } from 'react-native';
+import { View, Text, StyleSheet, Image, TextInput, Button, TouchableOpacity, ScrollView, Dimensions, Alert, ImageBackground, SafeAreaView, ToastAndroid } from 'react-native';
 import styles from '../../constants/globalstyle';
 import rstyles from '../rstyles';
 
 import Regex from '../../screens/register/RegexMatch';
 
-import axios from "axios";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { emailCheck } from '../../service';
 
 const RegisterStepOne = props => {
 
@@ -33,88 +32,87 @@ const RegisterStepOne = props => {
     };
 
     const [datas, _datas] = useState([]);
-
-    const userId = AsyncStorage.getItem('userId');
-    const token = AsyncStorage.getItem('token');
-    try {
-
-       axios.get(`http://14.97.177.30:8484/V1/users/${userId}`, {headers: {"Authorization": `Bearer ${token}`}})
-        .then(res => 
-        {
-        _datas(res.data)
+    
+    const validationSubmit = async () => {
         
-    }
-        ).catch(err=>console.log(err))
-     } catch (err) {
-       console.log("hhhhh",err);
-     }
-
-    const validationSubmit = () => {
-       
-        if(User_name.trim() != '') {
-            if (!User_name.trim().match(Regex.VALID_NAME)) {
-                _isUserValidationError(true);
-                //email.focus();
-                return;
-            } else {
-                _isUserValidationError(false);
-                _isUserError(false);
-            }
-            }
-            if(!User_name.trim()) {
-                Alert.alert('Please Enter User Name');
-                return;
-            }
-
-        if(email.trim() != '') {
-            if (!email.trim().match(Regex.VALID_EMAIL)) {
-                _isEmailValidationError(true);
-                //email.focus();
-                return;
-            }
-           
-            else {
-                _isEmailValidationError(false);
-                _isEmailError(false);
-            }
-            }
-            if(!email.trim()) {
-                Alert.alert('Please Enter Email');
-                return;
-            }
-
-            if(email == datas.Email) {
-                Alert.alert('Email already have');
-                //props.navigation.navigate('RegisterOne');
-                return;
-            }
-            else {
-                Alert.alert('You can Go');
-                props.navigation.navigate('RegisterTwo')
-            }
-
-            if(password.trim() != '') {
-                if (!password.trim().match(Regex.VALID_PASSWORD)) {
-                    _isPassValidationError(true);
+        try {
+            if(User_name.trim() != '') {
+                if (!User_name.trim().match(Regex.VALID_NAME)) {
+                    _isUserValidationError(true);
                     //email.focus();
                     return;
                 } else {
-                    _isPassValidationError(false);
-                    _isPassError(false);
+                    _isUserValidationError(false);
+                    _isUserError(false);
                 }
                 }
-                if(!password.trim()) {
-                    Alert.alert('Please Enter Password');
+                if(!User_name.trim()) {
+                    Alert.alert('Please Enter User Name');
                     return;
                 }
-
-            props.navigation.navigate('RegisterTwo', {
-                param: {
-                    "email": email,
-                    "password": password,
-                    "User_name": User_name
+    
+            if(email.trim() != '') {
+                if (!email.trim().match(Regex.VALID_EMAIL)) {
+                    _isEmailValidationError(true);
+                    //email.focus();
+                    return;
                 }
-            })
+               
+                else {
+                    _isEmailValidationError(false);
+                    _isEmailError(false);
+                }
+                }
+                if(!email.trim()) {
+                    Alert.alert('Please Enter Email');
+                    return;
+                }
+    
+                if(password.trim() != '') {
+                    if (!password.trim().match(Regex.VALID_PASSWORD)) {
+                        _isPassValidationError(true);
+                        //email.focus();
+                        return;
+                    } else {
+                        _isPassValidationError(false);
+                        _isPassError(false);
+                    }
+                    }
+                    if(!password.trim()) {
+                        Alert.alert('Please Enter Password');
+                        return;
+                    }
+                    const emaildata = await emailCheck(email);
+
+                    if(emaildata.data.status === false){
+                        //Alert.alert("Email already Exists");
+                        ToastAndroid.show(
+                            "Email already Exists",
+                            ToastAndroid.LONG
+                          );
+                        return
+                    } 
+
+                    if(emaildata.data.status === true){
+                        props.navigation.navigate('RegisterTwo', {
+                            param: {
+                                "email": email,
+                                "password": password,
+                                "User_name": User_name
+                            }
+                        })
+                    }
+                     
+                    else{
+                        
+                    } 
+                   
+            
+          } catch (err) {
+            console.log("hhhhh",err);
+          }
+
+        
     };
 
    

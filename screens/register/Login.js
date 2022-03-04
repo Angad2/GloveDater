@@ -62,7 +62,7 @@ const Login = props => {
                     }
     
                     const user = await loginUser (email, password);
-             console.log(user.data, "++++++++++++++++user data id")
+            // console.log(user.data, "++++++++++++++++user data id")
               if (!user) {
                 showMessage({
                   message: "Error",
@@ -76,7 +76,7 @@ const Login = props => {
                   backgroundColor: 'rgba(0, 0, 0, 0.8)'
                 });            
                AsyncStorage.setItem("userId", user.data.data.Id);
-               console.log(user.data.token, '-----------Token');
+               //console.log(user.data.token, '-----------Token');
                AsyncStorage.setItem("token", user.data.token);
                
                 props.navigation.navigate('Home');
@@ -85,7 +85,7 @@ const Login = props => {
               //setIsLoading(false);
               showMessage({
                 message: 'Something went wrong please try again later!',
-                backgroundColor: 'rgba(0, 0, 0, 0.8)'
+                backgroundColor: 'rgba(0, 0, 0, 0.8)',
               });
 
         }

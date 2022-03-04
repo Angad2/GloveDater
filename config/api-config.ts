@@ -4,6 +4,7 @@ const ApiConfig = {
     SIGNUP: 'Signup',
     GETUSER: 'Users',
     GETPHOTO: 'GalleryPhoto',
+    EMAILCHECK: 'emailCheck'
     
   };
   export default ApiConfig;

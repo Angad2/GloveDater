@@ -143,7 +143,7 @@ GlobeNavigator = createStackNavigator(
     //bottomTab
     },
     {
-        initialRouteName: "Register",
+        initialRouteName: "Login",
         header: null,
       }
 );
