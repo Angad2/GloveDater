@@ -18,7 +18,6 @@ import axios from "axios";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import rstyles from "../../screens/rstyles";
 import Icon from 'react-native-vector-icons/Feather';
-import { showMessage } from 'react-native-flash-message';
 
 const EditProfile = props => {
 
@@ -42,7 +41,7 @@ const EditProfile = props => {
                     }
                 ).catch(err=>console.log(err))
             _datas(res.data)
-            _profileData(resdata.data)
+            //_profileData(resdata.data)
         }
             ).catch(err=>console.log(err))
          } catch (err) {

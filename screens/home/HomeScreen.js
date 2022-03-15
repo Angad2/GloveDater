@@ -44,7 +44,7 @@ const HomeScreen = props => {
       },[])
     return (
         <View style={Styles.mainbody}>
-            <HeaderLogd onSelect = {() =>{ props.navigation.navigate({routeName: 'Idpage'});}} title="Home" />
+            <HeaderLogd onSelect = {() =>{ props.navigation.navigate({routeName: 'Idpage'});}} title="Profile" />
             <ScrollView>
             <Slider />
             <View style={Homestyle.profilenameview}>

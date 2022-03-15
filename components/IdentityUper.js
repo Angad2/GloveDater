@@ -6,7 +6,7 @@ import istyles from "../screens/register/istyles";
 
 const IdentityUper = pros => {
     return(
-        <View style={rstyles.formview4, {paddingBottom: 0,}}>
+        <View style={rstyles.formview4}>
             <Text style={istyles.bigtxt}>Please take and upload a photo of
                 yourself, where you place your right
                 hand on your chest.</Text>

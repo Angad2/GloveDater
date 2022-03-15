@@ -19,6 +19,7 @@ import EditProfile from '../screens/home/EditProfile';
 import Login from '../screens/register/Login';
 import SearchGlobal from '../screens/search/SearchGlobal';
 import CountrySearch from '../screens/search/CountrySearch';
+import HomeFeed from '../screens/Feed/HomeFeed';
 
 
 const RegisterStack = {
@@ -134,12 +135,22 @@ SearchStack = {
     },
 },
 
+FeedStack = {
+    Feed: {
+        screen: HomeFeed,
+        navigationOptions: {
+            header: null,
+        },
+    },
+},
+
 GlobeNavigator = createStackNavigator(
     {
     ...RegisterStack,
     ...HomeStack,
     ...LoginStack,
     ...SearchStack,
+    ...FeedStack,
     //bottomTab
     },
     {

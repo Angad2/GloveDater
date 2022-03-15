@@ -19,6 +19,7 @@ const Photo = props => {
             .then(res => 
             {
             _datas(res.data)
+            console.log(res.data, "-------------Gallery Photo")
             
         }
             ).catch(err=>console.log(err))

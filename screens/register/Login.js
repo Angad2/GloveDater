@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, TextInput, Button, TouchableOpacity, ScrollView, Dimensions, Alert, ImageBackground, SafeAreaView } from 'react-native';
+import { View, Text, StyleSheet, Image, TextInput, Button, TouchableOpacity, ScrollView, Dimensions, Alert, ImageBackground, ToastAndroid } from 'react-native';
 import styles from '../../constants/globalstyle';
 import rstyles from '../rstyles';
 
@@ -33,8 +33,12 @@ const Login = props => {
         try {
             if(email.trim() != '') {
                 if (!email.trim().match(Regex.VALID_EMAIL)) {
+                    ToastAndroid.show(
+                        "Email address is not Valid...",
+                        ToastAndroid.LONG,
+                        ToastAndroid.CENTER
+                      );
                     _isEmailValidationError(true);
-                    //email.focus();
                     return;
                 } else {
                     _isEmailValidationError(false);
@@ -42,14 +46,22 @@ const Login = props => {
                 }
                 }
                 if(!email.trim()) {
-                    Alert.alert('Please Enter Email');
+                    ToastAndroid.show(
+                        "Please Enter Email",
+                        ToastAndroid.LONG,
+                        ToastAndroid.CENTER
+                      );
                     return;
                 }
     
                 if(password.trim() != '') {
                     if (!password.trim().match(Regex.VALID_PASSWORD)) {
+                        ToastAndroid.show(
+                            "Password is not valid...",
+                            ToastAndroid.LONG,
+                            ToastAndroid.CENTER
+                          );
                         _isPassValidationError(true);
-                        //email.focus();
                         return;
                     } else {
                         _isPassValidationError(false);
@@ -57,7 +69,11 @@ const Login = props => {
                     }
                     }
                     if(!password.trim()) {
-                        Alert.alert('Please Enter Password');
+                        ToastAndroid.show(
+                            "Please Enter Password...",
+                            ToastAndroid.LONG,
+                            ToastAndroid.CENTER
+                          );
                         return;
                     }
     
@@ -79,7 +95,7 @@ const Login = props => {
                //console.log(user.data.token, '-----------Token');
                AsyncStorage.setItem("token", user.data.token);
                
-                props.navigation.navigate('Home');
+                props.navigation.navigate('Feed');
               }
             } catch (error) {
               //setIsLoading(false);
@@ -127,31 +143,13 @@ const Login = props => {
                             />
                         </View>
                         <View>
-                            <TouchableOpacity>
-                                <Text>Not a member sign up here</Text>
+                            <TouchableOpacity onPress= {() => {props.navigation.navigate({routeName: 'Register'})}}>
+                                <Text style={rstyles.hlinktxt}>Not a member sign up here</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
                 </ScrollView>
                 <TouchableOpacity onPress={validationSubmit} >
-                {(isEmailError || isEmailValidationError) && (
-                    
-                    <Text style={rstyles.errorMsg}>
-                        {isEmailError
-                            ? ''
-                            : 'Email address is not valid'}
-                    </Text>
-                           
-                )}
-                {(isPassError || isPassValidationError) && (
-                    
-                    <Text style={rstyles.errorMsg}>
-                        {isPassError
-                            ? ''
-                            : 'Password is not valid'}
-                    </Text>
-                           
-                )}
                 </TouchableOpacity> 
                  <View style={rstyles.btnview}>
                     <TouchableOpacity onPress={validationSubmit} 

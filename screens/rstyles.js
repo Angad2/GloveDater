@@ -9,7 +9,7 @@ export default StyleSheet.create({
     right: 0,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 100,
+    marginTop: 60,
   },
 
   logosize: {
@@ -58,7 +58,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginBottom: 36,
+    marginBottom: 26,
   },
 
   inputtext: {
@@ -338,6 +338,12 @@ errorMsg: {
   paddingHorizontal: 25,
   paddingVertical: 10,
   marginBottom: 10,
+},
+
+hlinktxt: {
+  fontFamily: 'quicksand-bold',
+  fontSize: 18,
+  color: '#800080'
 }
   
 });

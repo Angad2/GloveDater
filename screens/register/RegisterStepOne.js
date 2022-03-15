@@ -38,8 +38,12 @@ const RegisterStepOne = props => {
         try {
             if(User_name.trim() != '') {
                 if (!User_name.trim().match(Regex.VALID_NAME)) {
+                    ToastAndroid.show(
+                        "User name is not Valid...",
+                        ToastAndroid.LONG,
+                        ToastAndroid.CENTER
+                      );
                     _isUserValidationError(true);
-                    //email.focus();
                     return;
                 } else {
                     _isUserValidationError(false);
@@ -47,31 +51,46 @@ const RegisterStepOne = props => {
                 }
                 }
                 if(!User_name.trim()) {
-                    Alert.alert('Please Enter User Name');
+                    ToastAndroid.show(
+                        "Please Enter User Name...",
+                        ToastAndroid.LONG,
+                        ToastAndroid.CENTER
+                      );
                     return;
                 }
     
             if(email.trim() != '') {
                 if (!email.trim().match(Regex.VALID_EMAIL)) {
+                    ToastAndroid.show(
+                        "Email address is not Valid...",
+                        ToastAndroid.LONG,
+                        ToastAndroid.CENTER
+                      );
                     _isEmailValidationError(true);
-                    //email.focus();
                     return;
-                }
-               
-                else {
+                }else {
+                    
                     _isEmailValidationError(false);
                     _isEmailError(false);
                 }
                 }
                 if(!email.trim()) {
-                    Alert.alert('Please Enter Email');
+                    ToastAndroid.show(
+                        "Email is blank please enter...",
+                        ToastAndroid.LONG,
+                        ToastAndroid.CENTER
+                      );
                     return;
                 }
     
                 if(password.trim() != '') {
                     if (!password.trim().match(Regex.VALID_PASSWORD)) {
+                        ToastAndroid.show(
+                            "Password is not valid...",
+                            ToastAndroid.LONG,
+                            ToastAndroid.CENTER
+                          );
                         _isPassValidationError(true);
-                        //email.focus();
                         return;
                     } else {
                         _isPassValidationError(false);
@@ -79,16 +98,20 @@ const RegisterStepOne = props => {
                     }
                     }
                     if(!password.trim()) {
-                        Alert.alert('Please Enter Password');
+                        ToastAndroid.show(
+                            "Please Enter Password...",
+                            ToastAndroid.LONG,
+                            ToastAndroid.CENTER
+                          );
                         return;
                     }
                     const emaildata = await emailCheck(email);
 
                     if(emaildata.data.status === false){
-                        //Alert.alert("Email already Exists");
                         ToastAndroid.show(
                             "Email already Exists",
-                            ToastAndroid.LONG
+                            ToastAndroid.LONG,
+                            ToastAndroid.CENTER
                           );
                         return
                     } 
@@ -110,9 +133,7 @@ const RegisterStepOne = props => {
             
           } catch (err) {
             console.log("hhhhh",err);
-          }
-
-        
+          }   
     };
 
    
@@ -162,36 +183,14 @@ const RegisterStepOne = props => {
                                 style={{ width: 50, height: 50, resizeMode: 'contain' }}
                             />
                         </View>
+                        <View>
+                            <TouchableOpacity onPress= {() => {props.navigation.navigate({routeName: 'Login'})}}>
+                                <Text style={rstyles.hlinktxt}>Already a member sign in here</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 </ScrollView>
                 <TouchableOpacity onPress={validationSubmit} >
-                {(isEmailError || isEmailValidationError) && (
-                    
-                    <Text style={rstyles.errorMsg}>
-                        {isEmailError
-                            ? ''
-                            : 'Email address is not valid'}
-                    </Text>
-                           
-                )}
-                {(isPassError || isPassValidationError) && (
-                    
-                    <Text style={rstyles.errorMsg}>
-                        {isPassError
-                            ? ''
-                            : 'Password is not valid'}
-                    </Text>
-                           
-                )}
-                 {(isUserError || isUserValidationError) && (
-                    
-                    <Text style={rstyles.errorMsg}>
-                        {isUserError
-                            ? ''
-                            : 'user name is not valid'}
-                    </Text>
-                           
-                )}
                 </TouchableOpacity> 
                  <View style={rstyles.btnview}>
                     <TouchableOpacity onPress={validationSubmit} 

@@ -85,6 +85,7 @@ const showImagePicker = async () => {
 
   // Explore the result
   _photo(result.uri);
+  console.log(result, "++++++++++++++++++Profile Photo");
 
   if (!result.cancelled) {
     _photo(result.uri);
@@ -103,11 +104,12 @@ const openCamera = async () => {
 
   const result = await ImagePicker.launchCameraAsync();
   _photo(result.uri);
+  //console.log(result, "++++++++++++++++++Profile Photo");
   // Explore the result
 
   if (!result.cancelled) {
     _photo(result.uri);
-    console.log(result.uri);
+    //console.log(result.uri, "+++++++++++++++++++++++++ Profile Photo 1");
   }
 }
 
@@ -180,7 +182,6 @@ const openCamera = async () => {
                 data.append('User_id', user.data._id);
                 data.append('UserPhotos', '');
                 data.append('Image_name', gallery_photos[i]);
-               
                   axios({
                     method: "post",
                     url: "http://14.97.177.30:8484/V1/GalleryPhoto",
@@ -197,7 +198,7 @@ const openCamera = async () => {
                 message: "Signup sucessfull",
                 backgroundColor: 'rgba(0, 0, 0, 0.8)'
               });            
-              props.navigation.navigate('Home');
+              props.navigation.navigate('Feed');
             }
           })
           .catch(function (error) {

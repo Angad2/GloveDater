@@ -16,7 +16,8 @@ const HeaderLogd = props => {
            axios.get(`http://14.97.177.30:8484/V1/Profile/${userId}`, {headers: {"Authorization": `Bearer ${token}`}})
             .then(res => 
             {
-            _datas(res.data)
+            _datas(res.data);
+            console.log(res.data, '--------08-03-22')
             
         }
             ).catch(err=>console.log(err))
