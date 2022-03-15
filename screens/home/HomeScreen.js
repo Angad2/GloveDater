@@ -27,7 +27,8 @@ const HomeScreen = props => {
  
            axios.get(`http://14.97.177.30:8484/V1/users/${userId}`, {headers: {"Authorization": `Bearer ${token}`}})
             .then(res => 
-            {//console.log("hhghfghf",res)
+            {
+            console.log("hhghfghf",res)
             _datas(res.data)
             
         }

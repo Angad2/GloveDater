@@ -19,7 +19,7 @@ const Photo = props => {
             .then(res => 
             {
             _datas(res.data)
-            //console.log(res.data, "-----------Hi Gallery Photo")
+            console.log(res.data, "-----------Hi Gallery Photo")
             
         }
             ).catch(err=>console.log(err))

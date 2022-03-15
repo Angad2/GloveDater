@@ -19,6 +19,7 @@ import EditProfile from '../screens/home/EditProfile';
 import Login from '../screens/register/Login';
 import SearchGlobal from '../screens/search/SearchGlobal';
 import CountrySearch from '../screens/search/CountrySearch';
+import Matches from '../screens/matches';
 
 
 const RegisterStack = {
@@ -110,7 +111,7 @@ HomeStack = {
         },
     },
 
-    LoginStack = {
+LoginStack = {
         Login: {
             screen: Login,
             navigationOptions: {
@@ -134,16 +135,25 @@ SearchStack = {
     },
 },
 
+MatchesStack = {
+    Matches: {
+        screen: Matches,
+        navigationOptions: {
+        headerShown: null,
+        },
+    }
+},
+
 GlobeNavigator = createStackNavigator(
     {
     ...RegisterStack,
     ...HomeStack,
     ...LoginStack,
     ...SearchStack,
-    //bottomTab
+    ...MatchesStack
     },
     {
-        initialRouteName: "Register",
+        initialRouteName: "Login",
         header: null,
       }
 );

@@ -28,6 +28,12 @@ export default StyleSheet.create({
     color: '#800080'
   },
 
+  logotext1: {
+    fontFamily: 'quicksand-bold',
+    fontSize: 15,
+    color: '#800080'
+  },
+
   formview: {
     alignItems: 'center',
     justifyContent: 'center',

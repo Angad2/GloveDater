@@ -44,6 +44,13 @@ const SearchGlobal = props => {
                                 <Text style={SearchStyle.txt}>Lorem Ipsum</Text>
                             </View>
                             <View style={SearchStyle.imagebox}>
+                                <Image source={require('../../assets/images/pic-1.png')}
+                                style={SearchStyle.photo}
+                                />
+                                <Text style={SearchStyle.txt}>Lorem Ipsum</Text>
+                            </View>
+
+                            <View style={SearchStyle.imagebox}>
                                 <Image source={require('../../assets/images/pic-2.png')}
                                 style={SearchStyle.photo}
                                 />

@@ -100,7 +100,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     width: '100%',
     //height: 50,
-    marginTop: 10,
+    marginTop: 20,
     padding: 20,
     justifyContent: 'space-between',
     alignItems: 'center',
