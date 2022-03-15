@@ -42,14 +42,6 @@ const RegisterStepFive = props => {
     
 
     React.useEffect(() => {
-            console.log(props.navigation.state.params.param.email, "+++++++props email"),
-            console.log(props.navigation.state.params.param.password, "+++++++props pass"),
-            console.log(props.navigation.state.params.param.User_name, "+++++++props username"),
-            console.log(props.navigation.state.params.param.gender, "+++++++props gender"),
-            console.log(props.navigation.state.params.param.looking, "+++++++props looking for"),
-            console.log(props.navigation.state.params.param.country, "+++++++props Country"),
-            console.log(props.navigation.state.params.param.city, "+++++++props city"),
-            console.log(props.navigation.state.params.param.intentArr, "+++++++props Intent_option"),
             console.log(props.navigation.state.params.param.ageValue, "+++++++props Age"),
             console.log(props.navigation.state.params.param.bodyValue, "+++++++props Body type"),
             console.log(props.navigation.state.params.param.heightValue, "+++++++props Height"),

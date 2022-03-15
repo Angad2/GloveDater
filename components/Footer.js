@@ -10,7 +10,7 @@ import Icon from 'react-native-vector-icons/Feather';
 const Footer = props => {
     return (
         <View style={Styles.footermain}>
-            <TouchableOpacity onPress= {() => {props.navigation.navigate({routeName: 'Home'})}} style={Styles.footertab}>
+            <TouchableOpacity onPress= {() => {props.navigation.navigate({routeName: 'Feed'})}} style={Styles.footertab}>
                 <Ionicons name="md-home" size={24} color="white" />
                 <Text style={Styles.footertxt}>Home</Text>
             </TouchableOpacity>
@@ -26,7 +26,7 @@ const Footer = props => {
                 <Ionicons name="filter-outline" size={24} color="white" />
                 <Text style={Styles.footertxt}>Filter</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress= {() => {props.navigation.navigate({routeName: 'editProfile'})}} style={Styles.footertab}>
+            <TouchableOpacity onPress= {() => {props.navigation.navigate({routeName: 'Home'})}} style={Styles.footertab}>
                 <Icon name="user" size={24} color="white" />
                 <Text style={Styles.footertxt}>Profile</Text>
             </TouchableOpacity>

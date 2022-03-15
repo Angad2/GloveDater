@@ -42,7 +42,7 @@ export default StyleSheet.create({
     },
 
     nametxt: {
-        fontSize: 18,
+        fontSize: 20,
         color: 'black',
         fontFamily: 'quicksand-bold',
     },

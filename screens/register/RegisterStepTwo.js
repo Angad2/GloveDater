@@ -33,6 +33,7 @@ const RegisterStepTwo = props => {
     console.log(props.navigation.state.params.param.email, "+++++++props email"),
     console.log(props.navigation.state.params.param.password, "+++++++props pass"),
     console.log(props.navigation.state.params.param.User_name, "+++++++props username"),
+    
     _email(props.navigation.state.params.param.email),
     _password(props.navigation.state.params.param.password),
     _User_name(props.navigation.state.params.param.User_name)

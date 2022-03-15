@@ -19,7 +19,7 @@ const Photo = props => {
             .then(res => 
             {
             _datas(res.data)
-            console.log(res.data, "-----------Hi Gallery Photo")
+            console.log(res.data, "-------------G----------")
             
         }
             ).catch(err=>console.log(err))
@@ -32,6 +32,7 @@ const Photo = props => {
         getGalleryPhotos()
     
       },[])
+      console.log('plplpl');
     return (
         <View style={hometabstyles.mainarea}>
             <View style={Styles.mt30}></View>

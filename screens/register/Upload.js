@@ -52,7 +52,7 @@ const Upload = props => {
             quality: 1,
         });
 
-        console.log(result);
+        console.log(result, "----------- GalPhoto");
 
         if (!result.cancelled) {
             const images = [...image, result.uri]

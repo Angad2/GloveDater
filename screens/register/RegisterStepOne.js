@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, TextInput, Button, TouchableOpacity, ScrollView, Dimensions, Alert, ImageBackground, SafeAreaView } from 'react-native';
+import { View, Text, StyleSheet, Image, TextInput, Button, TouchableOpacity, ScrollView, Dimensions, Alert, ImageBackground, SafeAreaView, ToastAndroid } from 'react-native';
 import styles from '../../constants/globalstyle';
 import rstyles from '../rstyles';
 
 import Regex from '../../screens/register/RegexMatch';
+
+import { emailCheck } from '../../service';
 
 const RegisterStepOne = props => {
 
@@ -29,63 +31,109 @@ const RegisterStepOne = props => {
         _User_name(enteredUsername);
     };
 
-   
-
-
-    const validationSubmit = () => {
-
-        if(User_name.trim() != '') {
-            if (!User_name.trim().match(Regex.VALID_NAME)) {
-                _isUserValidationError(true);
-                //email.focus();
-                return;
-            } else {
-                _isUserValidationError(false);
-                _isUserError(false);
-            }
-            }
-            if(!User_name.trim()) {
-                Alert.alert('Please Enter User Name');
-                return;
-            }
-
-        if(email.trim() != '') {
-            if (!email.trim().match(Regex.VALID_EMAIL)) {
-                _isEmailValidationError(true);
-                //email.focus();
-                return;
-            } else {
-                _isEmailValidationError(false);
-                _isEmailError(false);
-            }
-            }
-            if(!email.trim()) {
-                Alert.alert('Please Enter Email');
-                return;
-            }
-
-            if(password.trim() != '') {
-                if (!password.trim().match(Regex.VALID_PASSWORD)) {
-                    _isPassValidationError(true);
-                    //email.focus();
+    const [datas, _datas] = useState([]);
+    
+    const validationSubmit = async () => {
+        
+        try {
+            if(User_name.trim() != '') {
+                if (!User_name.trim().match(Regex.VALID_NAME)) {
+                    ToastAndroid.show(
+                        "User name is not Valid...",
+                        ToastAndroid.LONG,
+                        ToastAndroid.CENTER
+                      );
+                    _isUserValidationError(true);
                     return;
                 } else {
-                    _isPassValidationError(false);
-                    _isPassError(false);
+                    _isUserValidationError(false);
+                    _isUserError(false);
                 }
                 }
-                if(!password.trim()) {
-                    Alert.alert('Please Enter Password');
+                if(!User_name.trim()) {
+                    ToastAndroid.show(
+                        "Please Enter User Name...",
+                        ToastAndroid.LONG,
+                        ToastAndroid.CENTER
+                      );
                     return;
                 }
-
-            props.navigation.navigate('RegisterTwo', {
-                param: {
-                    "email": email,
-                    "password": password,
-                    "User_name": User_name
+    
+            if(email.trim() != '') {
+                if (!email.trim().match(Regex.VALID_EMAIL)) {
+                    ToastAndroid.show(
+                        "Email address is not Valid...",
+                        ToastAndroid.LONG,
+                        ToastAndroid.CENTER
+                      );
+                    _isEmailValidationError(true);
+                    return;
+                }else {
+                    
+                    _isEmailValidationError(false);
+                    _isEmailError(false);
                 }
-            })
+                }
+                if(!email.trim()) {
+                    ToastAndroid.show(
+                        "Email is blank please enter...",
+                        ToastAndroid.LONG,
+                        ToastAndroid.CENTER
+                      );
+                    return;
+                }
+    
+                if(password.trim() != '') {
+                    if (!password.trim().match(Regex.VALID_PASSWORD)) {
+                        ToastAndroid.show(
+                            "Password is not valid...",
+                            ToastAndroid.LONG,
+                            ToastAndroid.CENTER
+                          );
+                        _isPassValidationError(true);
+                        return;
+                    } else {
+                        _isPassValidationError(false);
+                        _isPassError(false);
+                    }
+                    }
+                    if(!password.trim()) {
+                        ToastAndroid.show(
+                            "Please Enter Password...",
+                            ToastAndroid.LONG,
+                            ToastAndroid.CENTER
+                          );
+                        return;
+                    }
+                    const emaildata = await emailCheck(email);
+
+                    if(emaildata.data.status === false){
+                        ToastAndroid.show(
+                            "Email already Exists",
+                            ToastAndroid.LONG,
+                            ToastAndroid.CENTER
+                          );
+                        return
+                    } 
+
+                    if(emaildata.data.status === true){
+                        props.navigation.navigate('RegisterTwo', {
+                            param: {
+                                "email": email,
+                                "password": password,
+                                "User_name": User_name
+                            }
+                        })
+                    }
+                     
+                    else{
+                        
+                    } 
+                   
+            
+          } catch (err) {
+            console.log("hhhhh",err);
+          }   
     };
 
    
@@ -135,36 +183,14 @@ const RegisterStepOne = props => {
                                 style={{ width: 50, height: 50, resizeMode: 'contain' }}
                             />
                         </View>
+                        <View>
+                            <TouchableOpacity onPress= {() => {props.navigation.navigate({routeName: 'Login'})}}>
+                                <Text style={rstyles.hlinktxt}>Already a member sign in here</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 </ScrollView>
                 <TouchableOpacity onPress={validationSubmit} >
-                {(isEmailError || isEmailValidationError) && (
-                    
-                    <Text style={rstyles.errorMsg}>
-                        {isEmailError
-                            ? ''
-                            : 'Email address is not valid'}
-                    </Text>
-                           
-                )}
-                {(isPassError || isPassValidationError) && (
-                    
-                    <Text style={rstyles.errorMsg}>
-                        {isPassError
-                            ? ''
-                            : 'Password is not valid'}
-                    </Text>
-                           
-                )}
-                 {(isUserError || isUserValidationError) && (
-                    
-                    <Text style={rstyles.errorMsg}>
-                        {isUserError
-                            ? ''
-                            : 'user name is not valid'}
-                    </Text>
-                           
-                )}
                 </TouchableOpacity> 
                  <View style={rstyles.btnview}>
                     <TouchableOpacity onPress={validationSubmit} 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, TextInput, Button, TouchableOpacity, ScrollView, Dimensions, Alert, ImageBackground, SafeAreaView } from 'react-native';
+import { View, Text, StyleSheet, Image, TextInput, Button, TouchableOpacity, ScrollView, Dimensions, Alert, ImageBackground, ToastAndroid } from 'react-native';
 import styles from '../../constants/globalstyle';
 import rstyles from '../rstyles';
 
@@ -33,8 +33,12 @@ const Login = props => {
         try {
             if (email.trim() != '') {
                 if (!email.trim().match(Regex.VALID_EMAIL)) {
+                    ToastAndroid.show(
+                        "Email address is not Valid...",
+                        ToastAndroid.LONG,
+                        ToastAndroid.CENTER
+                    );
                     _isEmailValidationError(true);
-                    //email.focus();
                     return;
                 } else {
                     _isEmailValidationError(false);
@@ -42,14 +46,25 @@ const Login = props => {
                 }
             }
             if (!email.trim()) {
-                Alert.alert('Please Enter Email');
+                ToastAndroid.show(
+                    "Please Enter Email",
+                    ToastAndroid.LONG,
+                    ToastAndroid.CENTER
+                );
                 return;
+            } else {
+                _isPassValidationError(false);
+                _isPassError(false);
             }
 
             if (password.trim() != '') {
                 if (!password.trim().match(Regex.VALID_PASSWORD)) {
+                    ToastAndroid.show(
+                        "Password is not valid...",
+                        ToastAndroid.LONG,
+                        ToastAndroid.CENTER
+                    );
                     _isPassValidationError(true);
-                    //email.focus();
                     return;
                 } else {
                     _isPassValidationError(false);
@@ -57,19 +72,16 @@ const Login = props => {
                 }
             }
             if (!password.trim()) {
-                Alert.alert('Please Enter Password');
+                ToastAndroid.show(
+                    "Please Enter Password...",
+                    ToastAndroid.LONG,
+                    ToastAndroid.CENTER
+                );
                 return;
             }
-            console.log(email, password, "++++++++++++++++user")
-            // const user = await loginUser(email, password);
-            const user = await axios.post('http://14.97.177.30:8484/V1/login', {
-                Email: "abir09@gmail.com",
-                Password: "Asd123"
-            })
-            //setIsLoading(false);
-            console.log(user, "++++++++++++++++user")
-            console.log(user.data.data.Id, "++++++++++++++++user")
-            console.log(user.data.data.Email)
+
+            const user = await loginUser(email, password);
+            // console.log(user.data, "++++++++++++++++user data id")
             if (!user) {
                 showMessage({
                     message: "Error",
@@ -83,27 +95,19 @@ const Login = props => {
                     backgroundColor: 'rgba(0, 0, 0, 0.8)'
                 });
                 AsyncStorage.setItem("userId", user.data.data.Id);
+                //console.log(user.data.token, '-----------Token');
                 AsyncStorage.setItem("token", user.data.token);
 
-                props.navigation.navigate('Home');
+                props.navigation.navigate('Feed');
             }
         } catch (error) {
             //setIsLoading(false);
             showMessage({
                 message: 'Something went wrong please try again later!',
-                backgroundColor: 'rgba(0, 0, 0, 0.8)'
+                backgroundColor: 'rgba(0, 0, 0, 0.8)',
             });
 
         }
-
-
-
-        // props.navigation.navigate('Home', {
-        //     param: {
-        //         "email": email,
-        //         "password": password
-        //     }
-        // })
     };
 
 
@@ -142,40 +146,23 @@ const Login = props => {
                                 style={{ width: 50, height: 50, resizeMode: 'contain' }}
                             />
                         </View>
-                        <View style={styles.mb30}>
-                            <TouchableOpacity>
-                                <Text style={rstyles.logotext1}>Not a member sign up here</Text>
+                        <View>
+                            <TouchableOpacity onPress={() => { props.navigation.navigate({ routeName: 'Register' }) }}>
+                                <Text style={rstyles.hlinktxt}>Not a member sign up here</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
-
-                    <TouchableOpacity onPress={validationSubmit} >
-                        {(isEmailError || isEmailValidationError) && (
-
-                            <Text style={rstyles.errorMsg}>
-                                {isEmailError
-                                    ? ''
-                                    : 'Email address is not valid'}
-                            </Text>
-
-                        )}
-                        {(isPassError || isPassValidationError) && (
-
-                            <Text style={rstyles.errorMsg}>
-                                {isPassError
-                                    ? ''
-                                    : 'Password is not valid'}
-                            </Text>
-
-                        )}
-                    </TouchableOpacity>
-                    <View style={[rstyles.btnview,styles.mt25]}>
+                </ScrollView>
+                {/* <TouchableOpacity onPress={validationSubmit} >
+                </TouchableOpacity> */}
+                <View style={rstyles.btnview}>
+                    <View style={[rstyles.btnview, styles.mt25]}>
                         <TouchableOpacity onPress={validationSubmit}
                             style={rstyles.btncontainer2}>
                             <Text style={rstyles.btntext}>Log In</Text>
                         </TouchableOpacity>
                     </View>
-                </ScrollView>
+                </View>
             </ImageBackground>
         </View>
     );
