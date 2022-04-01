@@ -50,12 +50,10 @@ const EditProfile = props => {
          }
     }
 
-
     React.useEffect(()=>{
         getUserDtails()
     
       },[])
-
 
 const logout = async () => {
     await AsyncStorage.clear();
@@ -67,9 +65,9 @@ const logout = async () => {
         <View style={Styles.mainbody}>
             <HeaderLogd onSelect={() => { props.navigation.navigate({ routeName: 'Home' }); }} title="Edit Profile" />
             <View style={hometabstyles.mainarea}>
-                <ScrollView>
+                <ScrollView showsVerticalScrollIndicator={false}>
                     <View style={homestyle.profileBox}>
-                        <Image source={{uri:IMAGE_URL+profileData.profile}}
+                        <Image source={{uri:`${IMAGE_URL}/${datas.Photo}`}}
                             style={homestyle.profilepic}
                         />
                         <View>

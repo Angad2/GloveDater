@@ -13,27 +13,7 @@ const CountrySearch = props => {
 
     return (
         <View style={Styles.mainbody}>
-            <Header onSelect={() => { props.navigation.navigate({ routeName: 'Home' }); }} title="Search" />
             <View style={hometabstyles.mainarea}>
-                <View style={hometabstyles.tabarea}>
-                    <TouchableOpacity
-                        onPress={() => {
-                            props.navigation.navigate({ routeName: 'Global' });
-                        }}
-                        style={hometabstyles.tabs}>
-                        <Text style={hometabstyles.tabtext}>Global</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={hometabstyles.tabselect}>
-                        <Text style={hometabstyles.tabselecttxt}>By Country</Text>
-                    </TouchableOpacity >
-                    <TouchableOpacity
-                        // onPress={() => {
-                        //     props.navigation.navigate({ routeName: 'Homeexp' });
-                        // }}
-                        style={hometabstyles.tabs}>
-                        <Text style={hometabstyles.tabtext}>Near</Text>
-                    </TouchableOpacity>
-                </View>
                 <ScrollView style={Styles.pb50, Styles.mv20}>
                     <View>
                         <Text style={Styles.titleabout}>Canada</Text>
@@ -209,7 +189,6 @@ const CountrySearch = props => {
                     </View>
                 </ScrollView>
             </View>
-            <Footer navigation={props.navigation} />
         </View>
 
     );

@@ -19,3 +19,16 @@ export function getUser(userId: string) {
 export function GalleryPhoto(User_id: string, UserPhotos: string, Image_name: string) {
     return apiClient.post(ApiConfig.GETPHOTO, { User_id, UserPhotos, Image_name })
 }
+
+export function oppositeUserTypeListing(genderType: string) {
+    let gender = genderType === 'Man' ? 'Woman' : 'Man'
+    return apiClient.get(`${ApiConfig.OPPOSITE_USER_TYPE_LISTING}?Gender=${gender}`);
+}
+
+export function favouriteController(userId: string) {
+    return apiClient.get(`${ApiConfig.FAVOURITE_CONTROLLER}?userId=${userId}`);
+}
+
+export function getGalleryPhots(userId: string,header: any) {
+    return apiClient.get(`${ApiConfig.GETPHOTO}/${userId}`,header);
+}

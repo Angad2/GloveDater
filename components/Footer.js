@@ -18,7 +18,7 @@ const Footer = props => {
                 <Ionicons name="md-chatbox-ellipses-outline" size={24} color="white" />
                 <Text style={Styles.footertxt}>Chating</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress= {() => {props.navigation.navigate({routeName: 'Global'})}} style={Styles.footertab}>
+            <TouchableOpacity onPress= {() => {props.navigation.navigate({routeName: 'Search'})}} style={Styles.footertab}>
                 <Ionicons name="md-search-outline" size={24} color="white" />
                 <Text style={Styles.footertxt}>Search</Text>
             </TouchableOpacity>

@@ -5,7 +5,7 @@ import Styles from '../../constants/globalstyle';
 import hometabstyles from "../home/hometabstyles";
 import SearchStyle from "./SearchStyle";
 
-const SearchGlobal = props => {
+const NearBySearch = props => {
 
     return (
         <View style={Styles.mainbody}>
@@ -63,4 +63,4 @@ const SearchGlobal = props => {
     );
 };
 
-export default SearchGlobal;
+export default NearBySearch;

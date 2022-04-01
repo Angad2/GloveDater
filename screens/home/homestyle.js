@@ -74,9 +74,9 @@ export default StyleSheet.create({
     },
 
     profilepic: {
-        width: 80,
-        height: 80,
-        borderRadius:100,
+        width: 70,
+        height: 70,
+        borderRadius:70/2,
         resizeMode: 'cover',
         marginEnd: 20,
     },

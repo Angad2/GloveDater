@@ -7,6 +7,7 @@ import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import Intrested from '../../components/Matches/intrested';
 import Favorited_me from '../../components/Matches/favorited_me';
 import My_favorites from '../../components/Matches/my_favorites';
+import HeaderLogd from '../../components/HeaderLogd';
 
 const renderScene = SceneMap({
   intrested: Intrested,
@@ -40,7 +41,7 @@ function Matches(props) {
 
   return (
     <View style={Styles.mainbody}>
-      <Header onSelect={() => { props.navigation.navigate('Home') }} title="Matches" />
+      <HeaderLogd onSelect={() => { props.navigation.goBack() }} title="Matches" />
       <TabView
         navigationState={{ index, routes }}
         renderScene={renderScene}
@@ -48,7 +49,9 @@ function Matches(props) {
         initialLayout={{ width: layout.width }}
         renderTabBar={renderTabBar}
       />
-      <Footer navigation={props.navigation} />
+      <View style={{ marginTop: 60 }}>
+        <Footer navigation={props.navigation} />
+      </View>
     </View>
   )
 }

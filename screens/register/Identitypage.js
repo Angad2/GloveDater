@@ -180,8 +180,8 @@ const openCamera = async () => {
                 var data = new FormData();
               
                 data.append('User_id', user.data._id);
-                data.append('UserPhotos', '');
-                data.append('Image_name', gallery_photos[i]);
+                data.append('UserPhotos', gallery_photos[i]);
+                data.append('Image_name', '');
                   axios({
                     method: "post",
                     url: "http://14.97.177.30:8484/V1/GalleryPhoto",

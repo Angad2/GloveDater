@@ -81,7 +81,7 @@ const Login = props => {
             }
 
             const user = await loginUser(email, password);
-            // console.log(user.data, "++++++++++++++++user data id")
+            console.log(user.data, "++++++++++++++++user data id")
             if (!user) {
                 showMessage({
                     message: "Error",
@@ -95,7 +95,7 @@ const Login = props => {
                     backgroundColor: 'rgba(0, 0, 0, 0.8)'
                 });
                 AsyncStorage.setItem("userId", user.data.data.Id);
-                //console.log(user.data.token, '-----------Token');
+                AsyncStorage.setItem("user", JSON.stringify(user.data.data));
                 AsyncStorage.setItem("token", user.data.token);
 
                 props.navigation.navigate('Feed');
@@ -133,7 +133,7 @@ const Login = props => {
                                 value={email}
                             />
                             <Image source={require('../../assets/images/mail_icon.png')}
-                                style={{ width: 50, height: 50, resizeMode: 'contain' }}
+                                style={{ width: 45, height: 45, resizeMode: 'contain' }}
                             />
                         </View>
                         <View style={rstyles.inputarea}>
@@ -143,7 +143,7 @@ const Login = props => {
                                 value={password}
                             />
                             <Image source={require('../../assets/images/pass-icon.png')}
-                                style={{ width: 50, height: 50, resizeMode: 'contain' }}
+                                style={{ width: 45, height: 45, resizeMode: 'contain' }}
                             />
                         </View>
                         <View>
@@ -152,17 +152,23 @@ const Login = props => {
                             </TouchableOpacity>
                         </View>
                     </View>
+                    <View style={[rstyles.btnview, styles.mt30]}>
+                        <TouchableOpacity onPress={validationSubmit}
+                            style={rstyles.btncontainer2}>
+                            <Text style={rstyles.btntext}>Log In</Text>
+                        </TouchableOpacity>
+                    </View>
                 </ScrollView>
                 {/* <TouchableOpacity onPress={validationSubmit} >
                 </TouchableOpacity> */}
-                <View style={rstyles.btnview}>
+                {/* <View style={rstyles.btnview}>
                     <View style={[rstyles.btnview, styles.mt25]}>
                         <TouchableOpacity onPress={validationSubmit}
                             style={rstyles.btncontainer2}>
                             <Text style={rstyles.btntext}>Log In</Text>
                         </TouchableOpacity>
                     </View>
-                </View>
+                </View> */}
             </ImageBackground>
         </View>
     );

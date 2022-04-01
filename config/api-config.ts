@@ -4,7 +4,9 @@ const ApiConfig = {
     SIGNUP: 'Signup',
     GETUSER: 'Users',
     GETPHOTO: 'GalleryPhoto',
-    EMAILCHECK: 'emailCheck'
+    EMAILCHECK: 'emailCheck',
+    OPPOSITE_USER_TYPE_LISTING : 'oppositeUserTypeListing',
+    FAVOURITE_CONTROLLER: "favouriteController",
     
   };
   export default ApiConfig;

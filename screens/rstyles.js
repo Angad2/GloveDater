@@ -56,8 +56,8 @@ export default StyleSheet.create({
 
   inputarea: {
     width: '100%',
-    height: 65,
-    padding: 12,
+    height: 55,
+    padding: 5,
     borderRadius: 100,
     borderColor: '#800080',
     borderWidth: 1,
@@ -89,7 +89,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     position: 'absolute',
-    bottom: 20,
+    // bottom: 20,
     zIndex: 10,
   },
 

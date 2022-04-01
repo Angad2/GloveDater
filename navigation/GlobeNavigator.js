@@ -21,6 +21,7 @@ import SearchGlobal from '../screens/search/SearchGlobal';
 import CountrySearch from '../screens/search/CountrySearch';
 import Matches from '../screens/matches';
 import HomeFeed from '../screens/Feed/HomeFeed';
+import Searches from '../screens/search';
 
 
 const RegisterStack = {
@@ -134,6 +135,12 @@ SearchStack = {
         headerShown: null,
         },
     },
+    Search: {
+        screen: Searches,
+        navigationOptions: {
+        headerShown: null,
+        },
+    },
 },
 
 MatchesStack = {
@@ -148,7 +155,7 @@ FeedStack = {
     Feed: {
         screen: HomeFeed,
         navigationOptions: {
-            header: null,
+            headerShown: false,
         },
     },
 },
@@ -165,7 +172,7 @@ GlobeNavigator = createStackNavigator(
     },
     {
         initialRouteName: "Login",
-        header: null,
+        headerShown: false,
       }
 );
 

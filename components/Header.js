@@ -14,9 +14,9 @@ const Header = props => {
             <TouchableOpacity 
             onPress={props.onSelect}
             style={styles.arrow}>
-            <Image source={require('../assets/images/arrow-bck.png')}
-            style={styles.arrow}></Image>
-            {/* <AntDesign name="left" color="#f44555" size={25}/> */}
+            {/* <Image source={require('../assets/images/arrow-bck.png')}
+            style={styles.arrow}></Image> */}
+            <AntDesign name="left" color="#f44555" size={25}/>
             </TouchableOpacity>
             <Text style={styles.title}>{props.title}</Text>
             <Text></Text>

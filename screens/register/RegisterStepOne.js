@@ -158,7 +158,7 @@ const RegisterStepOne = props => {
                                 value={User_name}
                             />
                             <Image source={require('../../assets/images/man-icon.png')}
-                                style={{ width: 50, height: 50, resizeMode: 'contain' }}
+                                style={{ width: 45, height: 45, resizeMode: 'contain' }}
                             />
                         </View>
                         <View style={rstyles.inputarea}>
@@ -168,7 +168,7 @@ const RegisterStepOne = props => {
                                 value={email}
                             />
                             <Image source={require('../../assets/images/mail_icon.png')}
-                                style={{ width: 50, height: 50, resizeMode: 'contain' }}
+                                style={{ width: 45, height: 45, resizeMode: 'contain' }}
                             />
                         </View>       
                         <View style={rstyles.inputarea}>
@@ -180,24 +180,24 @@ const RegisterStepOne = props => {
                                 secureTextEntry={true}
                             />
                             <Image source={require('../../assets/images/pass-icon.png')}
-                                style={{ width: 50, height: 50, resizeMode: 'contain' }}
+                                style={{ width: 45, height: 45, resizeMode: 'contain' }}
                             />
                         </View>
                         <View>
                             <TouchableOpacity onPress= {() => {props.navigation.navigate({routeName: 'Login'})}}>
-                                <Text style={rstyles.hlinktxt}>Already a member sign in here</Text>
+                                <Text style={rstyles.hlinktxt}>Already a member? sign in here</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
-                </ScrollView>
-                <TouchableOpacity onPress={validationSubmit} >
-                </TouchableOpacity> 
-                 <View style={rstyles.btnview}>
+                    <View style={[rstyles.btnview,styles.mt30]}>
                     <TouchableOpacity onPress={validationSubmit} 
-                    style={rstyles.btncontainer2}>
+                        style={rstyles.btncontainer2}>
                         <Text style={rstyles.btntext}>Continue</Text>
                     </TouchableOpacity>
                 </View>
+                </ScrollView>
+                {/* <TouchableOpacity onPress={validationSubmit} >
+                </TouchableOpacity>  */}
             </ImageBackground>
         </View>
     );
