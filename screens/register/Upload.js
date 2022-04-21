@@ -76,54 +76,54 @@ const Upload = props => {
 
 
     React.useEffect(() => {
-            // console.log(props.navigation.state.params.param.email, "+++++++props email"),
-            // console.log(props.navigation.state.params.param.password, "+++++++props pass"),
-            // console.log(props.navigation.state.params.param.User_name, "+++++++props username"),
-            // console.log(props.navigation.state.params.param.gender, "+++++++props gender"),
-            // console.log(props.navigation.state.params.param.looking, "+++++++props looking for"),
-            // console.log(props.navigation.state.params.param.country, "+++++++props Country"),
-            // console.log(props.navigation.state.params.param.city, "+++++++props city"),
-            // console.log(props.navigation.state.params.param.intentArr, "+++++++props Intent_option"),
-            // console.log(props.navigation.state.params.param.ageValue, "+++++++props Age"),
-            // console.log(props.navigation.state.params.param.bodyValue, "+++++++props Body type"),
-            // console.log(props.navigation.state.params.param.heightValue, "+++++++props Height"),
-            // console.log(props.navigation.state.params.param.hairValue, "+++++++props Hair type"),
-            // console.log(props.navigation.state.params.param.ethnicityValue, "+++++++props EthnicityValue"),
-            // console.log(props.navigation.state.params.param.intentValue, "+++++++props intentValue"),
-            // console.log(props.navigation.state.params.param.about, "+++++++props About Me"),
-            // console.log(props.navigation.state.params.param.lookingFor, "+++++++props Looking For"),
-            console.log(props.navigation.state.params.param.favtravelSpot, "+++++++props My Favourite Spot"),
-            console.log(props.navigation.state.params.param.favBarResto, "+++++++props My Favourite Bar"),
-            console.log(props.navigation.state.params.param.favDreamExpo, "+++++++props My Favourite Dream"),
+            // console.log(props.route.params.param.email, "+++++++props email"),
+            // console.log(props.route.params.param.password, "+++++++props pass"),
+            // console.log(props.route.params.param.User_name, "+++++++props username"),
+            // console.log(props.route.params.param.gender, "+++++++props gender"),
+            // console.log(props.route.params.param.looking, "+++++++props looking for"),
+            // console.log(props.route.params.param.country, "+++++++props Country"),
+            // console.log(props.route.params.param.city, "+++++++props city"),
+            // console.log(props.route.params.param.intentArr, "+++++++props Intent_option"),
+            // console.log(props.route.params.param.ageValue, "+++++++props Age"),
+            // console.log(props.route.params.param.bodyValue, "+++++++props Body type"),
+            // console.log(props.route.params.param.heightValue, "+++++++props Height"),
+            // console.log(props.route.params.param.hairValue, "+++++++props Hair type"),
+            // console.log(props.route.params.param.ethnicityValue, "+++++++props EthnicityValue"),
+            // console.log(props.route.params.param.intentValue, "+++++++props intentValue"),
+            // console.log(props.route.params.param.about, "+++++++props About Me"),
+            // console.log(props.route.params.param.lookingFor, "+++++++props Looking For"),
+            console.log(props.route.params.param.favtravelSpot, "+++++++props My Favourite Spot"),
+            console.log(props.route.params.param.favBarResto, "+++++++props My Favourite Bar"),
+            console.log(props.route.params.param.favDreamExpo, "+++++++props My Favourite Dream"),
 
 
-            _email(props.navigation.state.params.param.email),
-            _password(props.navigation.state.params.param.password),
-            _User_name(props.navigation.state.params.param.User_name),
-            _gender(props.navigation.state.params.param.gender),
-            _looking(props.navigation.state.params.param.looking),
-            _country(props.navigation.state.params.param.country),
-            _city(props.navigation.state.params.param.city),
-            _intentArr(props.navigation.state.params.param.intentArr),
-            _ageValue(props.navigation.state.params.param.ageValue),
-            _bodyValue(props.navigation.state.params.param.bodyValue),
-            _heightValue(props.navigation.state.params.param.heightValue),
-            _hairValue(props.navigation.state.params.param.hairValue),
-            _ethnicityValue(props.navigation.state.params.param.ethnicityValue),
-            _intentValue(props.navigation.state.params.param.intentValue),
-            _about(props.navigation.state.params.param.about),
-            _lookingFor(props.navigation.state.params.param.lookingFor)
-            _favtravelSpot(props.navigation.state.params.param.favtravelSpot),
-            _favBarResto(props.navigation.state.params.param.favBarResto),
-            _favDreamExpo(props.navigation.state.params.param.favDreamExpo),
-            _gallery_photos (props.navigation.state.params.param.gallery_photos)
+            _email(props.route.params.param.email),
+            _password(props.route.params.param.password),
+            _User_name(props.route.params.param.User_name),
+            _gender(props.route.params.param.gender),
+            _looking(props.route.params.param.looking),
+            _country(props.route.params.param.country),
+            _city(props.route.params.param.city),
+            _intentArr(props.route.params.param.intentArr),
+            _ageValue(props.route.params.param.ageValue),
+            _bodyValue(props.route.params.param.bodyValue),
+            _heightValue(props.route.params.param.heightValue),
+            _hairValue(props.route.params.param.hairValue),
+            _ethnicityValue(props.route.params.param.ethnicityValue),
+            _intentValue(props.route.params.param.intentValue),
+            _about(props.route.params.param.about),
+            _lookingFor(props.route.params.param.lookingFor)
+            _favtravelSpot(props.route.params.param.favtravelSpot),
+            _favBarResto(props.route.params.param.favBarResto),
+            _favDreamExpo(props.route.params.param.favDreamExpo),
+            _gallery_photos (props.route.params.param.gallery_photos)
 
 
     }, [])
 
     return (
         <View style={styles.mainbody}>
-            <Header onSelect={() => { props.navigation.navigate({ routeName: 'RegisterFive' }); }} title="Upload" />
+            <Header onSelect={() => { props.navigation.navigate('RegisterFive')}} title="Upload" />
                     <View style={rstyles.formview4}>
                         {image && image.map((img, index) => (
                         <View key={img}>

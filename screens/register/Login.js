@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, TextInput, Button, TouchableOpacity, ScrollView, Dimensions, Alert, ImageBackground, ToastAndroid } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, ActivityIndicator, Image, TextInput, Button, TouchableOpacity, ScrollView, Dimensions, Alert, ImageBackground, ToastAndroid } from 'react-native';
 import styles from '../../constants/globalstyle';
 import rstyles from '../rstyles';
 
 import axios from 'axios';
-import { BASE_URL } from '../../config';
+import config from '../../config';
 import { loginUser } from '../../service';
 import { showMessage } from 'react-native-flash-message';
 
@@ -20,6 +20,32 @@ const Login = props => {
     const [isEmailError, _isEmailError] = useState(false);
     const [isPassValidationError, _isPassValidationError] = useState(false);
     const [isPassError, _isPassError] = useState(false);
+    const [checked, setChecked] = useState(true);
+    const [loading, setLoading] = useState(false)
+
+
+    useEffect(() => {
+        setTimeout(() => {
+            splshRedirection()
+        }, 300);
+    }, []);
+
+    const rememberUser = async () => {
+        try {
+            var rememberVar = checked === true ? "yes" : "no";
+            await AsyncStorage.setItem(config.GlobeRememberMe, rememberVar);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const splshRedirection = async () => {
+        if (await AsyncStorage.getItem(config.GlobeRememberMe) == null || await AsyncStorage.getItem(config.GlobeRememberMe) == "no") {
+            props.navigation.navigate("NonAuthStack");
+        } else {
+            props.navigation.navigate('HomeStack')
+        }
+    }
 
     const emailHandler = (enteredEmail) => {
         _email(enteredEmail);
@@ -79,7 +105,7 @@ const Login = props => {
                 );
                 return;
             }
-
+            setLoading(true)
             const user = await loginUser(email, password);
             console.log(user.data, "++++++++++++++++user data id")
             if (!user) {
@@ -97,8 +123,10 @@ const Login = props => {
                 AsyncStorage.setItem("userId", user.data.data.Id);
                 AsyncStorage.setItem("user", JSON.stringify(user.data.data));
                 AsyncStorage.setItem("token", user.data.token);
+                rememberUser();
+                props.navigation.navigate('HomeStack');
+                setLoading(false)
 
-                props.navigation.navigate('Feed');
             }
         } catch (error) {
             //setIsLoading(false);
@@ -109,7 +137,6 @@ const Login = props => {
 
         }
     };
-
 
     return (
         <View navigation={props.navigation} style={styles.imageview}>
@@ -147,7 +174,7 @@ const Login = props => {
                             />
                         </View>
                         <View>
-                            <TouchableOpacity onPress={() => { props.navigation.navigate({ routeName: 'Register' }) }}>
+                            <TouchableOpacity onPress={() => props.navigation.navigate('RegisterStepOne')}>
                                 <Text style={rstyles.hlinktxt}>Not a member sign up here</Text>
                             </TouchableOpacity>
                         </View>
@@ -155,7 +182,7 @@ const Login = props => {
                     <View style={[rstyles.btnview, styles.mt30]}>
                         <TouchableOpacity onPress={validationSubmit}
                             style={rstyles.btncontainer2}>
-                            <Text style={rstyles.btntext}>Log In</Text>
+                            {loading ? <ActivityIndicator size="large" color="#fff" /> : <Text style={rstyles.btntext}>Log In</Text>}
                         </TouchableOpacity>
                     </View>
                 </ScrollView>

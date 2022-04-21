@@ -43,27 +43,27 @@ const Identitypage = props => {
     const [gallery_photos, _gallery_photos] = useState('');
     
     React.useEffect(() => {
-            _email(props.navigation.state.params.param.email),
-            _password(props.navigation.state.params.param.password),
-            _User_name(props.navigation.state.params.param.User_name),
-            _gender(props.navigation.state.params.param.gender),
-            _looking(props.navigation.state.params.param.looking),
-            _country(props.navigation.state.params.param.country),
-            _city(props.navigation.state.params.param.city),
-            _intentArr(props.navigation.state.params.param.intentArr),
-            _ageValue(props.navigation.state.params.param.ageValue),
-            _bodyValue(props.navigation.state.params.param.bodyValue),
-            _heightValue(props.navigation.state.params.param.heightValue),
-            _hairValue(props.navigation.state.params.param.hairValue),
-            _ethnicityValue(props.navigation.state.params.param.ethnicityValue),
-            _intentValue(props.navigation.state.params.param.intentValue),
-            _about(props.navigation.state.params.param.about),
-            _lookingFor(props.navigation.state.params.param.lookingFor)
-            _favtravelSpot(props.navigation.state.params.param.favtravelSpot),
-            _favBarResto(props.navigation.state.params.param.favBarResto),
-            _favDreamExpo(props.navigation.state.params.param.favDreamExpo),
-            _gallery_photos (props.navigation.state.params.param.gallery_photos),
-            _photo (props.navigation.state.params.param.photo)
+            _email(props.route.params.param.email),
+            _password(props.route.params.param.password),
+            _User_name(props.route.params.param.User_name),
+            _gender(props.route.params.param.gender),
+            _looking(props.route.params.param.looking),
+            _country(props.route.params.param.country),
+            _city(props.route.params.param.city),
+            _intentArr(props.route.params.param.intentArr),
+            _ageValue(props.route.params.param.ageValue),
+            _bodyValue(props.route.params.param.bodyValue),
+            _heightValue(props.route.params.param.heightValue),
+            _hairValue(props.route.params.param.hairValue),
+            _ethnicityValue(props.route.params.param.ethnicityValue),
+            _intentValue(props.route.params.param.intentValue),
+            _about(props.route.params.param.about),
+            _lookingFor(props.route.params.param.lookingFor)
+            _favtravelSpot(props.route.params.param.favtravelSpot),
+            _favBarResto(props.route.params.param.favBarResto),
+            _favDreamExpo(props.route.params.param.favDreamExpo),
+            _gallery_photos (props.route.params.param.gallery_photos),
+            _photo (props.route.params.param.photo)
 
     }, [])
     
@@ -138,7 +138,7 @@ const openCamera = async () => {
         data.append('Favorite_restaurnt', favBarResto);
         data.append('Future_dream_experience', favDreamExpo);
         data.append('Photo', photo);
-
+        console.log('data',data);
         axios({
           method: "post",
           url: "http://14.97.177.30:8484/V1/Signup",
@@ -154,6 +154,7 @@ const openCamera = async () => {
               return
             }
           else{
+            console.log('user',user);
             AsyncStorage.setItem("userId", user.data._id);
             AsyncStorage.setItem("token", user.data.Token);
             var photoData = new FormData();
@@ -198,7 +199,7 @@ const openCamera = async () => {
                 message: "Signup sucessfull",
                 backgroundColor: 'rgba(0, 0, 0, 0.8)'
               });            
-              props.navigation.navigate('Feed');
+              props.navigation.navigate('HomeStack');
             }
           })
           .catch(function (error) {
@@ -217,7 +218,7 @@ const openCamera = async () => {
     return (
       
       <View style={Styles.mainbody}>
-        <Header onSelect={() => { props.navigation.navigate({ routeName: 'UploadPage' }); }} title="Identity verification" />
+        <Header onSelect={() => { props.navigation.navigate('UploadPage')}} title="Identity verification" />
         <ScrollView style={{ marginBottom: 70, }}>
           <View>
             <IdentityUper />

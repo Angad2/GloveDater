@@ -39,19 +39,19 @@ const HomeExperiance = props => {
 
     return (
         <View style={Styles.mainbody}>
-            <HeaderLogd onSelect={() => { props.navigation.navigate({ routeName: 'Home' }); }} title="Experience" />
+            <HeaderLogd onSelect={() => { props.navigation.goBack(); }} title="Experience" />
             <View style={hometabstyles.mainarea}>
                 <View style={hometabstyles.tabarea}>
                     <TouchableOpacity
                         onPress={() => {
-                            props.navigation.navigate({ routeName: 'Home' });
+                            props.navigation.navigate('MyProfile');
                         }}
                         style={hometabstyles.tabs}>
                         <Text style={hometabstyles.tabtext}>Photo</Text>
                     </TouchableOpacity>
                     <TouchableOpacity 
                          onPress={() => {
-                            props.navigation.navigate({ routeName: 'Homeabout' });
+                            props.navigation.navigate('About');
                         }}
                         style={hometabstyles.tabs}>
                         <Text style={hometabstyles.tabtext}>About</Text>
@@ -82,7 +82,7 @@ const HomeExperiance = props => {
                     <View style={Styles.spacediv}></View>
                 </ScrollView>
             </View>
-            <Footer navigation={props.navigation} />
+            {/* <Footer navigation={props.navigation} /> */}
         </View>
 
     );

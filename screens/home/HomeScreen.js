@@ -25,7 +25,7 @@ const HomeScreen = props => {
 
     return (
         <View style={Styles.mainbody}>
-            <HeaderLogd onSelect={() => { props.navigation.navigate({}); }} title="Profile" />
+            <HeaderLogd onSelect={() => { props.navigation.goBack(); }} title="Profile" navToProfile={()=>props.navigation.navigate('Profile')} />
             <ScrollView showsVerticalScrollIndicator={false}>
                 <Slider />
                 <View style={Homestyle.profilenameview}>
@@ -33,7 +33,7 @@ const HomeScreen = props => {
                         <Text style={Homestyle.nametxt}>{datas.User_name}</Text>
                         <Text style={Homestyle.locationtxt}>{datas.Email}</Text>
                     </View>
-                    <TouchableOpacity style={Homestyle.profileEdit} onPress={() => { props.navigation.navigate({ routeName: 'editProfile' }) }}>
+                    <TouchableOpacity style={Homestyle.profileEdit} onPress={() => { props.navigation.navigate('EditProfile') }}>
                         <Octicons name="pencil" size={20} color="#f44555" />
                     </TouchableOpacity>
                 </View>
@@ -45,14 +45,14 @@ const HomeScreen = props => {
                         </TouchableOpacity>
                         <TouchableOpacity
                             onPress={() => {
-                                props.navigation.navigate({ routeName: 'Homeabout' });
+                                props.navigation.navigate('About');
                             }}
                             style={hometabstyles.tabs}>
                             <Text style={hometabstyles.tabtext}>About</Text>
                         </TouchableOpacity >
                         <TouchableOpacity
                             onPress={() => {
-                                props.navigation.navigate({ routeName: 'Homeexp' });
+                                props.navigation.navigate('Experience');
                             }}
                             style={hometabstyles.tabs}>
                             <Text style={hometabstyles.tabtext}>Experiences</Text>
@@ -62,7 +62,7 @@ const HomeScreen = props => {
                 <Photo />
                 <View style={Styles.spacediv}></View>
             </ScrollView>
-            <Footer navigation={props.navigation} />
+            {/* <Footer navigation={props.navigation} /> */}
         </View>
     );
 };

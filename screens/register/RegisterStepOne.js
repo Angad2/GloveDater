@@ -184,7 +184,7 @@ const RegisterStepOne = props => {
                             />
                         </View>
                         <View>
-                            <TouchableOpacity onPress= {() => {props.navigation.navigate({routeName: 'Login'})}}>
+                            <TouchableOpacity onPress= {() => {props.navigation.navigate('Login')}}>
                                 <Text style={rstyles.hlinktxt}>Already a member? sign in here</Text>
                             </TouchableOpacity>
                         </View>

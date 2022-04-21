@@ -24,6 +24,20 @@ export function oppositeUserTypeListing(genderType: string) {
     let gender = genderType === 'Man' ? 'Woman' : 'Man'
     return apiClient.get(`${ApiConfig.OPPOSITE_USER_TYPE_LISTING}?Gender=${gender}`);
 }
+export function getOppositeUserByCountry(genderType: string) {
+    let gender = genderType === 'Man' ? 'Woman' : 'Man'
+    return apiClient.get(`${ApiConfig.GET_USER_LIST_BY_COUNTRY}?Gender=${gender}`);
+}
+export interface LabeledValue {
+    gender: string;
+    latitude: number;
+    longitude: number
+  }
+export function oppositeUserTypeListingNearBy(genderType: LabeledValue) {
+    const {gender,latitude,longitude} = genderType  
+    let type = gender === 'Man' ? 'Woman' : 'Man'
+    return apiClient.get(`${ApiConfig.OPPOSITE_USER_LIST_NEAR_BY}?Gender=${type}&latitude=${latitude}&longitude=${longitude}`);
+}
 
 export function favouriteController(userId: string) {
     return apiClient.get(`${ApiConfig.FAVOURITE_CONTROLLER}?userId=${userId}`);
@@ -31,4 +45,8 @@ export function favouriteController(userId: string) {
 
 export function getGalleryPhots(userId: string,header: any) {
     return apiClient.get(`${ApiConfig.GETPHOTO}/${userId}`,header);
+}
+
+export function locationUpdate(location: any) {
+    return apiClient.put(`${ApiConfig.UPDATE_LOCATION}`,location);
 }

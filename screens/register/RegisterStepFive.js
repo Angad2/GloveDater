@@ -42,37 +42,37 @@ const RegisterStepFive = props => {
     
 
     React.useEffect(() => {
-            console.log(props.navigation.state.params.param.ageValue, "+++++++props Age"),
-            console.log(props.navigation.state.params.param.bodyValue, "+++++++props Body type"),
-            console.log(props.navigation.state.params.param.heightValue, "+++++++props Height"),
-            console.log(props.navigation.state.params.param.hairValue, "+++++++props Hair type"),
-            console.log(props.navigation.state.params.param.ethnicityValue, "+++++++props EthnicityValue"),
-            console.log(props.navigation.state.params.param.intentValue, "+++++++props intentValue"),
-            console.log(props.navigation.state.params.param.about, "+++++++props About Me"),
-            console.log(props.navigation.state.params.param.lookingFor, "+++++++props Looking For"),
+            console.log(props.route.params.param.ageValue, "+++++++props Age"),
+            console.log(props.route.params.param.bodyValue, "+++++++props Body type"),
+            console.log(props.route.params.param.heightValue, "+++++++props Height"),
+            console.log(props.route.params.param.hairValue, "+++++++props Hair type"),
+            console.log(props.route.params.param.ethnicityValue, "+++++++props EthnicityValue"),
+            console.log(props.route.params.param.intentValue, "+++++++props intentValue"),
+            console.log(props.route.params.param.about, "+++++++props About Me"),
+            console.log(props.route.params.param.lookingFor, "+++++++props Looking For"),
 
-            _email(props.navigation.state.params.param.email),
-            _password(props.navigation.state.params.param.password),
-            _User_name(props.navigation.state.params.param.User_name),
-            _gender(props.navigation.state.params.param.gender),
-            _looking(props.navigation.state.params.param.looking),
-            _country(props.navigation.state.params.param.country),
-            _city(props.navigation.state.params.param.city),
-            _intentArr(props.navigation.state.params.param.intentArr),
-            _ageValue(props.navigation.state.params.param.ageValue),
-            _bodyValue(props.navigation.state.params.param.bodyValue),
-            _heightValue(props.navigation.state.params.param.heightValue),
-            _hairValue(props.navigation.state.params.param.hairValue),
-            _ethnicityValue(props.navigation.state.params.param.ethnicityValue),
-            _intentValue(props.navigation.state.params.param.intentValue),
-            _about(props.navigation.state.params.param.about),
-            _lookingFor(props.navigation.state.params.param.lookingFor)
+            _email(props.route.params.param.email),
+            _password(props.route.params.param.password),
+            _User_name(props.route.params.param.User_name),
+            _gender(props.route.params.param.gender),
+            _looking(props.route.params.param.looking),
+            _country(props.route.params.param.country),
+            _city(props.route.params.param.city),
+            _intentArr(props.route.params.param.intentArr),
+            _ageValue(props.route.params.param.ageValue),
+            _bodyValue(props.route.params.param.bodyValue),
+            _heightValue(props.route.params.param.heightValue),
+            _hairValue(props.route.params.param.hairValue),
+            _ethnicityValue(props.route.params.param.ethnicityValue),
+            _intentValue(props.route.params.param.intentValue),
+            _about(props.route.params.param.about),
+            _lookingFor(props.route.params.param.lookingFor)
 
     }, [])
 
     return (
         <View style={styles.mainbody}>
-            <Header onSelect={() => { props.navigation.navigate({ routeName: 'RegisterFour' }); }} title="Profile" />
+            <Header onSelect={() => { props.navigation.navigate('RegisterFour')}} title="Profile" />
             <ScrollView style={rstyles.formview3}>
                 <Text style={rstyles.formviewtxt}>Favorite travel spot</Text>
                 <View style={rstyles.txtareabox}>

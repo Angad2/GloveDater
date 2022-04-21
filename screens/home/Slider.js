@@ -44,7 +44,7 @@ export default class Slider extends Component {
     return (
       <View style={style.container}>
         <ScrollView
-          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
           pagingEnabled
           horizontal
           onScroll={this.change}
@@ -55,7 +55,6 @@ export default class Slider extends Component {
                 <Image
                   key={index}
                   source={{ uri: `${IMAGE_URL}${image.UserPhotos}` }}
-                  showsHorizonalScrollIndicator={false}
                   style={style.image}
                 />
               )

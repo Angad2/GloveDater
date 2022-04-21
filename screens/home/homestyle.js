@@ -97,7 +97,7 @@ export default StyleSheet.create({
         height: 'auto',
         backgroundColor: '#f9f9f9',
         borderRadius: 10,
-        padding: 10,
+        padding: 8,
         justifyContent: 'space-between',
         alignContent: 'center',
         alignItems: 'center',
@@ -114,8 +114,8 @@ export default StyleSheet.create({
     },
 
     iconbox: {
-        width: 50,
-        height: 50,
+        width: 45,
+        height: 45,
         alignContent: 'center',
         alignItems: 'center',
         backgroundColor: 'white',

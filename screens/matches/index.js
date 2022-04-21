@@ -49,9 +49,9 @@ function Matches(props) {
         initialLayout={{ width: layout.width }}
         renderTabBar={renderTabBar}
       />
-      <View style={{ marginTop: 60 }}>
+      {/* <View style={{ marginTop: 60 }}>
         <Footer navigation={props.navigation} />
-      </View>
+      </View> */}
     </View>
   )
 }

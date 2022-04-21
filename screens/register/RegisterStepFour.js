@@ -104,23 +104,23 @@ const RegisterStepFour = props => {
         _lookingFor(enteredLookingf);
     };
     React.useEffect(() => {
-            console.log(props.navigation.state.params.param.country, "+++++++props Country"),
-            console.log(props.navigation.state.params.param.city, "+++++++props city"),
-            console.log(props.navigation.state.params.param.intentArr, "+++++++props Intent_option"),
+            console.log(props.route.params.param.country, "+++++++props Country"),
+            console.log(props.route.params.param.city, "+++++++props city"),
+            console.log(props.route.params.param.intentArr, "+++++++props Intent_option"),
             
-            _email(props.navigation.state.params.param.email),
-            _password(props.navigation.state.params.param.password),
-            _User_name(props.navigation.state.params.param.User_name),
-            _gender(props.navigation.state.params.param.gender),
-            _looking(props.navigation.state.params.param.looking),
-            _country(props.navigation.state.params.param.country),
-            _city(props.navigation.state.params.param.city),
-            _intentArr(props.navigation.state.params.param.intentArr)
+            _email(props.route.params.param.email),
+            _password(props.route.params.param.password),
+            _User_name(props.route.params.param.User_name),
+            _gender(props.route.params.param.gender),
+            _looking(props.route.params.param.looking),
+            _country(props.route.params.param.country),
+            _city(props.route.params.param.city),
+            _intentArr(props.route.params.param.intentArr)
 
     }, [])
     return (
         <View style={styles.mainbody}>
-            <Header onSelect={() => { props.navigation.navigate({ routeName: 'RegisterThree' }); }} title="Profile" />
+            <Header onSelect={() => { props.navigation.navigate('RegisterThree') }} title="Profile" />
             <ScrollView style={rstyles.formview3}>
                 <Text style={rstyles.formviewtxt}>Basics</Text>
                 <View style={rstyles.dropdownarea}>

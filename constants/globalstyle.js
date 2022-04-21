@@ -100,13 +100,14 @@ export default StyleSheet.create({
     flexDirection: 'row',
     width: '100%',
     //height: 50,
-    marginTop: 20,
-    padding: 20,
+    marginTop: 30,
+    padding: 10,
     justifyContent: 'space-between',
     alignItems: 'center',
     alignContent: 'center',
-    marginLeft: 'auto',
+    // marginLeft: 'auto',
     paddingTop: 30,
+    paddingRight: 20
   },
 
   arrow: {
@@ -120,6 +121,7 @@ export default StyleSheet.create({
     fontSize: 18,
     color: 'black',
     fontFamily: 'quicksand-bold',
+    marginLeft: 10
   },
 
   titleabout: {
@@ -215,5 +217,15 @@ export default StyleSheet.create({
     width: 27, 
     height: 30,
   },
+
+  // ---------No data ------
+  noData:{
+    flex: 1, 
+    backgroundColor: '#fefefe', 
+    justifyContent: 'center', 
+    alignItems: 'center',
+    marginTop:20
+  }
+  // ---------No data ------
 });
   

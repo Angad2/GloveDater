@@ -56,21 +56,21 @@ const selectIntent = (enterIntent) => {
   };
 
   React.useEffect(()=>{
-    console.log(props.navigation.state.params.param.gender, "+++++++props gender"),
-    console.log(props.navigation.state.params.param.looking, "+++++++props looking for"),
+    console.log(props.route.params.param.gender, "+++++++props gender"),
+    console.log(props.route.params.param.looking, "+++++++props looking for"),
 
-    _email(props.navigation.state.params.param.email),
-    _password(props.navigation.state.params.param.password),
-    _User_name(props.navigation.state.params.param.User_name),
-    _gender(props.navigation.state.params.param.gender),
-    _looking(props.navigation.state.params.param.looking)
+    _email(props.route.params.param.email),
+    _password(props.route.params.param.password),
+    _User_name(props.route.params.param.User_name),
+    _gender(props.route.params.param.gender),
+    _looking(props.route.params.param.looking)
 
   },[])
 
  
     return (
         <View style={styles.mainbody}>
-            <Header onSelect={() => { props.navigation.navigate({ routeName: 'RegisterTwo' }); }} title="Profile" />
+            <Header onSelect={() => { props.navigation.navigate('RegisterTwo')}} title="Profile" />
             <ScrollView style={rstyles.formview3}>
                 <Text style={rstyles.formviewtxt}>Country</Text>
                 <View style={rstyles.inputarea}>

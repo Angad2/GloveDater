@@ -27,7 +27,7 @@ const HeaderLogd = props => {
                 <AntDesign name="left" color="#f44555" size={25} />
             </TouchableOpacity>
             <Text style={styles.title}>{props.title}</Text>
-            <TouchableOpacity onPress={()=> { props.navigation.navigate({ routeName: 'Home' }); }}>
+            <TouchableOpacity onPress={props.navToProfile}>
                 <Image source={{ uri: `${IMAGE_URL}/${datas?.Photo}` }}
                     style={styles.profilepic}>
                 </Image>
@@ -36,4 +36,4 @@ const HeaderLogd = props => {
     );
 };
 
-export default withNavigation(HeaderLogd);
+export default HeaderLogd;
